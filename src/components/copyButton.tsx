@@ -27,8 +27,8 @@ export function CopyButton({
   return (
     <button
       className={clsx(
-        "group m-2 p-2 rounded-lg transition-colors",
-        "m-0 text-md opacity-50 font-crimson-text text-secondary hover:text-primary"
+        "m-2 p-2 rounded-lg transition-colors",
+        "text-md font-crimson-text text-secondary hover:text-primary"
       )}
       onClick={copyToClipboard}
     >

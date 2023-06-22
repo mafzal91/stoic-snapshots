@@ -1,45 +1,12 @@
 import clsx from "clsx";
 import "./globals.css";
-import {
-  Josefin_Sans,
-  Crimson_Text,
-  Oleo_Script_Swash_Caps,
-  Pinyon_Script,
-  Petit_Formal_Script,
-  EB_Garamond,
-} from "next/font/google";
-
-const josefin_sans = Josefin_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-josefin-sans",
-});
+import { Crimson_Text, EB_Garamond } from "next/font/google";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
   display: "swap",
   weight: "400",
   variable: "--font-crimson-text",
-});
-
-const oleo_script_swash_caps = Oleo_Script_Swash_Caps({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "400",
-  variable: "--font-oleo-script-swash-caps",
-});
-
-const pinyon_script = Pinyon_Script({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "400",
-  variable: "--font-pinyon-script",
-});
-const petit_formal_script = Petit_Formal_Script({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "400",
-  variable: "--font-petit-formal-script",
 });
 
 const eb_garamond = EB_Garamond({
@@ -60,14 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="theme-dark">
+    <html lang="en" className="theme-light">
       <body
         className={clsx(
-          josefin_sans.variable,
           crimson_text.variable,
-          oleo_script_swash_caps.variable,
-          pinyon_script.variable,
-          petit_formal_script.variable,
           eb_garamond.variable,
           "bg-background"
         )}

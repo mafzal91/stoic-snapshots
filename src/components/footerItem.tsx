@@ -15,7 +15,7 @@ export function FooterLink({
   return (
     <Link href={href} className={classNames}>
       <p
-        className={`m-0 text-md opacity-50 font-crimson-text text-secondary group-hover:text-primary`}
+        className={`m-0 text-md font-crimson-text text-secondary group-hover:text-primary`}
       >
         {children}
       </p>
@@ -33,7 +33,7 @@ export function FooterButton({
   return (
     <button onClick={onClick} className={classNames}>
       <p
-        className={`m-0 text-md opacity-50 font-crimson-text text-secondary group-hover:text-primary`}
+        className={`m-0 text-md font-crimson-text text-secondary group-hover:text-primary`}
       >
         {children}
       </p>

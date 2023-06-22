@@ -4,7 +4,7 @@ import { findQuoteById } from "@/app/database";
 import { Circle } from "@/components/circle";
 import { Quote } from "@/components/quote";
 import { FooterLink } from "@/components/footerItem";
-
+import { Divider } from "@/components/divider";
 import { CopyButton } from "@/components/copyButton";
 
 async function getQuote(quote_id: string): Promise<QuoteWithAuthor | null> {
@@ -39,11 +39,18 @@ export default async function QuoteByIdPage({
       {/*  */}
 
       <div className="flex items-center lg:mb-0 lg:text-left">
-        <span className="text-primary">&#x2022;</span>
-        <FooterLink href={`/random`}>Random</FooterLink>
+        <Divider />
+        <FooterLink
+          href={{
+            pathname: "/random",
+            query: { quote_id: quote.id },
+          }}
+        >
+          Random
+        </FooterLink>
         {authorName !== "Unknown" && (
           <>
-            <span className="text-primary">&#x2022;</span>
+            <Divider />
             <FooterLink
               href={{
                 pathname: `/author/${quote.author_id}`,
@@ -54,9 +61,9 @@ export default async function QuoteByIdPage({
             </FooterLink>
           </>
         )}
-        <span className="text-primary">&#x2022;</span>
+        <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
-        <span className="text-primary">&#x2022;</span>
+        <Divider />
       </div>
     </>
   );
