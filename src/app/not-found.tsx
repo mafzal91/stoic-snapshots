@@ -1,4 +1,5 @@
 import { FooterLink } from "@/components/footerItem";
+import { Divider } from "@/components/divider";
 
 export default function NotFound() {
   return (
@@ -12,9 +13,9 @@ export default function NotFound() {
       {/*  */}
 
       <div className="flex items-center lg:mb-0 lg:text-left">
-        <span className="text-primary">|</span>
+        <Divider />
         <FooterLink href={`/random`}>Random</FooterLink>
-        <span className="text-primary">|</span>
+        <Divider />
       </div>
     </>
   );

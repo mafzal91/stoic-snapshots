@@ -5,6 +5,7 @@ import { Quote } from "@/components/quote";
 import { FooterLink } from "@/components/footerItem";
 import { splitName } from "./split-name";
 import { CopyButton } from "@/components/copyButton";
+import { Divider } from "@/components/divider";
 
 async function getRandomQuote(): Promise<QuoteWithAuthor> {
   const response = await fetch("https://api.themotivate365.com/stoic-quote", {
@@ -52,7 +53,7 @@ export default async function Home() {
       {/*  */}
 
       <div className="flex items-center lg:mb-0 lg:text-left">
-        <span className="text-primary">|</span>
+        <Divider />
         <FooterLink
           href={{
             pathname: "/random",
@@ -63,7 +64,7 @@ export default async function Home() {
         </FooterLink>
         {authorName !== "Unknown" && (
           <>
-            <span className="text-primary">|</span>
+            <Divider />
             <FooterLink
               href={{
                 pathname: `/author/${quote.author_id}`,
@@ -74,9 +75,9 @@ export default async function Home() {
             </FooterLink>
           </>
         )}
-        <span className="text-primary">|</span>
+        <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
-        <span className="text-primary">|</span>
+        <Divider />
       </div>
     </>
   );
