@@ -12,7 +12,7 @@ export async function findQuoteByText(
   quote: string
 ): Promise<QuoteWithAuthor | null> {
   const results = await db.execute(
-    "SELECT quotes.id, quotes.quote, authors.first_name, authors.last_name FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE quote=? ",
+    "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE quote=? ",
     [quote]
   );
 
@@ -26,7 +26,7 @@ export async function findQuoteById(
     "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE quotes.id=? ",
     [id]
   );
-
+  console.log(results);
   return (results.rows?.[0] as QuoteWithAuthor) ?? null;
 }
 
@@ -70,4 +70,17 @@ export async function insertQuote({
   });
 
   return results;
+}
+
+export async function findRandomQuoteByAuthorId(
+  author_id: number,
+  quote_id: number
+) {
+  const results = await db.execute(
+    "SELECT quotes.id FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE author_id=? AND NOT quotes.id=? ORDER BY RAND() LIMIT 1",
+    [author_id, quote_id]
+  );
+  console.log(results);
+
+  return (results.rows?.[0] as unknown as string) ?? null;
 }

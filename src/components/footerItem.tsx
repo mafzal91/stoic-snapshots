@@ -1,26 +1,19 @@
 import Link from "next/link";
+import { UrlObject } from "url";
+
 import clsx from "clsx";
 
-// const classNames = clsx(
-//   "group rounded-lg px-5 py-2 transition-colors",
-//   "border border-transparent hover:border-primary"
-// );
+const classNames = clsx("group mx-2 rounded-lg transition-colors");
 
 export function FooterLink({
   href,
   children,
 }: {
-  href: string;
+  href: string | UrlObject;
   children: React.ReactNode;
 }) {
   return (
-    <Link
-      href={href}
-      className={clsx(
-        "group rounded-lg px-5 py-2 transition-colors",
-        "border border-transparent hover:border-primary"
-      )}
-    >
+    <Link href={href} className={classNames}>
       <p
         className={`m-0 text-md opacity-50 font-crimson-text text-secondary group-hover:text-primary`}
       >
@@ -38,13 +31,7 @@ export function FooterButton({
   children: React.ReactNode;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={clsx(
-        "group rounded-lg px-5 py-2 transition-colors",
-        "border border-transparent hover:border-primary"
-      )}
-    >
+    <button onClick={onClick} className={classNames}>
       <p
         className={`m-0 text-md opacity-50 font-crimson-text text-secondary group-hover:text-primary`}
       >

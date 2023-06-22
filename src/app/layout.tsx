@@ -72,7 +72,9 @@ export default function RootLayout({
           "bg-background"
         )}
       >
-        {children}
+        <main className="flex min-h-screen flex-col items-center p-4 md:p-18 lg:p-24">
+          {children}
+        </main>
       </body>
     </html>
   );
