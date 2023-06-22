@@ -73,14 +73,13 @@ export async function insertQuote({
 }
 
 export async function findRandomQuoteByAuthorId(
-  author_id: number,
-  quote_id: number
-) {
+  author_id: string | number,
+  quote_id?: string | number
+): Promise<{ id: string } | null> {
   const results = await db.execute(
     "SELECT quotes.id FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE author_id=? AND NOT quotes.id=? ORDER BY RAND() LIMIT 1",
     [author_id, quote_id]
   );
-  console.log(results);
 
-  return (results.rows?.[0] as unknown as string) ?? null;
+  return (results.rows?.[0] as unknown as { id: string }) ?? null;
 }

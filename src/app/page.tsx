@@ -50,7 +50,7 @@ export default async function Home() {
       </div>
 
       {/*  */}
-      <pre className="wrap text-primary">{JSON.stringify(quote, null, 2)}</pre>
+
       <div className="flex items-center lg:mb-0 lg:text-left">
         <span className="text-primary">&#x2022;</span>
         <FooterLink href={`/random`}>Random</FooterLink>

@@ -7,11 +7,11 @@ async function getQuote({
 }: {
   author_id: string;
   quote_id?: string;
-}): Promise<string | null> {
+}): Promise<{ id: string } | null> {
   return findRandomQuoteByAuthorId(author_id, quote_id);
 }
 
-export default async function QuoteByIdPage({
+export default async function QuoteByAuthorIdPage({
   params: { author_id },
   searchParams: { quote_id },
 }: {
