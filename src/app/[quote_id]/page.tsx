@@ -39,11 +39,18 @@ export default async function QuoteByIdPage({
       {/*  */}
 
       <div className="flex items-center lg:mb-0 lg:text-left">
-        <span className="text-primary">&#x2022;</span>
-        <FooterLink href={`/random`}>Random</FooterLink>
+        <span className="text-primary">|</span>
+        <FooterLink
+          href={{
+            pathname: "/random",
+            query: { quote_id: quote.id },
+          }}
+        >
+          Random
+        </FooterLink>
         {authorName !== "Unknown" && (
           <>
-            <span className="text-primary">&#x2022;</span>
+            <span className="text-primary">|</span>
             <FooterLink
               href={{
                 pathname: `/author/${quote.author_id}`,
@@ -54,9 +61,9 @@ export default async function QuoteByIdPage({
             </FooterLink>
           </>
         )}
-        <span className="text-primary">&#x2022;</span>
+        <span className="text-primary">|</span>
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
-        <span className="text-primary">&#x2022;</span>
+        <span className="text-primary">|</span>
       </div>
     </>
   );

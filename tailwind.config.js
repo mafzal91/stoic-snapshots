@@ -10,11 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        "josefin-sans": ["var(--font-josefin-sans)"],
         "crimson-text": ["var(--font-crimson-text)"],
-        "oleo-script-swash-caps": ["var(--font-oleo-script-swash-caps)"],
-        "pinyon-script": ["var(--font-pinyon-script)"],
-        "petit-formal-script": ["var(--font-petit-formal-script)"],
         "eb-garamond": ["var(--font-eb-garamond)"],
       },
       backgroundImage: {
@@ -33,9 +29,9 @@ module.exports = {
         secondary: "#807872",
       },
       light: {
-        background: "#151C25",
+        background: "#F6F5EB",
         accent: "#BEAD9A",
-        primary: "#F6F5EB",
+        primary: "#151C25",
         secondary: "#807872",
       },
     }),

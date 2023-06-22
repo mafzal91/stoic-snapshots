@@ -8,13 +8,14 @@ const config = {
 
 const db = connect(config);
 
+const select =
+  "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name ";
+const from = "FROM quotes JOIN authors ON quotes.author_id = authors.id";
+
 export async function findQuoteByText(
   quote: string
 ): Promise<QuoteWithAuthor | null> {
-  const results = await db.execute(
-    "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE quote=? ",
-    [quote]
-  );
+  const results = await db.execute(`${select} ${from} WHERE quote=? `, [quote]);
 
   return (results.rows?.[0] as QuoteWithAuthor) ?? null;
 }
@@ -22,11 +23,9 @@ export async function findQuoteByText(
 export async function findQuoteById(
   id: string | number
 ): Promise<QuoteWithAuthor | null> {
-  const results = await db.execute(
-    "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE quotes.id=? ",
-    [id]
-  );
-  console.log(results);
+  const results = await db.execute(`${select} ${from} WHERE quotes.id=? `, [
+    id,
+  ]);
   return (results.rows?.[0] as QuoteWithAuthor) ?? null;
 }
 
@@ -77,9 +76,22 @@ export async function findRandomQuoteByAuthorId(
   quote_id?: string | number
 ): Promise<{ id: string } | null> {
   const results = await db.execute(
-    "SELECT quotes.id FROM quotes JOIN authors ON quotes.author_id = authors.id WHERE author_id=? AND NOT quotes.id=? ORDER BY RAND() LIMIT 1",
+    `SELECT quotes.id ${from} WHERE author_id=? AND NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
     [author_id, quote_id]
   );
 
   return (results.rows?.[0] as unknown as { id: string }) ?? null;
+}
+
+export async function findRandomQuote({
+  quote_id,
+}: {
+  quote_id: string;
+}): Promise<{ id: string } | null> {
+  const results = await db.execute(
+    `SELECT quotes.id ${from} WHERE NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
+    [quote_id]
+  );
+
+  return (results.rows?.[0] as QuoteWithAuthor) ?? null;
 }

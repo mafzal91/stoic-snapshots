@@ -12,9 +12,9 @@ export default function NotFound() {
       {/*  */}
 
       <div className="flex items-center lg:mb-0 lg:text-left">
-        <span className="text-primary">&#x2022;</span>
+        <span className="text-primary">|</span>
         <FooterLink href={`/random`}>Random</FooterLink>
-        <span className="text-primary">&#x2022;</span>
+        <span className="text-primary">|</span>
       </div>
     </>
   );
