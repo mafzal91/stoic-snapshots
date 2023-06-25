@@ -1,3 +1,8 @@
+enum ColorScheme {
+  Dark = "dark",
+  Light = "light",
+}
+
 type Quote = {
   id: string;
   quote: string;

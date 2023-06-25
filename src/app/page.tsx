@@ -40,9 +40,9 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex flex-col flex-grow items-center place-items-center">
+      <div className="flex flex-col flex-grow justify-center items-center">
         <div className="relative">
-          {/* <Circle /> */}
+          <Circle />
           {/* Put image of philosopher here */}
         </div>
         <div className="container mx-auto md:max-w-5xl sm:px-6 lg:px-8 py-12 text-center">
