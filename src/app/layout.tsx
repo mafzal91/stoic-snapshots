@@ -71,7 +71,9 @@ export default function RootLayout({
       >
         <main className="flex min-h-screen flex-col p-8">
           <div className="flex w-full justify-end">
-            <SelectMenu value={colorScheme} />
+            <div className="w-full max-w-[12rem]">
+              <SelectMenu value={colorScheme} />
+            </div>
           </div>
           <div className="flex flex-col flex-grow items-center">{children}</div>
         </main>

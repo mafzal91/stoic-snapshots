@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-
+import { useIsMounted, useUpdateEffect } from "usehooks-ts";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -15,6 +15,15 @@ type scheme = {
 const schemes = [
   { id: ColorScheme.Light, name: "Light" },
   { id: ColorScheme.Dark, name: "Dark" },
+  { id: ColorScheme.RusticSunrise, name: "Rustic Sunrise" },
+  { id: ColorScheme.RusticSunset, name: "Rustic Sunset" },
+  { id: ColorScheme.SoftWhisper, name: "Soft Whisper" },
+  { id: ColorScheme.ShadowedEmbrace, name: "Shadowed Embrace" },
+  { id: ColorScheme.CelestialDelight, name: "Celestial Delight" },
+  { id: ColorScheme.DuskSerenade, name: "Dusk Serenade" },
+  { id: ColorScheme.DeepPlum, name: "Deep Plum" },
+  { id: ColorScheme.NightfallNoir, name: "Nightfall Noir" },
+  { id: ColorScheme.PeachesAndCream, name: "Peaches and Cream" },
 ];
 
 export function SelectMenu({ value }: { value: ColorScheme | null }) {
@@ -32,8 +41,9 @@ export function SelectMenu({ value }: { value: ColorScheme | null }) {
         <div className="relative">
           <Listbox.Button
             className={clsx(
-              "relative w-full cursor-default rounded-md py-1.5 pl-3 pr-10 text-left text-primary sm:text-sm sm:leading-6",
-              "focus:outline-none focus:ring-1 focus:ring-primary"
+              "relative cursor-default rounded-md py-1.5 pl-3 pr-10 text-left text-primary sm:text-sm sm:leading-6",
+              "focus:outline-none focus:ring-1 focus:ring-primary",
+              "w-full"
             )}
           >
             <span className="block truncate">{selected.name}</span>
@@ -52,7 +62,10 @@ export function SelectMenu({ value }: { value: ColorScheme | null }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-sm ring-1 ring-primary focus:outline-none sm:text-sm">
+            <Listbox.Options
+              id="list"
+              className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-sm ring-1 ring-primary focus:outline-none sm:text-sm"
+            >
               {schemes.map((scheme) => (
                 <Listbox.Option
                   key={scheme.id}

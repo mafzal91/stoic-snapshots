@@ -47,8 +47,6 @@ function clearBodyClass() {
 export function useColorScheme(
   initialValue: ColorScheme | null
 ): UseDarkModeOutput {
-  const [_, startTransition] = React.useTransition();
-
   const isDarkOS = useMediaQuery(COLOR_SCHEME_QUERY);
   const [colorScheme, setColorScheme] = React.useState<ColorScheme>(() =>
     getIntialColorScheme({ initialValue, isDarkOS })
