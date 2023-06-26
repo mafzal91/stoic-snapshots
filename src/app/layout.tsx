@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
 import { SelectMenu } from "@/components/selectMenu";
+import { ColorScheme } from "@/app/common";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
@@ -20,7 +21,7 @@ const eb_garamond = EB_Garamond({
 });
 
 export const metadata = {
-  title: "Stoic Quotes",
+  title: "Stoic Wisdom",
   description: "A collection of quotes from the Stoics",
 };
 
@@ -29,7 +30,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const colorScheme = cookies().get("color-scheme")?.value ?? null;
+  const colorScheme = (cookies().get("color-scheme")?.value ??
+    null) as ColorScheme | null;
   const colorSchemeClass = colorScheme
     ? `theme-${cookies().get("color-scheme")?.value}`
     : null;
@@ -67,8 +69,8 @@ export default function RootLayout({
           clsx(colorSchemeClass ?? "hidden")
         )}
       >
-        <main className="flex min-h-screen flex-col p-4">
-          <div className="flex w-full">
+        <main className="flex min-h-screen flex-col p-8">
+          <div className="flex w-full justify-end">
             <SelectMenu value={colorScheme} />
           </div>
           <div className="flex flex-col flex-grow items-center">{children}</div>

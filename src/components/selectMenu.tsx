@@ -1,8 +1,8 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { updateColorScheme } from "@/app/actions/updateColorScheme";
-import { useDarkMode } from "@/hooks/useDarkMode";
+
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { ColorScheme } from "@/app/common";
@@ -17,8 +17,8 @@ const schemes = [
   { id: ColorScheme.Dark, name: "Dark" },
 ];
 
-export function SelectMenu({ value }: { value: ColorScheme }) {
-  const { colorScheme, handleChange } = useDarkMode(value);
+export function SelectMenu({ value }: { value: ColorScheme | null }) {
+  const { colorScheme, handleChange } = useColorScheme(value);
 
   const selected = schemes.find((scheme) => scheme.id === colorScheme)!;
 
@@ -29,7 +29,7 @@ export function SelectMenu({ value }: { value: ColorScheme }) {
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }: { open: boolean }) => (
-        <div className="relative mt-2">
+        <div className="relative">
           <Listbox.Button
             className={clsx(
               "relative w-full cursor-default rounded-md py-1.5 pl-3 pr-10 text-left text-primary sm:text-sm sm:leading-6",

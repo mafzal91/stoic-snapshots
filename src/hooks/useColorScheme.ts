@@ -10,33 +10,49 @@ interface UseDarkModeOutput {
   handleChange: (name: ColorScheme) => void;
 }
 
+function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
+  return (
+    colorScheme === ColorScheme.Light ||
+    colorScheme === ColorScheme.Dark ||
+    colorScheme === ColorScheme.System
+  );
+}
+
 function getIntialColorScheme({
   initialValue,
   isDarkOS,
 }: {
-  initialValue: ColorScheme;
+  initialValue: string | ColorScheme | null;
   isDarkOS: boolean;
 }): ColorScheme {
-  if (initialValue) {
+  if (initialValue && validateColorScheme(initialValue)) {
     return initialValue;
   }
 
   return isDarkOS ? ColorScheme.Dark : ColorScheme.Light;
 }
 
-export function useDarkMode(initialValue: ColorScheme): UseDarkModeOutput {
+function clearBodyClass() {
+  const body = document.body;
+  const classes = body.classList;
+
+  for (var i = classes.length - 1; i >= 0; i--) {
+    var className = classes[i];
+    if (className.startsWith("theme-")) {
+      body.classList.remove(className);
+    }
+  }
+}
+
+export function useColorScheme(
+  initialValue: ColorScheme | null
+): UseDarkModeOutput {
   const [_, startTransition] = React.useTransition();
 
   const isDarkOS = useMediaQuery(COLOR_SCHEME_QUERY);
   const [colorScheme, setColorScheme] = React.useState<ColorScheme>(() =>
     getIntialColorScheme({ initialValue, isDarkOS })
   );
-
-  // const [optimisticMessages, addOptimisticMessage] =
-  //   React.experimental_useOptimistic(messages, (state, newMessage) => [
-  //     ...state,
-  //     { message: newMessage, sending: true },
-  //   ]);
 
   // Update darkMode if os prefers changes
   useUpdateEffect(() => {
@@ -47,10 +63,11 @@ export function useDarkMode(initialValue: ColorScheme): UseDarkModeOutput {
   }, [colorScheme, isDarkOS]);
 
   React.useEffect(() => {
-    startTransition(() => {
-      setColorScheme(colorScheme);
-      updateColorScheme(colorScheme);
-    });
+    // Update body element class
+    clearBodyClass();
+    document.body.classList.add(`theme-${colorScheme}`);
+    setColorScheme(colorScheme);
+    updateColorScheme(colorScheme);
   }, [colorScheme]);
 
   return {

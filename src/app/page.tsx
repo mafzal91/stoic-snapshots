@@ -1,11 +1,6 @@
-import Image from "next/image";
 import { findQuoteByText, insertQuote, findQuoteById } from "./database";
-import { Circle } from "@/components/circle";
-import { Quote } from "@/components/quote";
-import { FooterLink } from "@/components/footerItem";
 import { splitName } from "./split-name";
-import { CopyButton } from "@/components/copyButton";
-import { Divider } from "@/components/divider";
+import { redirect } from "next/navigation";
 
 async function getRandomQuote(): Promise<QuoteWithAuthor> {
   const response = await fetch("https://api.themotivate365.com/stoic-quote", {
@@ -34,51 +29,6 @@ async function getRandomQuote(): Promise<QuoteWithAuthor> {
 
 export default async function Home() {
   const quote = await getRandomQuote();
-  const authorName = quote.first_name
-    ? `${quote.first_name} ${quote.last_name ?? ""}`
-    : "Unknown";
 
-  return (
-    <>
-      <div className="flex flex-col flex-grow justify-center items-center">
-        <div className="relative">
-          <Circle />
-          {/* Put image of philosopher here */}
-        </div>
-        <div className="container mx-auto md:max-w-5xl sm:px-6 lg:px-8 py-12 text-center">
-          <Quote quote={quote.quote} author={authorName} />
-        </div>
-      </div>
-
-      {/*  */}
-
-      <div className="flex items-center lg:mb-0 lg:text-left">
-        <Divider />
-        <FooterLink
-          href={{
-            pathname: "/random",
-            query: { quote_id: quote.id },
-          }}
-        >
-          Random
-        </FooterLink>
-        {authorName !== "Unknown" && (
-          <>
-            <Divider />
-            <FooterLink
-              href={{
-                pathname: `/author/${quote.author_id}`,
-                query: { quote_id: quote.id },
-              }}
-            >
-              More from {authorName}
-            </FooterLink>
-          </>
-        )}
-        <Divider />
-        <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
-        <Divider />
-      </div>
-    </>
-  );
+  redirect(`/${quote.id}`);
 }
