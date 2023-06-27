@@ -5,6 +5,7 @@ import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
 import { SelectMenu } from "@/components/selectMenu";
 import { ColorScheme } from "@/app/common";
+import { Border } from "@/components/border";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
@@ -69,13 +70,17 @@ export default function RootLayout({
           clsx(colorSchemeClass ?? "hidden")
         )}
       >
-        <main className="flex min-h-screen flex-col p-8">
-          <div className="flex w-full justify-end">
-            <div className="w-full max-w-[12rem]">
-              <SelectMenu value={colorScheme} />
+        <main className="flex min-h-screen flex-col p-4">
+          <Border>
+            <div className="flex w-full justify-end">
+              <div className="w-full max-w-[12rem] p-4">
+                <SelectMenu value={colorScheme} />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col flex-grow items-center">{children}</div>
+            <div className="flex flex-col flex-grow items-center">
+              {children}
+            </div>
+          </Border>
         </main>
       </body>
     </html>

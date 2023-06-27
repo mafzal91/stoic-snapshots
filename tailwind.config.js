@@ -63,7 +63,7 @@ module.exports = {
 
       "celestial-delight": {
         background: "#8294C4",
-        accent: "#ACB1D6",
+        accent: "#FFEAD2",
         primary: "#FFEAD2",
         secondary: "#DBDFEA",
       },
