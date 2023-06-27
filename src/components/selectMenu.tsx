@@ -42,6 +42,7 @@ export function SelectMenu({ value }: { value: ColorScheme | null }) {
           <Listbox.Button
             className={clsx(
               "relative cursor-default rounded-md py-1.5 pl-3 pr-10 text-left text-primary sm:text-sm sm:leading-6",
+              "ring-1 ring-inset ring-primary",
               "focus:outline-none focus:ring-1 focus:ring-primary",
               "w-full"
             )}
