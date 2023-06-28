@@ -37,7 +37,6 @@ export default function RootLayout({
     ? `theme-${cookies().get("color-scheme")?.value}`
     : null;
 
-  console.log({ colorScheme, colorSchemeClass });
   return (
     <html lang="en">
       <head>
@@ -48,9 +47,12 @@ export default function RootLayout({
               mutations.forEach(function(mutation) {
                 if (mutation.type === "attributes" && mutation.attributeName === "class") {
                   const classList = mutation.target.classList;
-                  if (classList.contains("theme-dark") || classList.contains("theme-light")) {
-                    classList.remove("hidden");
-                    observer.disconnect();  // stop observing once theme is set
+                  for (let i = 0; i < classList.length; i++) {
+                    if (classList[i].startsWith("theme-")) {
+                      classList.remove("hidden");
+                      observer.disconnect();  // stop observing once theme is set
+                      break;
+                    }
                   }
                 }
               });

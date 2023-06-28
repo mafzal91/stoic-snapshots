@@ -24,6 +24,7 @@ const schemes = [
   { id: ColorScheme.DeepPlum, name: "Deep Plum" },
   { id: ColorScheme.NightfallNoir, name: "Nightfall Noir" },
   { id: ColorScheme.PeachesAndCream, name: "Peaches and Cream" },
+  { id: ColorScheme.TerraCottaDreams, name: "Terra Cotta Dreams" },
 ];
 
 export function SelectMenu({ value }: { value: ColorScheme | null }) {

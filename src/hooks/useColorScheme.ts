@@ -14,6 +14,15 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
   return (
     colorScheme === ColorScheme.Light ||
     colorScheme === ColorScheme.Dark ||
+    colorScheme === ColorScheme.RusticSunrise ||
+    colorScheme === ColorScheme.RusticSunset ||
+    colorScheme === ColorScheme.SoftWhisper ||
+    colorScheme === ColorScheme.ShadowedEmbrace ||
+    colorScheme === ColorScheme.CelestialDelight ||
+    colorScheme === ColorScheme.DuskSerenade ||
+    colorScheme === ColorScheme.DeepPlum ||
+    colorScheme === ColorScheme.NightfallNoir ||
+    colorScheme === ColorScheme.PeachesAndCream ||
     colorScheme === ColorScheme.System
   );
 }

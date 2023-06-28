@@ -8,8 +8,8 @@ export enum ColorScheme {
   ShadowedEmbrace = "shadowed-embrace",
   CelestialDelight = "celestial-delight",
   DuskSerenade = "dusk-serenade",
-
   DeepPlum = "deep-plum",
   NightfallNoir = "nightfall-noir",
   PeachesAndCream = "peaches-and-cream",
+  TerraCottaDreams = "terra-cotta-dreams",
 }

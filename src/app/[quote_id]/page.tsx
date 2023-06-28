@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import Image from "next/image";
-import { Metadata, ResolvingMetadata } from "next";
-
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { findQuoteById } from "@/app/database";
 import { getFullName } from "@/app/get-full-name";
@@ -9,7 +9,6 @@ import { Quote } from "@/components/quote";
 import { FooterLink } from "@/components/footerItem";
 import { Divider } from "@/components/divider";
 import { CopyButton } from "@/components/copyButton";
-import clsx from "clsx";
 
 type Props = {
   params: {
@@ -45,21 +44,25 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
   return (
     <>
       <div className="flex flex-col flex-grow justify-center items-center">
-        <div className="relative">
-          <Circle />
+        {quote.image_url && (
+          <div className="relative">
+            <Circle />
 
-          <div className="absolute w-full top-0 bottom-0 flex items-center justify-center">
-            <Image
-              className={clsx("rounded-full")}
-              src={`/seneca2.png`}
-              width={256}
-              height={256}
-              alt={authorName}
-            />
-            <div className="absolute rounded-full inset-0 mix-blend-color bg-accent"></div>
+            <div className="absolute w-full top-0 bottom-0 flex items-center justify-center">
+              <Image
+                className={clsx(
+                  "w-48 h-48 sm:w-56 sm:h-56 md:w-96 md:h-96 rounded-full"
+                )}
+                src={quote.image_url}
+                width={256}
+                height={256}
+                alt={authorName}
+              />
+              <div className="absolute rounded-full inset-0 mix-blend-color bg-accent"></div>
+            </div>
           </div>
-        </div>
-        <div className="container mx-auto md:max-w-5xl sm:px-6 lg:px-8 py-12 text-center">
+        )}
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-center">
           <Quote quote={quote.quote} author={authorName} />
         </div>
       </div>

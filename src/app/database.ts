@@ -9,7 +9,7 @@ const config = {
 const db = connect(config);
 
 const select =
-  "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name ";
+  "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name, authors.image_url ";
 const from = "FROM quotes JOIN authors ON quotes.author_id = authors.id";
 
 export async function findQuoteByText(

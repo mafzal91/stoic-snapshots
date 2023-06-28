@@ -93,6 +93,13 @@ module.exports = {
         primary: "#E74646",
         secondary: "#FA9884",
       },
+
+      "terra-cotta-dreams": {
+        background: "#EFF5F5",
+        accent: "#497174",
+        primary: "#EB6440",
+        secondary: "#497174",
+      },
     }),
   ],
 };

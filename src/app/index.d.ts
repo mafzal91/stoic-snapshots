@@ -8,6 +8,7 @@ type Author = {
   id: string;
   first_name: string;
   last_name: string | null;
+  image_url: string | null;
 };
 
 type QuoteWithAuthor = Quote & Omit<Author, "id">;
