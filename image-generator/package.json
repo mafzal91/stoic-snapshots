@@ -13,6 +13,7 @@
   "devDependencies": {
     "@serverless-stack/cli": "^1.18.4",
     "@serverless-stack/resources": "^1.18.4",
+    "@sparticuz/chromium": "^109.0.6",
     "@tsconfig/node16": "^16.1.0",
     "aws-cdk-lib": "2.50.0",
     "install": "^0.13.0",
@@ -22,8 +23,7 @@
   },
   "dependencies": {
     "@serverless-stack/node": "^1.18.4",
-    "@sparticuz/chromium": "^114.0.0",
-    "puppeteer-core": "^20.8.0"
+    "puppeteer-core": "19.4"
   },
   "workspaces": [
     "services"
