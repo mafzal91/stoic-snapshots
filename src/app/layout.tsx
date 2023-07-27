@@ -3,9 +3,9 @@ import Script from "next/script";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
-import { SelectMenu } from "@/components/selectMenu";
 import { ColorScheme } from "@/app/common";
 import { Border } from "@/components/border";
+import { Settings } from "./settings";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
@@ -42,6 +42,7 @@ export default function RootLayout({
       <head>
         <Script id="set-color-theme" strategy="beforeInteractive">
           {`(function() {
+            console.log("Asdasdasd")
             // Create a new observer
             const observer = new MutationObserver(function(mutations) {
               mutations.forEach(function(mutation) {
@@ -75,8 +76,8 @@ export default function RootLayout({
         <main className="flex min-h-screen flex-col p-4">
           <Border>
             <div className="flex w-full justify-end">
-              <div className="w-full max-w-[12rem] p-4">
-                <SelectMenu value={colorScheme} />
+              <div className="p-4 screenshot-hidden">
+                <Settings initialColorScheme={colorScheme} />
               </div>
             </div>
             <div className="flex flex-col flex-grow items-center">
