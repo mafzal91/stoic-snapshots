@@ -27,7 +27,7 @@ const schemes = [
   { id: ColorScheme.TerraCottaDreams, name: "Terra Cotta Dreams" },
 ];
 
-export function SelectMenu({ value }: { value: ColorScheme | null }) {
+export function ColorSchemeSelector({ value }: { value: ColorScheme | null }) {
   const { colorScheme, handleChange } = useColorScheme(value);
 
   const selected = schemes.find((scheme) => scheme.id === colorScheme)!;
