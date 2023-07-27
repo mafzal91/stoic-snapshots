@@ -2,13 +2,7 @@ import { Api } from "@serverless-stack/resources";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 
 const layerArn = "arn:aws:lambda:us-east-1:824714483059:layer:chromium_v109:1";
-// const layerArn = "arn:aws:lambda:us-east-1:824714483059:layer:chromium_v114:1";
-
 export function MyStack({ stack }) {
-  // const layer = new lambda.LayerVersion(stack, "chromium", {
-  //   code: lambda.Code.fromAsset("layers/chromium.zip"),
-  // });
-
   const api = new Api(stack, "api", {
     routes: {
       "GET /": {

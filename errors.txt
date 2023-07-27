@@ -1,0 +1,69 @@
+Quote ID 10: "and its laws. It is what it is. No amount of complaining, resentment or mourning will help. Accept, let go and move on." - It appears to be incomplete or out of context as it starts with the conjunction "and".
+
+Quote ID 19: "Consider the abyss of time past, infinite future. Three das of life or three generations: what’s the difference?" - I suspect a typo here. "Three das of life" may be intended to be "Three days of life" or something similar, depending on the context.
+
+Quote ID 48: "He has stripped away his body and – realizing that at some point soon he will have to abandon mankind and leave all this behind – has dedicated himself to serving justice in all he does, and nature in all that happens." - The quote seems to be grammatically correct, but it might be unclear or confusing to some readers due to its complexity and the abstract concepts it deals with. It might be improved with some rephrasing or additional context.
+
+Here are the grammatical errors found in that batch:
+
+53, "Lean into the discomfort of the work. Brené" - The sentence is incomplete. It appears the author's last name or the full thought is missing.
+
+64, "Fear is a atural reaction to moving closer to the truth. Pema Chödrön" - 'atural' should be 'natural'.
+
+116, "It’s not about winning or losing, but love and respect." - This sentence can be grammatically correct depending on context. However, to be more clear, it might be better as "It’s not about winning or losing, but about love and respect."
+
+129, "If you want to be a writer, write. Write and write and write. If you stop, start again. Save everything that you write. If you feel blocked, write through it until you feel your creative juices flowing again. Writing is what makes a writer, nothing more and nothing less." - There are no grammatical errors in this quote, but for more fluid reading, the repetition of 'write' could be minimized.
+
+139, "When you arise in the morning, think of what a precious privilege it is to be alive - to breathe, to think, to enjoy, to love." - There is a slight misuse of hyphen. It should be replaced with a comma or a semicolon for correct punctuation.
+
+The rest of the batch seems grammatically correct. Please note that some sentences might seem incomplete or abruptly cut off, but without the larger context, it's challenging to definitively classify these as errors.
+
+104, "To complain is always nonacceptance of what is." - 'nonacceptance' should be 'non-acceptance'.
+
+107, "A minute of rage can undo a lifetime of diligent effort. Self-control is self-preservation. Most of us won’t look back on the moments we acted in anger as among our finest. ." - There is an extra period at the end of the sentence.
+
+108, "Only these two questions: Is what he’s doing now the right thing to be doing? Does he accept and welcome what he’s been assigned?" - This quote is grammatically correct, but the context is unclear. It could be improved by specifying who "he" is or what is being done.
+
+134, "One must be gullible yet skeptical, sane yet mad, proud yet humble, warm yet indifferent, faithful yet a heretic, loving yet uncompromising, fearless yet cautious, open yet decisive. These are not contradictions. They make a person whole. And above all one must be whole, not fragmentary." - The phrase "And above all one must be whole, not fragmentary." could be improved with the use of a comma for clarity, like so: "And above all, one must be whole, not fragmentary."
+
+141, "Contentment doesn’t mean you stop improving your situation. In fact it has nothing to do with your external situation. It is a state of mind in which your happiness does not depend on external circumstances. It is the absence of neediness. You become self sufficient. ." - Again, there is an extra period at the end of the sentence.
+
+The rest of the batch seems grammatically correct. As before, some sentences might seem incomplete or abruptly cut off, but without the larger context, it's challenging to definitively classify these as errors.
+
+ID 162: ", you can accept it, or you can leave it. What is not a good option is to sit around wishing you would change it but not changing it, wishing you would leave it but not leaving it, and not accepting it." - This sentence starts with a comma, indicating that the beginning might be missing.
+
+ID 166: "is a choice. Acceptance, anger, desire, love… all choices. Your time. Your choice." - This sentence starts in the middle of a thought, suggesting that a part is missing at the beginning.
+
+ID 195: ", position, influence — I stored where she would be able to reclaim them with no disturbance to me." - This sentence also starts with a comma, indicating that the beginning might be missing.
+
+204: "Never let people who choose the path of least resistance steer you away from your chosen path of most resistance. David Goggins (See also:" - This sentence is incomplete. The sentence ends with "(See also:" but nothing follows.
+
+236: "." - This isn't a sentence, it's just a period.
+
+249: "Meditation is intermittent fasting for the mind. Too much sugar leads to a heavy body, and too many distractions lead to a heavy mind. Time spent undistracted and alone, in self-examination, journaling, meditation, resolves the unresolved and takes us from mentally fat to fit." - The sentence should be "Time spent undistracted and alone, in self-examination, journaling, and meditation, resolves the unresolved and takes us from mentally fat to fit." It's missing the conjunction 'and' before 'meditation'.
+
+250: "The wise man needs nothing and yet he can make good use of anything, whereas the fool ‘needs’ countless things but can make good use of none of them. Donald J." - This sentence is lacking full information, 'Donald J.' is incomplete, it seems like a citation but the surname is missing.
+
+267,"will leave you callused, bruised, and very tired. It will also leave you empowered." - This quote seems to be missing the beginning.
+
+276,"The tranquility that comes when you stop caring what they say. Or think, or do. Only what you do." - This one might be better as a complete sentence, such as "The tranquility that comes when you stop caring what they say, think, or do. Care only about what you do."
+
+277,"Discard your misperceptions. Stop being jerked like a puppet. Limit yourself to the present." - This might be better as a single sentence, such as "Discard your misperceptions and stop being jerked like a puppet; limit yourself to the present."
+
+297,"Not reacting to deliberate provocation is a superpower. If you have the awareness and self-control to not react predictably, there is nothing that can put you off your path. Remember: the only enemy you need to fear is your own self – your lack of awareness and loss of control. ." - There's an extra period at the end of this quote.
+
+299,"Inwardly, we ought to be different in every respect, but our outward dress should blend in with the crowd." - The comma before 'but' seems unnecessary.
+
+312,"Set aside now and then a number of days during which you will be content with the plainest of food, and very little of it, and with rough, coarse clothing, and will ask yourself, ‘Is this what one used to dread?" - The ending quotation mark is missing.
+
+327,"are ‘indifferent’ to you, and that the supreme good, and eudaimonia, can only exist within you, right now, in the present moment. Donald J." - This quote appears to be missing the beginning.
+
+339,Try to avoid making important decisions when you’re angry. Acknowledge the emotion. Recognize that it clouds your judgement. Remember that angry people tend to sacrifice the long-term good in response to short-term provocation. . - There is an extra period at the end.
+
+349,"If it is time to rest, rest completely. A good rest rejuvenates you so that you may do quality work. If it is time to work, work with complete focus. Time spent working earnestly earns you a well deserved rest. Don’t mix work and rest; this compromises the quality of both. ." - There's an extra period at the end.
+
+350,"We humans are unhappy in large part because we are insatiable; after working hard to get what we want, we routinely lose interest in the object of our desire. Rather than feeling satisfied, we feel a bit bored, and in response to this boredom, we go on to form new, even grander desires. William B." - This quote appears to be missing the ending.
+
+419,It is a narrow passageway that leads to the garden of contentment. Big egos don’t fit. - Remove the extra period at the end.
+
+422,Take a deep breath. Get present in the moment and ask yourself what is important this very second. Greg McKeown - A citation should be given in a proper manner, i.e., "Take a deep breath. Get present in the moment and ask yourself what is important this very second." - Greg McKeown

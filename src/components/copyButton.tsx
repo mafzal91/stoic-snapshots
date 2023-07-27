@@ -27,12 +27,13 @@ export function CopyButton({
   return (
     <button
       className={clsx(
-        "m-2 p-2 rounded-lg transition-colors",
-        "text-sm sm:text-md font-crimson-text text-secondary hover:text-primary"
+        "m-2 p-1 rounded-lg transition-colors",
+        "text-sm sm:text-md font-crimson-text text-secondary hover:text-primary",
+        "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1"
       )}
       onClick={copyToClipboard}
     >
-      {isCopied ? "Copied!" : children}
+      {isCopied ? "Link copied!" : children}
     </button>
   );
 }

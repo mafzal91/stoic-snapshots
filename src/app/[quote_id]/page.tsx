@@ -44,7 +44,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
   return (
     <>
       <div className="flex flex-col flex-grow justify-center items-center">
-        {quote.image_url && (
+        {/* {quote.image_url && (
           <div className="relative">
             <Circle />
 
@@ -61,7 +61,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
               <div className="absolute rounded-full inset-0 mix-blend-color bg-accent"></div>
             </div>
           </div>
-        )}
+        )} */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-center">
           <Quote quote={quote.quote} author={authorName} />
         </div>
@@ -69,7 +69,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
 
       {/*  */}
 
-      <div className="flex items-center lg:mb-0 lg:text-left">
+      <div className="flex items-center lg:mb-0 lg:text-left screenshot-hidden">
         <Divider />
         <FooterLink
           href={{
@@ -95,6 +95,14 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
         <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
         <Divider />
+        <FooterLink
+          target="_blank"
+          href={{
+            pathname: `/api/${quote.id}`,
+          }}
+        >
+          Download as image
+        </FooterLink>
       </div>
     </>
   );
