@@ -5,14 +5,34 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { ColorScheme } from "@/app/common";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { updateSettings } from "./actions/updateSettings";
 
-export function Settings({
-  initialColorScheme,
-}: {
-  initialColorScheme: ColorScheme | null;
-}) {
-  useColorScheme(initialColorScheme);
+type SettingsProps = {
+  initialSettings: {
+    colorScheme: ColorScheme | null;
+    border: boolean;
+  };
+};
+
+export function Settings({ initialSettings }: SettingsProps) {
+  const { colorScheme, border } = initialSettings;
   const [open, setOpen] = React.useState(false);
+  const { handleChange } = useColorScheme(initialSettings.colorScheme);
+
+  const setSelected = (newColorScheme: string) => {
+    handleChange(newColorScheme as ColorScheme);
+  };
+
+  const handleSettingChange = async ({
+    field,
+    value,
+  }: {
+    field: string;
+    value: any;
+  }) => {
+    console.log("updateSettings", { field, value });
+    await updateSettings({ field, value });
+  };
 
   return (
     <>
@@ -75,8 +95,42 @@ export function Settings({
                       </Dialog.Title>
                       <div className="mt-2">
                         <div className="w-full max-w-[12rem]">
-                          <label className="text-primary">Theme</label>
-                          <ColorSchemeSelector value={initialColorScheme} />
+                          <>
+                            <label className="text-primary">Theme</label>
+                            <ColorSchemeSelector
+                              value={colorScheme}
+                              onChange={setSelected}
+                            />
+                          </>
+                          <br />
+                          <>
+                            <div className="relative flex items-start">
+                              <div className="flex h-6 items-center">
+                                <input
+                                  id="border"
+                                  aria-describedby="border-description"
+                                  name="border"
+                                  type="checkbox"
+                                  className="h-4 w-4 rounded border-primary text-primary focus:ring-primary"
+                                  checked={border}
+                                  onChange={(e) =>
+                                    handleSettingChange({
+                                      field: "border",
+                                      value: e.target.checked,
+                                    })
+                                  }
+                                />
+                              </div>
+                              <div className="ml-3 text-sm leading-6">
+                                <label
+                                  htmlFor="border"
+                                  className="font-medium text-primary"
+                                >
+                                  Enable Border
+                                </label>
+                              </div>
+                            </div>
+                          </>
                         </div>
                       </div>
                     </div>

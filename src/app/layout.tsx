@@ -6,6 +6,7 @@ import { Crimson_Text, EB_Garamond } from "next/font/google";
 import { ColorScheme } from "@/app/common";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
+import { About } from "./about";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
@@ -31,6 +32,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  let border = true;
+
+  const cookieBorder = cookies().get("border")?.value;
+  border = JSON.parse(cookieBorder ?? "true");
+
   const colorScheme = (cookies().get("color-scheme")?.value ??
     null) as ColorScheme | null;
   const colorSchemeClass = colorScheme
@@ -42,7 +48,6 @@ export default function RootLayout({
       <head>
         <Script id="set-color-theme" strategy="beforeInteractive">
           {`(function() {
-            console.log("Asdasdasd")
             // Create a new observer
             const observer = new MutationObserver(function(mutations) {
               mutations.forEach(function(mutation) {
@@ -74,10 +79,11 @@ export default function RootLayout({
         )}
       >
         <main className="flex min-h-screen flex-col p-4">
-          <Border>
+          <Border enabled={border}>
             <div className="flex w-full justify-end">
-              <div className="p-4 screenshot-hidden">
-                <Settings initialColorScheme={colorScheme} />
+              <div className="p-4 flex flex-col screenshot-hidden">
+                <About />
+                <Settings initialSettings={{ colorScheme, border }} />
               </div>
             </div>
             <div className="flex flex-col flex-grow items-center">

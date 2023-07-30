@@ -1,5 +1,5 @@
 import * as React from "react";
-import { updateColorScheme } from "@/app/actions/updateColorScheme";
+import { updateSettings } from "@/app/actions/updateSettings";
 import { useMediaQuery, useUpdateEffect } from "usehooks-ts";
 import { ColorScheme } from "@/app/common";
 
@@ -71,10 +71,11 @@ export function useColorScheme(
 
   React.useEffect(() => {
     // Update body element class
+    console.log("frontend", colorScheme);
     clearBodyClass();
     document.body.classList.add(`theme-${colorScheme}`);
     setColorScheme(colorScheme);
-    updateColorScheme(colorScheme);
+    updateSettings({ field: "color-scheme", value: colorScheme });
   }, [colorScheme]);
 
   return {

@@ -1,5 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import { findRandomQuote } from "@/app/database";
+import { findRandomQuote } from "@/utilities/database";
 
 async function getQuote({
   quote_id,

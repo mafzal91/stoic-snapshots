@@ -1,43 +1,34 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { useIsMounted, useUpdateEffect } from "usehooks-ts";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { ColorScheme } from "@/app/common";
 
-type scheme = {
-  id: ColorScheme;
-  name: string;
-};
+function convertHyphenatedToTitleCase(input: string): string {
+  return input
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 
-const schemes = [
-  { id: ColorScheme.Light, name: "Light" },
-  { id: ColorScheme.Dark, name: "Dark" },
-  { id: ColorScheme.RusticSunrise, name: "Rustic Sunrise" },
-  { id: ColorScheme.RusticSunset, name: "Rustic Sunset" },
-  { id: ColorScheme.SoftWhisper, name: "Soft Whisper" },
-  { id: ColorScheme.ShadowedEmbrace, name: "Shadowed Embrace" },
-  { id: ColorScheme.CelestialDelight, name: "Celestial Delight" },
-  { id: ColorScheme.DuskSerenade, name: "Dusk Serenade" },
-  { id: ColorScheme.DeepPlum, name: "Deep Plum" },
-  { id: ColorScheme.NightfallNoir, name: "Nightfall Noir" },
-  { id: ColorScheme.PeachesAndCream, name: "Peaches and Cream" },
-  { id: ColorScheme.TerraCottaDreams, name: "Terra Cotta Dreams" },
-];
+const schemes = Object.values(ColorScheme).filter(
+  (scheme) => scheme !== "system"
+);
 
-export function ColorSchemeSelector({ value }: { value: ColorScheme | null }) {
-  const { colorScheme, handleChange } = useColorScheme(value);
-
-  const selected = schemes.find((scheme) => scheme.id === colorScheme)!;
-
-  const setSelected = (newColorScheme: scheme) => {
-    handleChange(newColorScheme.id);
-  };
+export function ColorSchemeSelector({
+  value,
+  onChange,
+}: {
+  value: ColorScheme | null;
+  onChange: (value: string) => void;
+}) {
+  const selected: string = Object.values(schemes).find(
+    (scheme) => scheme === value
+  )!;
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={selected} onChange={onChange}>
       {({ open }: { open: boolean }) => (
         <div className="relative">
           <Listbox.Button
@@ -48,7 +39,9 @@ export function ColorSchemeSelector({ value }: { value: ColorScheme | null }) {
               "w-full"
             )}
           >
-            <span className="block truncate">{selected.name}</span>
+            <span className="block truncate">
+              {convertHyphenatedToTitleCase(selected)}
+            </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-primary"
@@ -70,7 +63,7 @@ export function ColorSchemeSelector({ value }: { value: ColorScheme | null }) {
             >
               {schemes.map((scheme) => (
                 <Listbox.Option
-                  key={scheme.id}
+                  key={scheme}
                   className={({ active }: { active: boolean }) =>
                     clsx(
                       active ? "bg-primary text-background" : "text-primary",
@@ -87,7 +80,7 @@ export function ColorSchemeSelector({ value }: { value: ColorScheme | null }) {
                           "block truncate"
                         )}
                       >
-                        {scheme.name}
+                        {convertHyphenatedToTitleCase(scheme)}
                       </span>
 
                       {selected ? (
