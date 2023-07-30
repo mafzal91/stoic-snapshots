@@ -2,13 +2,14 @@ import clsx from "clsx";
 import Image from "next/image";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { findQuoteById } from "@/app/database";
-import { getFullName } from "@/app/get-full-name";
+import { findQuoteById } from "@/utilities/database";
+import { getFullName } from "@/utilities/get-full-name";
 import { Circle } from "@/components/circle";
 import { Quote } from "@/components/quote";
-import { FooterLink } from "@/components/footerItem";
+import { FooterLink } from "@/components/footerLink";
 import { Divider } from "@/components/divider";
 import { CopyButton } from "@/components/copyButton";
+import { DownloadButton } from "@/components/downloadButton";
 
 type Props = {
   params: {
@@ -95,14 +96,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
         <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
         <Divider />
-        <FooterLink
-          target="_blank"
-          href={{
-            pathname: `/api/${quote.id}`,
-          }}
-        >
-          Download as image
-        </FooterLink>
+        <DownloadButton url={`/api/${quote.id}`}>Get Image</DownloadButton>
       </div>
     </>
   );

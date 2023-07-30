@@ -1,4 +1,4 @@
-import { FooterLink } from "@/components/footerItem";
+import { FooterLink } from "@/components/footerLink";
 import { Divider } from "@/components/divider";
 
 export default function NotFound() {

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
-import { findQuoteById } from "@/app/database";
-import { getFullName } from "@/app/get-full-name";
+import { findQuoteById } from "@/utilities/database";
+import { getFullName } from "@/utilities/get-full-name";
 
 type Props = {
   params: {

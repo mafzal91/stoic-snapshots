@@ -1,5 +1,9 @@
-import { findQuoteByText, insertQuote, findQuoteById } from "./database";
-import { splitName } from "./split-name";
+import {
+  findQuoteByText,
+  insertQuote,
+  findQuoteById,
+} from "@/utilities/database";
+import { splitName } from "@/utilities/split-name";
 import { redirect } from "next/navigation";
 
 async function getRandomQuote(): Promise<QuoteWithAuthor> {
