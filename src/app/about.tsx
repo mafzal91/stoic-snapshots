@@ -30,7 +30,7 @@ export function About() {
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
               <Transition.Child
                 as={React.Fragment}
                 enter="ease-out duration-300"
@@ -57,9 +57,16 @@ export function About() {
                         as="h3"
                         className="text-base font-semibold leading-6 text-primary"
                       >
-                        About
+                        <span>By Mohammad Afzal</span>
                       </Dialog.Title>
-                      <div className="mt-2"></div>
+                      <div className="mt-2">
+                        <span className="text-secondary">
+                          Find more of my work{" "}
+                          <a className="text-primary" href="https://mafz.al">
+                            here
+                          </a>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </Dialog.Panel>

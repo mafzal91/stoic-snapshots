@@ -71,7 +71,6 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
       {/*  */}
 
       <div className="flex items-center lg:mb-0 lg:text-left screenshot-hidden">
-        <Divider />
         <FooterLink
           href={{
             pathname: "/random",
@@ -95,8 +94,6 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
         )}
         <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
-        <Divider />
-        <DownloadButton url={`/api/${quote.id}`}>Get Image</DownloadButton>
       </div>
     </>
   );

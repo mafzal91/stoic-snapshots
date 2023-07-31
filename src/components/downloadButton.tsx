@@ -4,7 +4,7 @@ import { FooterButton } from "@/components/footerButton";
 
 function Loader() {
   return (
-    <div className={"m-2 mx-2 p-1 flex"}>
+    <div className={"flex"}>
       <div
         className={`m-0 text-sm sm:text-md text-secondary animate-bounce`}
         style={{ animationDelay: ".1s" }}
@@ -27,7 +27,7 @@ function Loader() {
   );
 }
 
-export function DownloadButton({
+export function DownloadLink({
   children,
   url,
 }: {
@@ -42,5 +42,34 @@ export function DownloadButton({
   };
 
   if (isLoading) return <Loader />;
-  return <FooterButton onClick={handleClick}>{children}</FooterButton>;
+  return (
+    <FooterButton onClick={handleClick}>
+      <div className="m-2 mx-2 p-1">{children}</div>
+    </FooterButton>
+  );
+}
+
+export function DownloadButton({ children }: { children: React.ReactNode }) {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleClick = async () => {
+    setIsLoading(true);
+    const quote_id = window.location.pathname.split("/").pop();
+    const base_url = window.location.origin;
+
+    await fetch(`${base_url}/api/${quote_id}`).finally(() =>
+      setIsLoading(false)
+    );
+  };
+
+  return (
+    <button
+      type="button"
+      disabled={isLoading}
+      className="inline-flex w-full justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-primary hover:text-background hover:bg-primary border-[1px] border-primary sm:ml-3 sm:w-auto"
+      onClick={handleClick}
+    >
+      {isLoading ? <Loader /> : children}
+    </button>
+  );
 }

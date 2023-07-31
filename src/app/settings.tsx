@@ -7,6 +7,7 @@ import { XMarkIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { ColorScheme } from "@/app/common";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { updateSettings } from "./actions/updateSettings";
+import { DownloadButton } from "@/components/downloadButton";
 
 type SettingsProps = {
   initialSettings: {
@@ -148,13 +149,7 @@ export function Settings({ initialSettings }: SettingsProps) {
                     </div>
                   </div>
                   <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                    <button
-                      type="button"
-                      className="inline-flex w-full justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-primary hover:text-background hover:bg-primary border-[1px] border-primary sm:ml-3 sm:w-auto"
-                      onClick={() => setOpen(false)}
-                    >
-                      Close
-                    </button>
+                    <DownloadButton>Get Image</DownloadButton>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
