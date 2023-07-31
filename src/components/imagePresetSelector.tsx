@@ -3,23 +3,36 @@ import * as React from "react";
 import clsx from "clsx";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { ColorScheme } from "@/app/common";
+import { ImagePresets } from "@/app/common";
 import { convertHyphenatedToTitleCase } from "@/utilities/convert-hyphenated-to-title";
 
-const schemes = Object.values(ColorScheme).filter(
-  (scheme) => scheme !== "system"
-);
+type ImageDimensions = { width: number; height: number };
 
-export function ColorSchemeSelector({
+const imageDimensions: (ImageDimensions & { name: string })[] = [
+  { name: ImagePresets.Screen, width: 1920, height: 1080 },
+  { name: ImagePresets.InstagramSquare, width: 1080, height: 1080 },
+  { name: ImagePresets.InstagramPortrait, width: 1080, height: 1350 },
+  { name: ImagePresets.InstagramLandscape, width: 1080, height: 566 },
+  { name: ImagePresets.InstagramStory, width: 1080, height: 1920 },
+  { name: ImagePresets.FacebookStandard, width: 1200, height: 628 },
+  { name: ImagePresets.TwitterStandard, width: 600, height: 335 },
+  { name: ImagePresets.LinkedInStandard, width: 1200, height: 627 },
+  { name: ImagePresets.TumblrStandard, width: 500, height: 750 },
+];
+
+export function ImagePresetSelector({
   value,
   onChange,
 }: {
-  value: ColorScheme | null;
+  value: ImageDimensions;
   onChange: (value: string) => void;
 }) {
-  const selected: string = Object.values(schemes).find(
-    (scheme) => scheme === value
-  )!;
+  const selected: string =
+    imageDimensions.find((dimensions) => {
+      return (
+        value.height === dimensions.height && value.width === dimensions.width
+      );
+    })?.name ?? ImagePresets.Custom;
 
   return (
     <Listbox value={selected} onChange={onChange}>
@@ -55,16 +68,16 @@ export function ColorSchemeSelector({
               id="list"
               className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-sm ring-1 ring-primary focus:outline-none sm:text-sm"
             >
-              {schemes.map((scheme) => (
+              {imageDimensions.map((dimensions) => (
                 <Listbox.Option
-                  key={scheme}
+                  key={dimensions.name}
                   className={({ active }: { active: boolean }) =>
                     clsx(
                       active ? "bg-primary text-background" : "text-primary",
                       "relative cursor-default select-none py-2 pl-3 pr-9"
                     )
                   }
-                  value={scheme}
+                  value={dimensions.name}
                 >
                   {({ selected, active }) => (
                     <>
@@ -74,7 +87,7 @@ export function ColorSchemeSelector({
                           "block truncate"
                         )}
                       >
-                        {convertHyphenatedToTitleCase(scheme)}
+                        {convertHyphenatedToTitleCase(dimensions.name)}
                       </span>
 
                       {selected ? (

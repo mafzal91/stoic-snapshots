@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { ColorSchemeSelector } from "@/components/colorSchemeSelector";
+import { ImagePresetSelector } from "@/components/imagePresetSelector";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
 import { ColorScheme } from "@/app/common";
@@ -58,7 +59,7 @@ export function Settings({ initialSettings }: SettingsProps) {
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
               <Transition.Child
                 as={React.Fragment}
                 enter="ease-out duration-300"
@@ -79,14 +80,14 @@ export function Settings({ initialSettings }: SettingsProps) {
                       <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
                   </div>
-                  <div className="sm:flex sm:items-start">
+                  <div>
                     {/* <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-1 border-primary sm:mx-0 sm:h-10 sm:w-10">
                       <AdjustmentsHorizontalIcon
                         className="h-6 w-6 text-primary"
                         aria-hidden="true"
                       />
                     </div> */}
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                    <div className="mt-3 text-center sm:text-left">
                       <Dialog.Title
                         as="h3"
                         className="text-base font-semibold leading-6 text-primary"
@@ -94,44 +95,55 @@ export function Settings({ initialSettings }: SettingsProps) {
                         {/* Customize */}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <div className="w-full max-w-[12rem]">
-                          <>
-                            <label className="text-primary">Theme</label>
-                            <ColorSchemeSelector
-                              value={colorScheme}
-                              onChange={setSelected}
-                            />
-                          </>
-                          <br />
-                          <>
-                            <div className="relative flex items-start">
-                              <div className="flex h-6 items-center">
-                                <input
-                                  id="border"
-                                  aria-describedby="border-description"
-                                  name="border"
-                                  type="checkbox"
-                                  className="h-4 w-4 rounded border-primary text-primary focus:ring-primary"
-                                  checked={border}
-                                  onChange={(e) =>
-                                    handleSettingChange({
-                                      field: "border",
-                                      value: e.target.checked,
-                                    })
-                                  }
-                                />
-                              </div>
-                              <div className="ml-3 text-sm leading-6">
-                                <label
-                                  htmlFor="border"
-                                  className="font-medium text-primary"
-                                >
-                                  Enable Border
-                                </label>
-                              </div>
+                        <>
+                          <label className="text-primary">Theme</label>
+                          <ColorSchemeSelector
+                            value={colorScheme}
+                            onChange={setSelected}
+                          />
+                        </>
+                        <br />
+                        <>
+                          <label className="text-primary">
+                            Image Dimensions
+                          </label>
+                          <ImagePresetSelector
+                            value={{
+                              height: 100,
+                              width: 100,
+                            }}
+                            onChange={setSelected}
+                          />
+                        </>
+                        <br />
+                        <>
+                          <div className="relative flex items-start">
+                            <div className="flex h-6 items-center">
+                              <input
+                                id="border"
+                                aria-describedby="border-description"
+                                name="border"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-primary text-primary focus:ring-primary"
+                                checked={border}
+                                onChange={(e) =>
+                                  handleSettingChange({
+                                    field: "border",
+                                    value: e.target.checked,
+                                  })
+                                }
+                              />
                             </div>
-                          </>
-                        </div>
+                            <div className="ml-3 text-sm leading-6">
+                              <label
+                                htmlFor="border"
+                                className="font-medium text-primary"
+                              >
+                                Enable Border
+                              </label>
+                            </div>
+                          </div>
+                        </>
                       </div>
                     </div>
                   </div>
