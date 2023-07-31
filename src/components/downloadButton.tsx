@@ -2,10 +2,6 @@
 import * as React from "react";
 import { FooterButton } from "@/components/footerButton";
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function Loader() {
   return (
     <div className={"m-2 mx-2 p-1 flex"}>

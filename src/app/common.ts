@@ -13,3 +13,16 @@ export enum ColorScheme {
   PeachesAndCream = "peaches-and-cream",
   TerraCottaDreams = "terra-cotta-dreams",
 }
+
+export enum ImagePresets {
+  Screen = "screen",
+  InstagramSquare = "instagram-square",
+  InstagramPortrait = "instagram-portrait",
+  InstagramLandscape = "instagram-landscape",
+  InstagramStory = "instagram-story",
+  FacebookStandard = "facebook-standard",
+  TwitterStandard = "twitter-standard",
+  LinkedInStandard = "linkedin-standard",
+  TumblrStandard = "tumblr-standard",
+  Custom = "custom",
+}
