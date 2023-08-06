@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#quote {
+  font-size: calc(2em + 2vw);
+}

@@ -62,7 +62,7 @@ export function DownloadButton({ children }: { children: React.ReactNode }) {
     );
   };
 
-  const iframeRef = React.useRef(null);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   const handleDownload = () => {
     const quote_id = window.location.pathname.split("/").pop();
@@ -74,8 +74,8 @@ export function DownloadButton({ children }: { children: React.ReactNode }) {
   };
 
   const handleLoad = () => {
+    setIsLoading(false);
     if (iframeRef.current) {
-      setIsLoading(false);
       iframeRef.current.src = "";
     }
   };

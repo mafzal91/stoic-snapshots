@@ -5,13 +5,10 @@ import {
 } from "@/utilities/database";
 import { splitName } from "@/utilities/split-name";
 import { redirect } from "next/navigation";
+import { getStoicQuote } from "@/utilities/get-stoic-quote";
 
 async function getRandomQuote(): Promise<QuoteWithAuthor> {
-  const response = await fetch("https://api.themotivate365.com/stoic-quote", {
-    cache: "no-store",
-  });
-
-  const data: ApiResponse = await response.json();
+  const data: ApiResponse = await getStoicQuote();
 
   const existing_quote = await findQuoteByText(data.quote);
 

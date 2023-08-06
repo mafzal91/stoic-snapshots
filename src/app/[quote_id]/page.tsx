@@ -42,6 +42,10 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
     ? `${quote.first_name} ${quote.last_name ?? ""}`
     : "Unknown";
 
+  const quoteLength = quote.quote.length;
+  const baseFontSize = 50 - Math.sqrt(quoteLength);
+  const fontSize = Math.max(baseFontSize, 12); // Set a minimum font size
+
   return (
     <>
       <div className="flex flex-col flex-grow justify-center items-center">
@@ -64,7 +68,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
           </div>
         )} */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-center">
-          <Quote quote={quote.quote} author={authorName} />
+          <Quote quote={quote.quote} author={authorName} fontSize={fontSize} />
         </div>
       </div>
 
