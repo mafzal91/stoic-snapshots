@@ -25,6 +25,10 @@ const eb_garamond = EB_Garamond({
 export const metadata = {
   title: "Stoic Wisdom",
   description: "A collection of quotes from the Stoics",
+  icons: {
+    icon: { url: "/favicon.svg", type: "image/svg" },
+    shortcut: { url: "/favicon.svg", type: "image/svg" },
+  },
 };
 
 export default function RootLayout({
@@ -80,8 +84,8 @@ export default function RootLayout({
       >
         <main className="flex min-h-screen flex-col p-4">
           <Border enabled={border}>
-            <div className="flex w-full justify-end">
-              <div className="p-4 flex flex-col screenshot-hidden">
+            <div className="flex w-full justify-end screenshot-hidden">
+              <div className="p-4 flex flex-col">
                 <About />
                 <Settings initialSettings={{ colorScheme, border }} />
               </div>

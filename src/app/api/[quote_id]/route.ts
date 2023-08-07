@@ -8,7 +8,7 @@ export async function GET(
     `https://xjgg9sxeak.execute-api.us-east-1.amazonaws.com/`
   );
   const headers = new Headers();
-  console.log("asdas");
+
   const cookieValue = req.headers.get("cookie");
   if (cookieValue) {
     headers.append("Set-Cookie", cookieValue); // Setting a cookie in the response
