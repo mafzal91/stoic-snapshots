@@ -71,11 +71,11 @@ export function useColorScheme(
 
   React.useEffect(() => {
     // Update body element class
-    console.log("frontend", colorScheme);
     clearBodyClass();
     document.body.classList.add(`theme-${colorScheme}`);
-    setColorScheme(colorScheme);
-    updateSettings({ field: "color-scheme", value: colorScheme });
+    updateSettings({ field: "colorScheme", value: colorScheme }).then(() => {
+      setColorScheme(colorScheme);
+    });
   }, [colorScheme]);
 
   return {

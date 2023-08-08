@@ -17,3 +17,5 @@ type ApiResponse = {
   quote: string;
   author: string;
 };
+
+type ImageDimensions = { width: number; height: number };

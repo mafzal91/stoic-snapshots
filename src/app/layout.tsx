@@ -3,7 +3,7 @@ import Script from "next/script";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
-import { ColorScheme } from "@/app/common";
+import { ColorScheme, ImagePresets } from "@/app/common";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
 import { About } from "./about";
@@ -30,22 +30,34 @@ export const metadata = {
     shortcut: { url: "/favicon.svg", type: "image/svg" },
   },
 };
+const getCookieSettings = () => {
+  let border = true;
+
+  const cookieBorder = cookies().get("border")?.value;
+  border = JSON.parse(cookieBorder ?? "true");
+
+  const colorScheme = (cookies().get("colorScheme")?.value ??
+    null) as ColorScheme | null;
+
+  const imagePreset = (cookies().get("imagePreset")?.value ??
+    ImagePresets.Screen) as ImagePresets;
+
+  const dimensions = {
+    width: parseInt(cookies().get("width")?.value ?? "0"),
+    height: parseInt(cookies().get("height")?.value ?? "0"),
+  };
+
+  return { colorScheme, border, imagePreset, dimensions };
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  let border = true;
-
-  const cookieBorder = cookies().get("border")?.value;
-  border = JSON.parse(cookieBorder ?? "true");
-
-  const colorScheme = (cookies().get("color-scheme")?.value ??
-    null) as ColorScheme | null;
-  const colorSchemeClass = colorScheme
-    ? `theme-${cookies().get("color-scheme")?.value}`
-    : null;
+  const cookieValues = getCookieSettings();
+  const { border, colorScheme, imagePreset } = cookieValues;
+  const colorSchemeClass = colorScheme ? `theme-${colorScheme}` : null;
 
   return (
     <html lang="en">
@@ -87,7 +99,9 @@ export default function RootLayout({
             <div className="flex w-full justify-end screenshot-hidden">
               <div className="p-4 flex flex-col">
                 <About />
-                <Settings initialSettings={{ colorScheme, border }} />
+                <Settings
+                  initialSettings={{ colorScheme, border, imagePreset }}
+                />
               </div>
             </div>
             <div className="flex flex-col flex-grow items-center">
