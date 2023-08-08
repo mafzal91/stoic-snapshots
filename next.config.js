@@ -14,13 +14,6 @@ const nextConfig = {
       },
     ],
   },
-  rewrites: async () => [
-    {
-      source: "/api/:quote_id",
-      destination:
-        "https://xjgg9sxeak.execute-api.us-east-1.amazonaws.com/?quote_id=:quote_id",
-    },
-  ],
 };
 
 module.exports = nextConfig;

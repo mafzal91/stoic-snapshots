@@ -24,5 +24,4 @@ export enum ImagePresets {
   TwitterStandard = "twitter-standard",
   LinkedInStandard = "linkedin-standard",
   TumblrStandard = "tumblr-standard",
-  Custom = "custom",
 }

@@ -21,6 +21,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("@tailwindcss/forms"),
     createThemes({
       dark: {
         background: "#151C25",

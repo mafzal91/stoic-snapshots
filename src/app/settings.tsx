@@ -2,9 +2,10 @@
 import * as React from "react";
 import { ColorSchemeSelector } from "@/components/colorSchemeSelector";
 import { ImagePresetSelector } from "@/components/imagePresetSelector";
+import { BorderSelector } from "@/components/borderSelector";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
-import { ColorScheme } from "@/app/common";
+import { ColorScheme, ImagePresets } from "@/app/common";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { updateSettings } from "./actions/updateSettings";
 import { DownloadButton } from "@/components/downloadButton";
@@ -12,29 +13,62 @@ import { DownloadButton } from "@/components/downloadButton";
 type SettingsProps = {
   initialSettings: {
     colorScheme: ColorScheme | null;
+    imagePreset: ImagePresets;
     border: boolean;
   };
 };
 
 export function Settings({ initialSettings }: SettingsProps) {
-  const { colorScheme, border } = initialSettings;
   const [open, setOpen] = React.useState(false);
-  const { handleChange } = useColorScheme(initialSettings.colorScheme);
+  const [imagePreset, setImagePreset] = React.useState<string>(
+    initialSettings.imagePreset || ImagePresets.Screen
+  );
+  const [border, setBorder] = React.useState<boolean>(
+    initialSettings.border || true
+  );
+  const { colorScheme, handleChange } = useColorScheme(
+    initialSettings.colorScheme
+  );
 
   const setSelected = (newColorScheme: string) => {
     handleChange(newColorScheme as ColorScheme);
   };
 
-  const handleSettingChange = async ({
+  const saveSettingChange = async ({
     field,
     value,
   }: {
     field: string;
     value: any;
   }) => {
-    console.log("updateSettings", { field, value });
     await updateSettings({ field, value });
   };
+
+  const handleImagePresetChange = async (value: string) => {
+    await saveSettingChange({ field: "imagePreset", value });
+    if (value === ImagePresets.Screen) {
+      await saveSettingChange({ field: "width", value: window.screen.width });
+      await saveSettingChange({ field: "height", value: window.screen.height });
+    }
+    setImagePreset(value);
+  };
+  const handleBorderChange = async (value: boolean) => {
+    await saveSettingChange({ field: "border", value });
+    setBorder(value);
+  };
+
+  React.useEffect(() => {
+    async function updateDimensions() {
+      await saveSettingChange({ field: "width", value: window.screen.width });
+      await saveSettingChange({
+        field: "height",
+        value: window.screen.height,
+      });
+    }
+    if (imagePreset === ImagePresets.Screen) {
+      updateDimensions();
+    }
+  }, [imagePreset]);
 
   return (
     <>
@@ -70,7 +104,7 @@ export function Settings({ initialSettings }: SettingsProps) {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform rounded-lg bg-background px-4 pb-4 pt-5 text-left shadow-lg transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                <Dialog.Panel className="relative transform  w-full rounded-lg bg-background px-4 pb-4 pt-5 text-left shadow-lg transition-all sm:my-8 sm:max-w-sm sm:p-6">
                   <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
                     <button
                       type="button"
@@ -82,12 +116,6 @@ export function Settings({ initialSettings }: SettingsProps) {
                     </button>
                   </div>
                   <div>
-                    {/* <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-1 border-primary sm:mx-0 sm:h-10 sm:w-10">
-                      <AdjustmentsHorizontalIcon
-                        className="h-6 w-6 text-primary"
-                        aria-hidden="true"
-                      />
-                    </div> */}
                     <div className="mt-3 text-center sm:text-left">
                       <Dialog.Title
                         as="h3"
@@ -96,55 +124,20 @@ export function Settings({ initialSettings }: SettingsProps) {
                         {/* Customize */}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <>
-                          <label className="text-primary">Theme</label>
-                          <ColorSchemeSelector
-                            value={colorScheme}
-                            onChange={setSelected}
-                          />
-                        </>
+                        <ColorSchemeSelector
+                          value={colorScheme}
+                          onChange={setSelected}
+                        />
                         <br />
-                        <>
-                          <label className="text-primary">
-                            Image Dimensions
-                          </label>
-                          <ImagePresetSelector
-                            value={{
-                              height: 100,
-                              width: 100,
-                            }}
-                            onChange={setSelected}
-                          />
-                        </>
+                        <ImagePresetSelector
+                          value={imagePreset}
+                          onChange={handleImagePresetChange}
+                        />
                         <br />
-                        <>
-                          <div className="relative flex items-start">
-                            <div className="flex h-6 items-center">
-                              <input
-                                id="border"
-                                aria-describedby="border-description"
-                                name="border"
-                                type="checkbox"
-                                className="h-4 w-4 rounded border-primary text-primary focus:ring-primary"
-                                checked={border}
-                                onChange={(e) =>
-                                  handleSettingChange({
-                                    field: "border",
-                                    value: e.target.checked,
-                                  })
-                                }
-                              />
-                            </div>
-                            <div className="ml-3 text-sm leading-6">
-                              <label
-                                htmlFor="border"
-                                className="font-medium text-primary"
-                              >
-                                Enable Border
-                              </label>
-                            </div>
-                          </div>
-                        </>
+                        <BorderSelector
+                          value={border}
+                          onChange={handleBorderChange}
+                        />
                       </div>
                     </div>
                   </div>

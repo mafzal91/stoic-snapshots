@@ -52,15 +52,15 @@ export function DownloadLink({
 export function DownloadButton({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const handleClick = async () => {
-    setIsLoading(true);
-    const quote_id = window.location.pathname.split("/").pop();
-    const base_url = window.location.origin;
+  // const handleClick = async () => {
+  //   setIsLoading(true);
+  //   const quote_id = window.location.pathname.split("/").pop();
+  //   const base_url = window.location.origin;
 
-    await fetch(`${base_url}/api/${quote_id}`).finally(() =>
-      setIsLoading(false)
-    );
-  };
+  //   await fetch(`${base_url}/api/${quote_id}`).finally(() =>
+  //     setIsLoading(false)
+  //   );
+  // };
 
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
