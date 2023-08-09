@@ -2,14 +2,13 @@ import clsx from "clsx";
 import Image from "next/image";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { findQuoteById } from "@/utilities/database";
+import { findQuoteById, findAuthorQuoteCount } from "@/utilities/database";
 import { getFullName } from "@/utilities/get-full-name";
 import { Circle } from "@/components/circle";
 import { Quote } from "@/components/quote";
 import { FooterLink } from "@/components/footerLink";
 import { Divider } from "@/components/divider";
 import { CopyButton } from "@/components/copyButton";
-import { DownloadButton } from "@/components/downloadButton";
 
 type Props = {
   params: {
@@ -29,14 +28,21 @@ export async function generateMetadata({
   };
 }
 
-async function getQuote(quote_id: string): Promise<QuoteWithAuthor | null> {
-  return findQuoteById(quote_id);
+async function getQuote(
+  quote_id: string
+): Promise<(QuoteWithAuthor & { count: number }) | null> {
+  const quote = await findQuoteById(quote_id);
+  if (!quote) return null;
+  const count = await findAuthorQuoteCount(quote.author_id);
+  return { ...quote, count };
 }
 
 export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
-  const quote = await getQuote(quote_id);
+  const quoteData = await getQuote(quote_id);
 
-  if (!quote) notFound();
+  if (!quoteData) notFound();
+
+  const { count, ...quote } = quoteData;
 
   const authorName = quote.first_name
     ? `${quote.first_name} ${quote.last_name ?? ""}`
@@ -83,7 +89,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
         >
           Random
         </FooterLink>
-        {authorName !== "Unknown" && (
+        {authorName !== "Unknown" && count > 1 && (
           <>
             <Divider />
             <FooterLink

@@ -15,7 +15,10 @@ const from = "FROM quotes JOIN authors ON quotes.author_id = authors.id";
 export async function findQuoteByText(
   quote: string
 ): Promise<QuoteWithAuthor | null> {
-  const results = await db.execute(`${select} ${from} WHERE quote=? `, [quote]);
+  const results = await db.execute(
+    `${select} ${from} WHERE is_active=1 AND quote=? `,
+    [quote]
+  );
 
   return (results.rows?.[0] as QuoteWithAuthor) ?? null;
 }
@@ -23,10 +26,25 @@ export async function findQuoteByText(
 export async function findQuoteById(
   id: string | number
 ): Promise<QuoteWithAuthor | null> {
-  const results = await db.execute(`${select} ${from} WHERE quotes.id=? `, [
-    id,
-  ]);
+  const results = await db.execute(
+    `${select} ${from} WHERE is_active=1 AND quotes.id=? `,
+    [id]
+  );
   return (results.rows?.[0] as QuoteWithAuthor) ?? null;
+}
+
+export async function findAuthorQuoteCount(author_id: string): Promise<number> {
+  const results = await db.execute(
+    `SELECT COUNT(*) as count from quotes where is_active=1 AND author_id=? `,
+    [author_id]
+  );
+
+  // Cast the row to the expected type
+  const countRow = results.rows?.[0] as {
+    count: number;
+  };
+
+  return countRow?.count ?? 0;
 }
 
 export async function insertQuote({
@@ -76,7 +94,7 @@ export async function findRandomQuoteByAuthorId(
   quote_id?: string | number
 ): Promise<{ id: string } | null> {
   const results = await db.execute(
-    `SELECT quotes.id ${from} WHERE author_id=? AND NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
+    `SELECT quotes.id ${from} WHERE is_active=1 AND author_id=? AND NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
     [author_id, quote_id]
   );
 
@@ -89,7 +107,7 @@ export async function findRandomQuote({
   quote_id: string;
 }): Promise<{ id: string } | null> {
   const results = await db.execute(
-    `SELECT quotes.id ${from} WHERE NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
+    `SELECT quotes.id ${from} WHERE is_active=1 AND NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
     [quote_id]
   );
 
