@@ -40,10 +40,15 @@ export function middleware(request: NextRequest) {
     response.cookies.set(cookie.name, cookie.value);
   });
 
+  response.headers.set(
+    "Content-Disposition",
+    'attachment; filename="stoic-snapshots.png"'
+  );
+
   return response;
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/api/:path*",
+  matcher: "/image/:path*",
 };

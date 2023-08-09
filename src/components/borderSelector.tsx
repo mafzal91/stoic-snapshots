@@ -9,18 +9,20 @@ type BorderSelectorProps = {
 export const BorderSelector: React.FC<BorderSelectorProps> = ({
   value,
   onChange,
-}) => (
-  <>
-    <label htmlFor="border" className="font-medium text-primary">
-      Enable Border
-    </label>
-    <DropdownSelector
-      options={[
-        { name: "Enabled", value: "true" },
-        { name: "Disabled", value: "false" },
-      ]}
-      value={value ? "true" : "false"}
-      onChange={(value: string) => onChange(value === "true")}
-    />
-  </>
-);
+}) => {
+  return (
+    <>
+      <label htmlFor="border" className="text-primary">
+        Enable Border
+      </label>
+      <DropdownSelector
+        options={[
+          { name: "Enabled", value: "true" },
+          { name: "Disabled", value: "false" },
+        ]}
+        value={value ? "true" : "false"}
+        onChange={(value: string) => onChange(value === "true")}
+      />
+    </>
+  );
+};

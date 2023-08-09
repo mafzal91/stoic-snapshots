@@ -24,7 +24,7 @@ export function Settings({ initialSettings }: SettingsProps) {
     initialSettings.imagePreset || ImagePresets.Screen
   );
   const [border, setBorder] = React.useState<boolean>(
-    initialSettings.border || true
+    initialSettings.border ?? true
   );
   const { colorScheme, handleChange } = useColorScheme(
     initialSettings.colorScheme

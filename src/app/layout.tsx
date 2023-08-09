@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import Script from "next/script";
 import { cookies } from "next/headers";
+import { Partytown } from "@builder.io/partytown/react";
+
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
 import { ColorScheme, ImagePresets } from "@/app/common";
@@ -23,7 +25,7 @@ const eb_garamond = EB_Garamond({
 });
 
 export const metadata = {
-  title: "Stoic Wisdom",
+  title: "Stoic Snapshots",
   description: "A collection of quotes from the Stoics",
   icons: {
     icon: { url: "/favicon.svg", type: "image/svg" },
@@ -62,6 +64,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Partytown
+          debug={process.env.NODE_ENV === "development"}
+          forward={["dataLayer.push"]}
+        />
+
         <Script id="set-color-theme" strategy="beforeInteractive">
           {`(function() {
             // Create a new observer
@@ -85,6 +92,22 @@ export default function RootLayout({
             
           })()`}
         </Script>
+        <Script
+          type="text/partytown"
+          src="https://www.googletagmanager.com/gtag/js?id=G-MYC1VRL2QJ"
+        />
+        <script
+          type="text/partytown"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-MYC1VRL2QJ');
+            `,
+          }}
+        />
       </head>
       <body
         className={clsx(

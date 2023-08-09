@@ -49,32 +49,28 @@ export function DownloadLink({
   );
 }
 
-export function DownloadButton({ children }: { children: React.ReactNode }) {
+export function DownloadButtonIframe({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [isLoading, setIsLoading] = React.useState(false);
-
-  // const handleClick = async () => {
-  //   setIsLoading(true);
-  //   const quote_id = window.location.pathname.split("/").pop();
-  //   const base_url = window.location.origin;
-
-  //   await fetch(`${base_url}/api/${quote_id}`).finally(() =>
-  //     setIsLoading(false)
-  //   );
-  // };
+  const quote_id = window.location.pathname.split("/").pop();
+  const base_url = window.location.origin;
+  const url = `${base_url}/image/${quote_id}`;
 
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   const handleDownload = () => {
-    const quote_id = window.location.pathname.split("/").pop();
-    const base_url = window.location.origin;
     if (iframeRef.current) {
-      iframeRef.current.src = `${base_url}/api/${quote_id}`;
+      iframeRef.current.src = url;
       setIsLoading(true);
     }
   };
 
   const handleLoad = () => {
     setIsLoading(false);
+
     if (iframeRef.current) {
       iframeRef.current.src = "";
     }
@@ -97,5 +93,21 @@ export function DownloadButton({ children }: { children: React.ReactNode }) {
         onLoad={handleLoad}
       />
     </>
+  );
+}
+
+export function DownloadButton({ children }: { children: React.ReactNode }) {
+  const quote_id = window.location.pathname.split("/").pop();
+  const base_url = window.location.origin;
+  const url = `${base_url}/image/${quote_id}`;
+
+  return (
+    <a
+      className="inline-flex w-full justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-primary hover:text-background hover:bg-primary border-[1px] border-primary sm:ml-3 sm:w-auto"
+      href={url}
+      target="_blank"
+    >
+      {children}
+    </a>
   );
 }
