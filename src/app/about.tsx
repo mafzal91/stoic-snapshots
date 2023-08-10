@@ -9,7 +9,7 @@ export function About() {
   return (
     <>
       <button
-        type="button"
+        aria-label="developer information"
         className="p-1 rounded-md text-primary focus:outline-none focus:ring-1 focus:ring-primary"
         onClick={() => setOpen(true)}
       >

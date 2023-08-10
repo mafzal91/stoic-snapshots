@@ -73,7 +73,7 @@ export function Settings({ initialSettings }: SettingsProps) {
   return (
     <>
       <button
-        type="button"
+        aria-label="settings"
         className="p-1 rounded-md text-primary focus:outline-none focus:ring-1 focus:ring-primary"
         onClick={() => setOpen(true)}
       >
