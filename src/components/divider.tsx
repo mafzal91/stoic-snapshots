@@ -1,3 +1,3 @@
 export function Divider() {
-  return <span className="text-primary">|</span>;
+  return <span className="hidden sm:inline text-primary">|</span>;
 }

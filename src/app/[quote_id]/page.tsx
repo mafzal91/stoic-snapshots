@@ -80,7 +80,7 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
 
       {/*  */}
 
-      <div className="flex items-center lg:mb-0 lg:text-left screenshot-hidden">
+      <div className="flex flex-wrap items-center justify-center lg:mb-0 lg:text-left screenshot-hidden">
         <FooterLink
           href={{
             pathname: "/random",
