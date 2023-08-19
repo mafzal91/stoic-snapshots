@@ -19,7 +19,7 @@ export enum ImagePresets {
   InstagramSquare = "instagram-square",
   InstagramPortrait = "instagram-portrait",
   InstagramLandscape = "instagram-landscape",
-  InstagramStory = "instagram-story",
+  // InstagramStory = "instagram-story",
   FacebookStandard = "facebook-standard",
   TwitterStandard = "twitter-standard",
   LinkedInStandard = "linkedin-standard",
