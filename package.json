@@ -7,7 +7,8 @@
     "build": "npm run partytown && next build",
     "start": "npm run partytown && next start",
     "partytown": "partytown copylib public/~partytown",
-    "lint": "next lint -c ./.eslintrc.json"
+    "lint": "next lint -c ./.eslintrc.json",
+    "import": "tsx ./src/scripts/import.ts"
   },
   "dependencies": {
     "@builder.io/partytown": "^0.8.0",
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",
+    "dotenv": "^16.3.1",
+    "tsx": "^3.12.7",
     "tw-colors": "^1.2.6"
   }
 }

@@ -1,5 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import { findRandomQuoteByAuthorId } from "@/utilities/database";
+import { Database } from "@/utilities/database";
 
 async function getQuote({
   author_id,
@@ -8,7 +8,7 @@ async function getQuote({
   author_id: string;
   quote_id?: string;
 }): Promise<{ id: string } | null> {
-  return findRandomQuoteByAuthorId(author_id, quote_id);
+  return new Database().findRandomQuoteByAuthorId(author_id, quote_id);
 }
 
 export default async function QuoteByAuthorIdPage({
