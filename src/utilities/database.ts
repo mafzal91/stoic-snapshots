@@ -106,13 +106,35 @@ export class Database {
   async findRandomQuote({
     quote_id,
   }: {
-    quote_id: string;
-  }): Promise<{ id: string } | null> {
+    quote_id?: string;
+  }): Promise<{ id: string }> {
+    if (!quote_id) {
+      const results = await this.connection.execute(
+        `SELECT quotes.id ${from} WHERE is_active=1 ORDER BY RAND() LIMIT 1`
+      );
+      return results.rows?.[0] as QuoteWithAuthor;
+    }
+
     const results = await this.connection.execute(
       `SELECT quotes.id ${from} WHERE is_active=1 AND NOT quotes.id=? ORDER BY RAND() LIMIT 1`,
       [quote_id]
     );
 
-    return (results.rows?.[0] as QuoteWithAuthor) ?? null;
+    return results.rows?.[0] as QuoteWithAuthor;
+  }
+
+  async toggleLike({
+    color_scheme,
+    is_liked,
+  }: {
+    color_scheme: string;
+    is_liked: boolean;
+  }): Promise<void> {
+    await this.connection.execute(
+      `UPDATE themes SET likes = likes ${is_liked ? "+" : "-"} 1 WHERE name=?`,
+      [color_scheme]
+    );
+
+    return;
   }
 }

@@ -8,7 +8,8 @@
     "start": "npm run partytown && next start",
     "partytown": "partytown copylib public/~partytown",
     "lint": "next lint -c ./.eslintrc.json",
-    "import": "tsx ./src/scripts/import.ts"
+    "import": "tsx ./src/scripts/import.ts",
+    "duplicate": "tsx ./src/scripts/duplicateCheck.ts"
   },
   "dependencies": {
     "@builder.io/partytown": "^0.8.0",

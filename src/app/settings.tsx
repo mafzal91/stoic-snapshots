@@ -15,6 +15,7 @@ type SettingsProps = {
     colorScheme: ColorScheme | null;
     imagePreset: ImagePresets;
     border: boolean;
+    likedThemes: Record<string, boolean>;
   };
 };
 
@@ -29,6 +30,7 @@ export function Settings({ initialSettings }: SettingsProps) {
   const { colorScheme, handleChange } = useColorScheme(
     initialSettings.colorScheme
   );
+  const likedTheme = initialSettings?.likedThemes[colorScheme] ?? false;
 
   const setSelected = (newColorScheme: string) => {
     handleChange(newColorScheme as ColorScheme);
@@ -127,6 +129,7 @@ export function Settings({ initialSettings }: SettingsProps) {
                         <ColorSchemeSelector
                           value={colorScheme}
                           onChange={setSelected}
+                          isLiked={likedTheme ?? false}
                         />
                         <br />
                         <ImagePresetSelector
