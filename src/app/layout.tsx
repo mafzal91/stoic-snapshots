@@ -49,7 +49,11 @@ const getCookieSettings = () => {
     height: parseInt(cookies().get("height")?.value ?? "0"),
   };
 
-  return { colorScheme, border, imagePreset, dimensions };
+  const likedThemes: Record<string, boolean> = JSON.parse(
+    cookies().get("likedThemes")?.value ?? "{}"
+  );
+
+  return { colorScheme, border, imagePreset, dimensions, likedThemes };
 };
 
 export default function RootLayout({
@@ -58,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const cookieValues = getCookieSettings();
-  const { border, colorScheme, imagePreset } = cookieValues;
+  const { border, colorScheme, imagePreset, likedThemes } = cookieValues;
   const colorSchemeClass = colorScheme ? `theme-${colorScheme}` : null;
 
   return (
@@ -123,7 +127,12 @@ export default function RootLayout({
               <div className="p-4 flex flex-col">
                 <About />
                 <Settings
-                  initialSettings={{ colorScheme, border, imagePreset }}
+                  initialSettings={{
+                    colorScheme,
+                    border,
+                    imagePreset,
+                    likedThemes,
+                  }}
                 />
               </div>
             </div>
