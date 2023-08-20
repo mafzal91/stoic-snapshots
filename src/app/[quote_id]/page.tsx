@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { findQuoteById, findAuthorQuoteCount } from "@/utilities/database";
+import { Database } from "@/utilities/database";
 import { getFullName } from "@/utilities/get-full-name";
 import { Circle } from "@/components/circle";
 import { Quote } from "@/components/quote";
@@ -19,7 +19,7 @@ type Props = {
 export async function generateMetadata({
   params: { quote_id },
 }: Props): Promise<Metadata> {
-  const quoteData = await findQuoteById(quote_id);
+  const quoteData = await new Database().findQuoteById(quote_id);
   if (!quoteData) return {};
 
   const { first_name, last_name, quote } = quoteData;
@@ -31,9 +31,10 @@ export async function generateMetadata({
 async function getQuote(
   quote_id: string
 ): Promise<(QuoteWithAuthor & { count: number }) | null> {
-  const quote = await findQuoteById(quote_id);
+  const db = new Database();
+  const quote = await db.findQuoteById(quote_id);
   if (!quote) return null;
-  const count = await findAuthorQuoteCount(quote.author_id);
+  const count = await db.findAuthorQuoteCount(quote.author_id);
   return { ...quote, count };
 }
 
