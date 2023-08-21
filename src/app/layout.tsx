@@ -125,8 +125,6 @@ export default function RootLayout({
         <main className="flex min-h-screen flex-col p-4">
           <Border enabled={border}>
             <div className="flex w-full p-4 justify-between screenshot-hidden">
-              {/* <div className="p-4 flex"> */}
-              {/* <About /> */}
               <Feedback />
               <Settings
                 initialSettings={{
@@ -136,7 +134,6 @@ export default function RootLayout({
                   likedThemes,
                 }}
               />
-              {/* </div> */}
             </div>
             <div className="flex flex-col flex-grow items-center">
               {children}

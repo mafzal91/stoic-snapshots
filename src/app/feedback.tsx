@@ -16,12 +16,6 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   const prevPending = usePrevious(pending);
 
-  React.useEffect(() => {
-    if (prevPending && !pending) {
-      alert("Thank you for your feedback!");
-    }
-  }, [pending, prevPending]);
-
   let buttonContent: React.ReactNode = "Submit";
   if (prevPending && !pending) {
     buttonContent = (
