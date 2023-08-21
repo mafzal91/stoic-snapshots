@@ -1,4 +1,5 @@
 import { Connection, connect } from "@planetscale/database";
+import { generateId } from "@/utilities/generate-id";
 
 const config = {
   host: process.env.DATABASE_HOST,
@@ -136,5 +137,53 @@ export class Database {
     );
 
     return;
+  }
+
+  async saveDownloadSettings({
+    quote_id,
+    color_scheme,
+    border,
+    image_preset,
+    width,
+    height,
+  }: {
+    quote_id: string;
+    color_scheme?: string;
+    border?: string;
+    image_preset?: string;
+    width?: number;
+    height?: number;
+  }): Promise<void> {
+    const event_id = generateId();
+
+    const queryTemplate = `INSERT INTO download_settings (event_id, setting, value, quote_id) VALUES`;
+    let inserts = [];
+    if (color_scheme) {
+      inserts.push(["color_scheme", color_scheme]);
+    }
+    if (border) {
+      inserts.push(["border", border]);
+    }
+    if (image_preset) {
+      inserts.push(["image_preset", image_preset]);
+    }
+    if (width) {
+      inserts.push(["width", width]);
+    }
+    if (height) {
+      inserts.push(["height", height]);
+    }
+
+    if (inserts.length === 0) {
+      return;
+    }
+
+    const insertQuery = inserts
+      .map(([setting, value]) => {
+        return `("${event_id}", "${setting}", "${value}", "${quote_id}")`;
+      })
+      .join(", ");
+
+    await this.connection.execute(`${queryTemplate} ${insertQuery}`);
   }
 }
