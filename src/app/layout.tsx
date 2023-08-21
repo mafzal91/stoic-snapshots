@@ -101,6 +101,10 @@ export default function RootLayout({
           type="text/partytown"
           src="https://www.googletagmanager.com/gtag/js?id=G-MYC1VRL2QJ"
         />
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        />
+
         <script
           type="text/partytown"
           dangerouslySetInnerHTML={{

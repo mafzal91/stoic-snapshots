@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
+
 type Quote = {
   id: string;
   quote: string;
