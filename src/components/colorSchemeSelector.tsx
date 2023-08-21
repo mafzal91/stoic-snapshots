@@ -48,9 +48,9 @@ export function ColorSchemeSelector({
           onClick={handleToggle}
         >
           {isLiked ? (
-            <HeartIconSolid className="h-6 w-6" />
+            <HeartIconSolid className="h-6 w-6" aria-hidden="true" />
           ) : (
-            <HeartIcon className="h-6 w-6" />
+            <HeartIcon className="h-6 w-6" aria-hidden="true" />
           )}
         </button>
       </div>
