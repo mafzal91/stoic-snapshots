@@ -8,6 +8,7 @@ import { Crimson_Text, EB_Garamond } from "next/font/google";
 import { ColorScheme, ImagePresets } from "@/app/common";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
+import { Feedback } from "./feedback";
 import { About } from "./about";
 
 const crimson_text = Crimson_Text({
@@ -123,18 +124,19 @@ export default function RootLayout({
       >
         <main className="flex min-h-screen flex-col p-4">
           <Border enabled={border}>
-            <div className="flex w-full justify-end screenshot-hidden">
-              <div className="p-4 flex flex-col">
-                <About />
-                <Settings
-                  initialSettings={{
-                    colorScheme,
-                    border,
-                    imagePreset,
-                    likedThemes,
-                  }}
-                />
-              </div>
+            <div className="flex w-full p-4 justify-between screenshot-hidden">
+              {/* <div className="p-4 flex"> */}
+              {/* <About /> */}
+              <Feedback />
+              <Settings
+                initialSettings={{
+                  colorScheme,
+                  border,
+                  imagePreset,
+                  likedThemes,
+                }}
+              />
+              {/* </div> */}
             </div>
             <div className="flex flex-col flex-grow items-center">
               {children}
