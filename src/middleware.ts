@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+import { Database } from "@/utilities/database";
 import type { NextRequest } from "next/server";
 import { ImagePresets } from "@/app/common";
 import { imageDimensions } from "@/utilities/constants";
@@ -9,10 +9,12 @@ const imageDimensionsMap = new Map(
 );
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const cookies = request.cookies.getAll();
   const quote_id = request.nextUrl.pathname.split("/")[2];
   const cookiesMap = new Map(cookies.map(({ name, value }) => [name, value]));
+  const colorScheme = cookiesMap.get("colorScheme");
+  const border = cookiesMap.get("border") ?? "true";
   const imagePreset = cookiesMap.get("imagePreset") ?? ImagePresets.Screen;
   let height = 1000;
   let width = 1000;
@@ -44,6 +46,15 @@ export function middleware(request: NextRequest) {
     "Content-Disposition",
     'attachment; filename="stoic-snapshots.png"'
   );
+
+  await new Database().saveDownloadSettings({
+    quote_id,
+    color_scheme: colorScheme,
+    border,
+    image_preset: imagePreset,
+    width,
+    height,
+  });
 
   return response;
 }
