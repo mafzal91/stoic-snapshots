@@ -18,11 +18,7 @@ export function FooterLink({
     <Link
       target={target}
       href={href}
-      className={clsx(
-        "py-0 sm:py-2 p-2 sm:my-2",
-        "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1",
-        classNames
-      )}
+      className={clsx("py-0 sm:py-2 p-2 sm:my-2", classNames)}
       {...rest}
     >
       <span

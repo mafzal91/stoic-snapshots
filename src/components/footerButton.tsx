@@ -11,14 +11,7 @@ export function FooterButton({
   children: React.ReactNode;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={clsx(
-        "m-2 p-1",
-        "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1",
-        classNames
-      )}
-    >
+    <button onClick={onClick} className={clsx("m-2 p-1", classNames)}>
       <p
         className={`m-0 text-sm sm:text-md font-crimson-text text-secondary group-hover:text-primary`}
       >

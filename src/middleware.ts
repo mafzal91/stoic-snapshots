@@ -7,8 +7,9 @@ import { imageDimensions } from "@/utilities/constants";
 const imageDimensionsMap = new Map(
   imageDimensions.map(({ name, height, width }) => [name, { width, height }])
 );
+// Delete the screen preset because if its selected by the user, we want to use the width and height from the cookies
+imageDimensionsMap.delete(ImagePresets.Screen);
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const cookies = request.cookies.getAll();
   const quote_id = request.nextUrl.pathname.split("/")[2];

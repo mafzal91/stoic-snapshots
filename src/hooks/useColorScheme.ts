@@ -23,6 +23,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.DeepPlum ||
     colorScheme === ColorScheme.NightfallNoir ||
     colorScheme === ColorScheme.PeachesAndCream ||
+    colorScheme === ColorScheme.TerraCottaDreams ||
     colorScheme === ColorScheme.System
   );
 }

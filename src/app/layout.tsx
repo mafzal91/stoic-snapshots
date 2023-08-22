@@ -62,6 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const cookieValues = getCookieSettings();
+
   const { border, colorScheme, imagePreset, likedThemes } = cookieValues;
   const colorSchemeClass = colorScheme ? `theme-${colorScheme}` : null;
 
