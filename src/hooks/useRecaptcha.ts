@@ -3,9 +3,13 @@ import * as React from "react";
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "";
 
 export function useRecaptcha() {
-  const [executeRecaptcha, setExecuteRecaptcha] = React.useState<
-    () => PromiseLike<string>
-  >(() => Promise.resolve(""));
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const executeRecaptcha = React.useCallback(() => {
+    if (!isLoaded) return Promise.reject("Recaptcha not loaded");
+    return window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
+      action: "submit",
+    });
+  }, [isLoaded]);
 
   React.useEffect(() => {
     if (typeof window === "undefined" || !window.grecaptcha) {
@@ -16,11 +20,7 @@ export function useRecaptcha() {
       return;
     }
     window.grecaptcha.ready(function () {
-      setExecuteRecaptcha((): PromiseLike<string> => {
-        return window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
-          action: "submit",
-        });
-      });
+      setIsLoaded(true);
     });
   }, []);
 
