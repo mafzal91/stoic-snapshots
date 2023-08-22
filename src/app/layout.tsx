@@ -9,7 +9,6 @@ import { ColorScheme, ImagePresets } from "@/app/common";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
 import { Feedback } from "./feedback";
-import { About } from "./about";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],

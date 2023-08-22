@@ -24,6 +24,7 @@ export async function submitFeedback(formData: FormData) {
   const token = formData.get("token") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
+  const url = formData.get("url") as string;
   const isAllowed = await verifyCaptchaToken(token);
   if (!isAllowed) return false;
 
@@ -39,7 +40,7 @@ export async function submitFeedback(formData: FormData) {
     from: email,
     to,
     subject: "Stoic Snapshots: New feedback",
-    text: `From: ${email}\nMessage: ${message}`,
+    text: `From: ${email}\nMessage: ${message}\nURL: ${url}`,
   });
 
   return;

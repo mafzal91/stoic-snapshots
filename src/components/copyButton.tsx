@@ -27,7 +27,7 @@ export function CopyButton({
   return (
     <button
       className={clsx(
-        "m-2 p-1 rounded-lg transition-colors",
+        "py-0 sm:py-2 p-2 sm:my-2 rounded-lg transition-colors h-8 leading-[2.25rem] sm:leading-[1.25rem]",
         "text-sm sm:text-md font-crimson-text text-secondary hover:text-primary",
         "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1"
       )}

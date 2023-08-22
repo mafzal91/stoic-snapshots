@@ -8,7 +8,8 @@ export function FooterLink({
   href,
   children,
   target,
-}: {
+  ...rest
+}: React.ComponentPropsWithoutRef<"a"> & {
   href: string | UrlObject;
   children: React.ReactNode;
   target?: string;
@@ -18,16 +19,17 @@ export function FooterLink({
       target={target}
       href={href}
       className={clsx(
-        "m-2 p-1",
+        "py-0 sm:py-2 p-2 sm:my-2",
         "focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1",
         classNames
       )}
+      {...rest}
     >
-      <p
+      <span
         className={`m-0 text-sm sm:text-md font-crimson-text text-secondary group-hover:text-primary`}
       >
         {children}
-      </p>
+      </span>
     </Link>
   );
 }

@@ -9,6 +9,7 @@ import { Quote } from "@/components/quote";
 import { FooterLink } from "@/components/footerLink";
 import { Divider } from "@/components/divider";
 import { CopyButton } from "@/components/copyButton";
+import { HeartIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   params: {
@@ -82,22 +83,12 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
       {/*  */}
 
       <div className="flex flex-wrap items-center justify-center lg:mb-0 lg:text-left screenshot-hidden">
-        <FooterLink
-          href={{
-            pathname: "/random",
-            query: { quote_id: quote.id },
-          }}
-        >
-          Random
-        </FooterLink>
+        <FooterLink href={`/random?quote_id=${quote.id}`}>Random</FooterLink>
         {authorName !== "Unknown" && count > 1 && (
           <>
             <Divider />
             <FooterLink
-              href={{
-                pathname: `/author/${quote.author_id}`,
-                query: { quote_id: quote.id },
-              }}
+              href={`/author/${quote.author_id}?quote_id=${quote.id}`}
             >
               More from {authorName}
             </FooterLink>
@@ -105,6 +96,11 @@ export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
         )}
         <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
+        <Divider />
+        <FooterLink href={"https://mafz.al"} target="_blank" rel="noopener">
+          By Mo with{" "}
+          <HeartIcon className="inline align-sub h-4 w-4 text-primary" />
+        </FooterLink>
       </div>
     </>
   );
