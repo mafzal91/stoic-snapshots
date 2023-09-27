@@ -1,4 +1,4 @@
-import { Connection, connect } from "@planetscale/database";
+import { Connection, connect, ExecutedQuery } from "@planetscale/database";
 import { generateId } from "@/utilities/generate-id";
 
 const config = {
@@ -12,6 +12,19 @@ const defaultDB = connect(config);
 const select =
   "SELECT quotes.id, quotes.quote, quotes.author_id, authors.first_name, authors.last_name, authors.image_url ";
 const from = "FROM quotes JOIN authors ON quotes.author_id = authors.id";
+
+const extractCount = (results: ExecutedQuery) => {
+  let count = 0;
+
+  if (results && results.rows.length > 0) {
+    const firstRow = results.rows[0] as { count: string };
+
+    if (firstRow?.count) {
+      count = parseInt(firstRow.count, 10);
+    }
+  }
+  return count;
+};
 
 export class Database {
   private connection: Connection;
@@ -34,6 +47,14 @@ export class Database {
       [id]
     );
     return (results.rows?.[0] as QuoteWithAuthor) ?? null;
+  }
+
+  async findAuthorById(id: string | number): Promise<Author | null> {
+    const results = await this.connection.execute(
+      `SELECT authors.first_name, authors.last_name, authors.image_url, authors.id from authors WHERE authors.id=? `,
+      [id]
+    );
+    return (results.rows?.[0] as Author) ?? null;
   }
 
   async findAuthorQuoteCount(author_id: string): Promise<number> {
@@ -122,6 +143,51 @@ export class Database {
     );
 
     return results.rows?.[0] as QuoteWithAuthor;
+  }
+
+  async findQuotes({
+    offset,
+    limit,
+  }: {
+    offset?: number;
+    limit?: number;
+  }): Promise<QuoteWithAuthor[]> {
+    const results = await this.connection.execute(
+      `${select} ${from} WHERE is_active=1 LIMIT ? OFFSET ?`,
+      [limit, offset]
+    );
+
+    return results.rows as QuoteWithAuthor[];
+  }
+
+  async countQuotes({}: {}): Promise<number> {
+    const results = await this.connection.execute(
+      `SELECT COUNT(id) as count FROM quotes WHERE is_active=1`
+    );
+    return extractCount(results);
+  }
+
+  async findAuthors({
+    offset,
+    limit,
+  }: {
+    offset?: number;
+    limit?: number;
+  }): Promise<Author[]> {
+    const results = await this.connection.execute(
+      `SELECT authors.first_name, authors.last_name, authors.image_url, authors.id from authors LIMIT ? OFFSET ?`,
+      [limit, offset]
+    );
+
+    return results.rows as QuoteWithAuthor[];
+  }
+
+  async countAuthors({}: {}): Promise<number> {
+    const results = await this.connection.execute(
+      `SELECT COUNT(id) as count FROM authors`
+    );
+
+    return extractCount(results);
   }
 
   async toggleLike({
