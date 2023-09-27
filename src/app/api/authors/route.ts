@@ -3,6 +3,7 @@ import { Database } from "@/utilities/database";
 
 const DEFAULT_OFFSET = 0;
 const DEFAULT_LIMIT = 10;
+const MAX_LIMIT = 100;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -11,7 +12,7 @@ export async function GET(request: NextRequest) {
     searchParams.get("offset") ?? `${DEFAULT_OFFSET}`,
     10
   );
-  const parsed_limit = parseInt(
+  let parsed_limit = parseInt(
     searchParams.get("limit") ?? `${DEFAULT_LIMIT}`,
     10
   );
@@ -25,6 +26,10 @@ export async function GET(request: NextRequest) {
   }
 
   if (errors.length > 0) return NextResponse.json({ errors }, { status: 400 });
+
+  if (parsed_limit > MAX_LIMIT) {
+    parsed_limit = MAX_LIMIT;
+  }
 
   const db = new Database();
   const [quotes, count] = await Promise.all([
