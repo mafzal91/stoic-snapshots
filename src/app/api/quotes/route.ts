@@ -1,17 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Database } from "@/utilities/database";
+import { ensureNumber } from "@/utilities/ensure-number";
 
 const DEFAULT_OFFSET = 0;
 const DEFAULT_LIMIT = 10;
-
 const MAX_LIMIT = 100;
-
-const ensureNumber = (value: string | null | undefined) => {
-  if (value === undefined || value === null) return undefined;
-  const parsed = parseInt(value, 10);
-  if (isNaN(parsed)) return undefined;
-  return parsed;
-};
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
