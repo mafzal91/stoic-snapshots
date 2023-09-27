@@ -146,23 +146,50 @@ export class Database {
   }
 
   async findQuotes({
+    filters,
     offset,
     limit,
   }: {
+    filters?: {
+      author_id?: number;
+    };
     offset?: number;
     limit?: number;
   }): Promise<QuoteWithAuthor[]> {
+    const conditions = ["is_active=1"];
+    const conditionsValues = [];
+    if (filters?.author_id) {
+      conditions.push("quotes.author_id=?");
+      conditionsValues.push(filters.author_id);
+    }
+
     const results = await this.connection.execute(
-      `${select} ${from} WHERE is_active=1 LIMIT ? OFFSET ?`,
-      [limit, offset]
+      `${select} ${from} WHERE ${conditions.join(" AND ")} LIMIT ? OFFSET ?`,
+      [...conditionsValues, limit, offset]
     );
 
     return results.rows as QuoteWithAuthor[];
   }
 
-  async countQuotes({}: {}): Promise<number> {
+  async countQuotes({
+    filters,
+  }: {
+    filters?: {
+      author_id?: number;
+    };
+  }): Promise<number> {
+    const conditions = ["is_active=1"];
+    const conditionsValues = [];
+    if (filters?.author_id) {
+      conditions.push("quotes.author_id=?");
+      conditionsValues.push(filters.author_id);
+    }
+
     const results = await this.connection.execute(
-      `SELECT COUNT(id) as count FROM quotes WHERE is_active=1`
+      `SELECT COUNT(id) as count FROM quotes WHERE ${conditions.join(
+        " AND "
+      )} `,
+      [...conditionsValues]
     );
     return extractCount(results);
   }
