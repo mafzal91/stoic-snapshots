@@ -250,22 +250,15 @@ export class Database {
     const event_id = generateId();
 
     const queryTemplate = `INSERT INTO download_settings (event_id, setting, value, quote_id) VALUES`;
-    let inserts = [];
-    if (color_scheme) {
-      inserts.push(["color_scheme", color_scheme]);
-    }
-    if (border) {
-      inserts.push(["border", border]);
-    }
-    if (image_preset) {
-      inserts.push(["image_preset", image_preset]);
-    }
-    if (width) {
-      inserts.push(["width", width]);
-    }
-    if (height) {
-      inserts.push(["height", height]);
-    }
+    const settingsMap = {
+      color_scheme,
+      border,
+      image_preset,
+      width,
+      height,
+    };
+
+    let inserts = Object.entries(settingsMap).filter(([key, value]) => value);
 
     if (inserts.length === 0) {
       return;
