@@ -57,12 +57,12 @@ This API provides access to a collection of quotes and authors.
 
 **Response**
 
-| Field     | Type   | Description                                                     |
-| --------- | ------ | --------------------------------------------------------------- |
-| `offset`  | Number | The starting point for pagination                               |
-| `limit`   | Number | The maximum number of quotes to retrieve                        |
-| `results` | Array  | An array of quote objects ([Structure](#api/quotes/[quote_id])) |
-| `total`   | Number | The total number of quotes available                            |
+| Field     | Type   | Description                                                        |
+| --------- | ------ | ------------------------------------------------------------------ |
+| `offset`  | Number | The starting point for pagination                                  |
+| `limit`   | Number | The maximum number of quotes to retrieve                           |
+| `results` | Array  | An array of quote objects ([Quote Object](#api/quotes/[quote_id])) |
+| `total`   | Number | The total number of quotes available                               |
 
 ### <a id="api/quotes/[quote_id]"></a> 2. Get Quote by ID
 
@@ -116,7 +116,7 @@ This API provides access to a collection of quotes and authors.
 | --------- | ------ | ---------------------------------------------------------------------- |
 | `offset`  | Number | The starting point for pagination                                      |
 | `limit`   | Number | The maximum number of authors to retrieve                              |
-| `results` | Array  | An array of author objects ([author object](#api/authors/[author_id])) |
+| `results` | Array  | An array of author objects ([Author object](#api/authors/[author_id])) |
 | `total`   | Number | The total number of authors available                                  |
 
 ### <a id="api/authors/[author_id]"></a> 5. Get Author by ID
