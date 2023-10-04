@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { Ratelimit } from "@upstash/ratelimit";
+import { kv } from "@vercel/kv";
 import { Database } from "@/utilities/database";
-import type { NextRequest } from "next/server";
+import type { NextFetchEvent, NextRequest } from "next/server";
 import { ImagePresets } from "@/app/common";
 import { imageDimensions } from "@/utilities/constants";
 
@@ -10,7 +12,38 @@ const imageDimensionsMap = new Map(
 // Delete the screen preset because if its selected by the user, we want to use the width and height from the cookies
 imageDimensionsMap.delete(ImagePresets.Screen);
 
-export async function middleware(request: NextRequest) {
+const ratelimit = new Ratelimit({
+  redis: kv,
+  limiter: Ratelimit.slidingWindow(100, "60 s"),
+  analytics: true,
+});
+
+async function apiHandler(request: NextRequest, event: NextFetchEvent) {
+  const ip = request.ip ?? "127.0.0.1";
+  const { success, pending, limit, reset, remaining } = await ratelimit.limit(
+    ip
+  );
+
+  event.waitUntil(pending);
+
+  let res = success
+    ? NextResponse.next()
+    : NextResponse.json(
+        {
+          error: {
+            message: "Too many requests, please try again later.",
+          },
+        },
+        { status: 429 }
+      );
+
+  res.headers.set("X-RateLimit-Limit", limit.toString());
+  res.headers.set("X-RateLimit-Remaining", remaining.toString());
+  res.headers.set("X-RateLimit-Reset", reset.toString());
+  return res;
+}
+
+async function imagePathHandler(request: NextRequest) {
   const cookies = request.cookies.getAll();
   const quote_id = request.nextUrl.pathname.split("/")[2];
   const cookiesMap = new Map(cookies.map(({ name, value }) => [name, value]));
@@ -60,7 +93,16 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
-// See "Matching Paths" below to learn more
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
+  if (request.nextUrl.pathname.startsWith("/image")) {
+    return imagePathHandler(request);
+  }
+
+  if (request.nextUrl.pathname.startsWith("/api")) {
+    return apiHandler(request, event);
+  }
+}
+
 export const config = {
-  matcher: "/image/:path*",
+  matcher: ["/image/:path*", "/api/:path*"],
 };

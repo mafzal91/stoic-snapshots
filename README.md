@@ -133,3 +133,7 @@ This API provides access to a collection of quotes and authors.
 | `first_name` | String | The first name of the author         |
 | `last_name`  | String | The last name of the author          |
 | `image_url`  | String | The URL of the author's image        |
+
+## Rate Limiting
+
+The API employs a sliding window rate limiting strategy, allowing 100 requests per minute per client.
