@@ -20,6 +20,8 @@
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
+    "@upstash/ratelimit": "^0.4.4",
+    "@vercel/kv": "^0.2.3",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
     "eslint": "8.43.0",
