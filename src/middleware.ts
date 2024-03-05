@@ -20,27 +20,33 @@ const ratelimit = new Ratelimit({
 
 async function apiHandler(request: NextRequest, event: NextFetchEvent) {
   const ip = request.ip ?? "127.0.0.1";
-  const { success, pending, limit, reset, remaining } = await ratelimit.limit(
-    ip
-  );
+  try {
+    console.log(await ratelimit.limit(ip));
+    const { success, pending, limit, reset, remaining } = await ratelimit.limit(
+      ip
+    );
+    console.log({ success, pending, limit, reset, remaining });
+    event.waitUntil(pending);
 
-  event.waitUntil(pending);
-
-  let res = success
-    ? NextResponse.next()
-    : NextResponse.json(
-        {
-          error: {
-            message: "Too many requests, please try again later.",
+    let res = success
+      ? NextResponse.next()
+      : NextResponse.json(
+          {
+            error: {
+              message: "Too many requests, please try again later.",
+            },
           },
-        },
-        { status: 429 }
-      );
+          { status: 429 }
+        );
 
-  res.headers.set("X-RateLimit-Limit", limit.toString());
-  res.headers.set("X-RateLimit-Remaining", remaining.toString());
-  res.headers.set("X-RateLimit-Reset", reset.toString());
-  return res;
+    res.headers.set("X-RateLimit-Limit", limit.toString());
+    res.headers.set("X-RateLimit-Remaining", remaining.toString());
+    res.headers.set("X-RateLimit-Reset", reset.toString());
+    return res;
+  } catch (error) {
+    console.log(error);
+    NextResponse.next();
+  }
 }
 
 async function imagePathHandler(request: NextRequest) {
