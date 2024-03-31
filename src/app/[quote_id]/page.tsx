@@ -20,7 +20,7 @@ type Props = {
 export async function generateMetadata({
   params: { quote_id },
 }: Props): Promise<Metadata> {
-  const quoteData = await new Database().findQuoteById(quote_id);
+  const quoteData = await new Database().findQuoteById(Number(quote_id));
   if (!quoteData) return {};
 
   const { first_name, last_name, quote } = quoteData;
@@ -33,7 +33,7 @@ async function getQuote(
   quote_id: string
 ): Promise<(QuoteWithAuthor & { count: number }) | null> {
   const db = new Database();
-  const quote = await db.findQuoteById(quote_id);
+  const quote = await db.findQuoteById(Number(quote_id));
   if (!quote) return null;
   const count = await db.findAuthorQuoteCount(quote.author_id);
   return { ...quote, count };

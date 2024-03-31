@@ -5,8 +5,8 @@ async function getQuote({
   quote_id,
 }: {
   quote_id: string;
-}): Promise<{ id: string } | null> {
-  return new Database().findRandomQuote({ quote_id });
+}): Promise<{ id: number } | null> {
+  return new Database().findRandomQuote({ quote_id: Number(quote_id) });
 }
 
 export default async function RandomQuotePage({

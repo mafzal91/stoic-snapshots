@@ -9,7 +9,8 @@
     "partytown": "partytown copylib public/~partytown",
     "lint": "next lint -c ./.eslintrc.json",
     "duplicate": "tsx ./src/scripts/duplicateCheck.ts",
-    "import": "node ./scripts/importToPg.mjs"
+    "import": "node ./scripts/importToPg.mjs",
+    "prisma:g": "prisma generate"
   },
   "dependencies": {
     "@builder.io/partytown": "^0.8.0",

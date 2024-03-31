@@ -6,7 +6,7 @@ export async function GET(
   { params: { quote_id } }: { params: { quote_id: string } }
 ) {
   const db = new Database();
-  const quote = await db.findQuoteById(quote_id);
+  const quote = await db.findQuoteById(Number(quote_id));
   if (!quote) return NextResponse.json({}, { status: 404 });
 
   return NextResponse.json(quote);

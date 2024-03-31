@@ -6,7 +6,7 @@ export function CopyButton({
   quote_id,
   children,
 }: {
-  quote_id: string;
+  quote_id: number;
   children: React.ReactNode;
 }) {
   const [isCopied, setIsCopied] = React.useState(false);
