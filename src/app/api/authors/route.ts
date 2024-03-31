@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
       offset: isNaN(parsed_offset) ? undefined : parsed_offset,
       limit: isNaN(parsed_limit) ? undefined : parsed_limit,
     }),
-    db.countAuthors({}),
+    db.countAuthors(),
   ]);
 
   return NextResponse.json({

@@ -1,7 +1,7 @@
 import { Database } from "@/utilities/database";
 import { redirect } from "next/navigation";
 
-async function getRandomQuote(): Promise<{ id: string }> {
+async function getRandomQuote(): Promise<{ id: number }> {
   return new Database().findRandomQuote({});
 }
 
