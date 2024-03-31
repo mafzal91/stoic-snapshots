@@ -5,13 +5,13 @@ declare global {
 }
 
 type Quote = {
-  id: string;
+  id: number;
   quote: string;
-  author_id: string;
+  author_id: number;
 };
 
 type Author = {
-  id: string;
+  id: number;
   first_name: string;
   last_name: string | null;
   image_url: string | null;

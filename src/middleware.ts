@@ -21,11 +21,9 @@ const ratelimit = new Ratelimit({
 async function apiHandler(request: NextRequest, event: NextFetchEvent) {
   const ip = request.ip ?? "127.0.0.1";
   try {
-    console.log(await ratelimit.limit(ip));
     const { success, pending, limit, reset, remaining } = await ratelimit.limit(
       ip
     );
-    console.log({ success, pending, limit, reset, remaining });
     event.waitUntil(pending);
 
     let res = success
@@ -51,7 +49,7 @@ async function apiHandler(request: NextRequest, event: NextFetchEvent) {
 
 async function imagePathHandler(request: NextRequest) {
   const cookies = request.cookies.getAll();
-  const quote_id = request.nextUrl.pathname.split("/")[2];
+  const quote_id = Number(request.nextUrl.pathname.split("/")[2]);
   const cookiesMap = new Map(cookies.map(({ name, value }) => [name, value]));
   const colorScheme = cookiesMap.get("colorScheme");
   const border = cookiesMap.get("border") ?? "true";
@@ -73,7 +71,7 @@ async function imagePathHandler(request: NextRequest) {
   const url = new URL(
     `https://xjgg9sxeak.execute-api.us-east-1.amazonaws.com/`
   );
-  url.searchParams.set("quote_id", quote_id ?? "");
+  url.searchParams.set("quote_id", `${quote_id}`);
   url.searchParams.set("width", width.toString());
   url.searchParams.set("height", height.toString());
   const response = NextResponse.rewrite(url);

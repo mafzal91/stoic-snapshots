@@ -1,0 +1,58 @@
+generator kysely {
+  provider = "prisma-kysely"
+
+  output   = "../src/db"
+  fileName = "types.ts"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_DATABASE_URL")
+}
+
+model authors {
+  id         Int      @id @default(autoincrement())
+  first_name String   @db.VarChar(255)
+  last_name  String?  @db.VarChar(255)
+  image_url  String?  @db.Text
+  quotes     quotes[]
+}
+
+model download_settings {
+  id         Int       @id @default(autoincrement())
+  event_id   String    @db.VarChar(21)
+  setting    String    @db.VarChar(255)
+  value      String?   @db.VarChar(255)
+  quote      quotes?   @relation(fields: [quote_id], references: [id])
+  quote_id   Int?
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+
+  @@unique([event_id, setting])
+}
+
+model quotes {
+  id                Int                 @id @default(autoincrement())
+  quote             String              @db.Text
+  author            authors             @relation(fields: [author_id], references: [id])
+  author_id         Int
+  raw               Json?
+  is_active         Boolean             @default(true)
+  source            String?             @db.VarChar(255)
+  download_settings download_settings[]
+}
+
+model themes {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(255)
+  likes Int?
+}
+
+model users {
+  id         Int       @id @default(autoincrement())
+  externalId String    @unique(map: "externalId") @db.VarChar(36)
+  firstName  String?   @db.VarChar(255)
+  lastName   String?   @db.VarChar(255)
+  email      String    @unique(map: "email") @db.VarChar(255)
+  password   String    @db.VarChar(255)
+  createdAt  DateTime? @default(now()) @db.Timestamp(0)
+}

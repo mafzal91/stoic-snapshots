@@ -8,8 +8,8 @@
     "start": "npm run partytown && next start",
     "partytown": "partytown copylib public/~partytown",
     "lint": "next lint -c ./.eslintrc.json",
-    "import": "tsx ./src/scripts/import.ts",
-    "duplicate": "tsx ./src/scripts/duplicateCheck.ts"
+    "duplicate": "tsx ./src/scripts/duplicateCheck.ts",
+    "import": "node ./scripts/importToPg.mjs"
   },
   "dependencies": {
     "@builder.io/partytown": "^0.8.0",
@@ -22,14 +22,19 @@
     "@types/react-dom": "18.2.5",
     "@upstash/ratelimit": "^0.4.4",
     "@vercel/kv": "^0.2.3",
+    "@vercel/postgres-kysely": "^0.7.2",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
     "eslint": "8.43.0",
     "eslint-config-next": "^14.1.0",
+    "kysely": "^0.27.3",
+    "mysql2": "^3.9.3",
     "nanoid": "^4.0.2",
     "next": "^14.1.0",
     "nodemailer": "^6.9.4",
+    "pg": "^8.11.4",
     "postcss": "^8.4.33",
+    "prisma-kysely": "^1.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "3.3.2",
@@ -39,7 +44,9 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",
     "@types/nodemailer": "^6.4.14",
+    "@types/pg": "^8.11.4",
     "dotenv": "^16.3.1",
+    "prisma": "^5.11.0",
     "tsx": "^3.12.7",
     "tw-colors": "^1.2.6"
   }
