@@ -56,7 +56,14 @@ async function imagePathHandler(request: NextRequest) {
   const imagePreset = cookiesMap.get("imagePreset") ?? ImagePresets.Screen;
   let height = 1000;
   let width = 1000;
-
+  console.log({
+    cookies,
+    quote_id,
+    cookiesMap,
+    colorScheme,
+    border,
+    imagePreset,
+  });
   if (imageDimensionsMap.has(imagePreset)) {
     width = imageDimensionsMap.get(imagePreset)?.width ?? 1000;
     height = imageDimensionsMap.get(imagePreset)?.height ?? 1000;
@@ -68,8 +75,11 @@ async function imagePathHandler(request: NextRequest) {
     height = cookieHeight ? parseInt(cookieHeight, 10) : 1000;
   }
 
+  // const url = new URL(
+  //   `https://qoupjlxnoue6szhd6gal3ibqfm0jcyfg.lambda-url.us-east-1.on.aws/`
+  // );
   const url = new URL(
-    `https://xjgg9sxeak.execute-api.us-east-1.amazonaws.com/`
+    `https://fz3mxvj5ue7dwrwpcdb67ygdeq0twlgx.lambda-url.us-east-1.on.aws/`
   );
   url.searchParams.set("quote_id", `${quote_id}`);
   url.searchParams.set("width", width.toString());
@@ -79,7 +89,7 @@ async function imagePathHandler(request: NextRequest) {
   cookies.forEach((cookie) => {
     response.cookies.set(cookie.name, cookie.value);
   });
-
+  console.log(url.toString());
   response.headers.set(
     "Content-Disposition",
     'attachment; filename="stoic-snapshots.png"'
