@@ -108,7 +108,7 @@ async function imagePathHandler(request: NextRequest) {
 }
 
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
-  if (request.nextUrl.pathname.startsWith("/image")) {
+  if (request.nextUrl.pathname.match(/^\/image\/\d+$/)) {
     return imagePathHandler(request);
   }
 
