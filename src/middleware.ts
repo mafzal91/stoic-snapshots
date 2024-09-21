@@ -75,12 +75,10 @@ async function imagePathHandler(request: NextRequest) {
     height = cookieHeight ? parseInt(cookieHeight, 10) : 1000;
   }
 
-  // const url = new URL(
-  //   `https://qoupjlxnoue6szhd6gal3ibqfm0jcyfg.lambda-url.us-east-1.on.aws/`
-  // );
   const url = new URL(
-    `https://fz3mxvj5ue7dwrwpcdb67ygdeq0twlgx.lambda-url.us-east-1.on.aws/`
+    `https://qoupjlxnoue6szhd6gal3ibqfm0jcyfg.lambda-url.us-east-1.on.aws/`
   );
+
   url.searchParams.set("quote_id", `${quote_id}`);
   url.searchParams.set("width", width.toString());
   url.searchParams.set("height", height.toString());
