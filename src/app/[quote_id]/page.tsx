@@ -12,14 +12,18 @@ import { CopyButton } from "@/components/copyButton";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
 type Props = {
-  params: {
+  params: Promise<{
     quote_id: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({
-  params: { quote_id },
-}: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    quote_id
+  } = params;
+
   const quoteData = await new Database().findQuoteById(Number(quote_id));
   if (!quoteData) return {};
 
@@ -39,7 +43,13 @@ async function getQuote(
   return { ...quote, count };
 }
 
-export default async function QuoteByIdPage({ params: { quote_id } }: Props) {
+export default async function QuoteByIdPage(props: Props) {
+  const params = await props.params;
+
+  const {
+    quote_id
+  } = params;
+
   const quoteData = await getQuote(quote_id);
 
   if (!quoteData) notFound();

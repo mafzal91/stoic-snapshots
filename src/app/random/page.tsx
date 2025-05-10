@@ -9,11 +9,17 @@ async function getQuote({
   return new Database().findRandomQuote({ quote_id: Number(quote_id) });
 }
 
-export default async function RandomQuotePage({
-  searchParams: { quote_id },
-}: {
-  searchParams: { quote_id: string };
-}) {
+export default async function RandomQuotePage(
+  props: {
+    searchParams: Promise<{ quote_id: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+
+  const {
+    quote_id
+  } = searchParams;
+
   const quote = await getQuote({ quote_id });
 
   if (!quote) notFound();
