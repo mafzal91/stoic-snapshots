@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { ipAddress } from "@vercel/functions";
 import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
 import { Database } from "@/utilities/database";
@@ -19,7 +20,7 @@ const ratelimit = new Ratelimit({
 });
 
 async function apiHandler(request: NextRequest, event: NextFetchEvent) {
-  const ip = request.ip ?? "127.0.0.1";
+  const ip = ipAddress(request) ?? "127.0.0.1";
   try {
     const { success, pending, limit, reset, remaining } = await ratelimit.limit(
       ip
