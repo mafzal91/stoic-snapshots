@@ -32,36 +32,37 @@ export const metadata = {
     shortcut: { url: "/favicon.svg", type: "image/svg" },
   },
 };
-const getCookieSettings = () => {
+const getCookieSettings = async () => {
   let border = true;
 
-  const cookieBorder = cookies().get("border")?.value;
+  const cookieStore = await cookies();
+  const cookieBorder = cookieStore.get("border")?.value;
   border = JSON.parse(cookieBorder ?? "true");
 
-  const colorScheme = (cookies().get("colorScheme")?.value ??
+  const colorScheme = (cookieStore.get("colorScheme")?.value ??
     null) as ColorScheme | null;
 
-  const imagePreset = (cookies().get("imagePreset")?.value ??
+  const imagePreset = (cookieStore.get("imagePreset")?.value ??
     ImagePresets.Screen) as ImagePresets;
 
   const dimensions = {
-    width: parseInt(cookies().get("width")?.value ?? "0"),
-    height: parseInt(cookies().get("height")?.value ?? "0"),
+    width: parseInt(cookieStore.get("width")?.value ?? "0"),
+    height: parseInt(cookieStore.get("height")?.value ?? "0"),
   };
 
   const likedThemes: Record<string, boolean> = JSON.parse(
-    cookies().get("likedThemes")?.value ?? "{}"
+    cookieStore.get("likedThemes")?.value ?? "{}"
   );
 
   return { colorScheme, border, imagePreset, dimensions, likedThemes };
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieValues = getCookieSettings();
+  const cookieValues = await getCookieSettings();
 
   const { border, colorScheme, imagePreset, likedThemes } = cookieValues;
   const colorSchemeClass = colorScheme ? `theme-${colorScheme}` : null;

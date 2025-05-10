@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
 
-export function setAllCookies(data: { name: string; value: string }[]) {
+export async function setAllCookies(data: { name: string; value: string }[]) {
+  const cookieStore = await cookies();
   data.forEach((item) => {
-    cookies().set(item.name, item.value);
+    cookieStore.set(item.name, item.value);
   });
 }

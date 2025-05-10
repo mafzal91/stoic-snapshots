@@ -1,6 +1,6 @@
 import * as React from "react";
 import { updateSettings } from "@/app/actions/updateSettings";
-import { useMediaQuery, useUpdateEffect } from "usehooks-ts";
+import { useMediaQuery } from "usehooks-ts";
 import { ColorScheme } from "@/app/common";
 
 const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)";
@@ -63,7 +63,7 @@ export function useColorScheme(
   );
 
   // Update darkMode if os prefers changes
-  useUpdateEffect(() => {
+  React.useEffect(() => {
     if (colorScheme === ColorScheme.System) {
       setColorScheme(colorScheme);
     }
