@@ -11,13 +11,24 @@ async function getQuote({
   return new Database().findRandomQuoteByAuthorId(author_id, quote_id);
 }
 
-export default async function QuoteByAuthorIdPage({
-  params: { author_id },
-  searchParams: { quote_id },
-}: {
-  params: { author_id: number };
-  searchParams: { quote_id: number };
-}) {
+export default async function QuoteByAuthorIdPage(
+  props: {
+    params: Promise<{ author_id: number }>;
+    searchParams: Promise<{ quote_id: number }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+
+  const {
+    quote_id
+  } = searchParams;
+
+  const params = await props.params;
+
+  const {
+    author_id
+  } = params;
+
   const quote = await getQuote({ author_id, quote_id });
 
   if (!quote) notFound();

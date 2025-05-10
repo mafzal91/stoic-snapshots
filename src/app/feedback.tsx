@@ -10,7 +10,7 @@ import { Modal } from "@/components/modal";
 import { ErrorBoundary } from "@/components/errorBoundry";
 
 function SubmitButton({ isPending }: { isPending: boolean }) {
-  const prevPending = usePrevious(isPending);
+  const prevPending = usePrevious(isPending) as boolean;
 
   let buttonContent: React.ReactNode = "Submit";
   if (prevPending && !isPending) {

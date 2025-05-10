@@ -5,10 +5,11 @@ import { Database } from "@/utilities/database";
 import { updateSettings } from "@/app/actions/updateSettings";
 
 export async function toggleThemeLike() {
-  const colorScheme = (cookies().get("colorScheme")?.value ??
+  const cookieStore = await cookies();
+  const colorScheme = (cookieStore.get("colorScheme")?.value ??
     null) as ColorScheme | null;
   const likedThemes: Record<string, boolean> = JSON.parse(
-    cookies().get("likedThemes")?.value ?? "{}"
+    cookieStore.get("likedThemes")?.value ?? "{}"
   );
 
   if (!colorScheme) {

@@ -9,7 +9,8 @@ export async function updateSettings({
   field: string;
   value: string;
 }) {
-  const currentCookieValue = cookies().getAll();
+  const cookieStore = await cookies();
+  const currentCookieValue = cookieStore.getAll();
 
   // Create a new array with updated values
   const updatedCookieValue = currentCookieValue.map((item) =>
