@@ -10,7 +10,7 @@ import { HeartIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   params: Promise<{
-    quote_id: string;
+    quote_id: string[];
   }>;
 };
 
@@ -24,14 +24,14 @@ export async function generateStaticParams() {
   });
   const quoteIds = quotes
     .filter((quote) => quote.id !== 500)
-    .map((quote) => ({ quote_id: String(quote.id) }));
+    .map((quote) => ({ quote_id: [String(quote.id)] }));
   return quoteIds;
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
 
-  const { quote_id } = params;
+  const [quote_id] = params.quote_id;
 
   const quoteData = await new Database().findQuoteById(Number(quote_id));
   if (!quoteData) return {};
@@ -54,8 +54,9 @@ async function getQuote(
 
 export default async function QuoteByIdPage(props: Props) {
   const params = await props.params;
+  console.log(params);
 
-  const { quote_id } = params;
+  const [quote_id] = params.quote_id;
 
   const quoteData = await getQuote(quote_id);
 
