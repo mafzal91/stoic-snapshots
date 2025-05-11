@@ -1,10 +1,7 @@
-import clsx from "clsx";
-import Image from "next/image";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Database } from "@/utilities/database";
 import { getFullName } from "@/utilities/get-full-name";
-import { Circle } from "@/components/circle";
 import { Quote } from "@/components/quote";
 import { FooterLink } from "@/components/footerLink";
 import { Divider } from "@/components/divider";
@@ -17,12 +14,24 @@ type Props = {
   }>;
 };
 
+export const revalidate = 60;
+
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const quotes: QuoteWithAuthor[] = await new Database().findQuotes({
+    filters: {},
+  });
+  const quoteIds = quotes
+    .filter((quote) => quote.id !== 500)
+    .map((quote) => ({ quote_id: String(quote.id) }));
+  return quoteIds;
+}
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
 
-  const {
-    quote_id
-  } = params;
+  const { quote_id } = params;
 
   const quoteData = await new Database().findQuoteById(Number(quote_id));
   if (!quoteData) return {};
@@ -46,9 +55,7 @@ async function getQuote(
 export default async function QuoteByIdPage(props: Props) {
   const params = await props.params;
 
-  const {
-    quote_id
-  } = params;
+  const { quote_id } = params;
 
   const quoteData = await getQuote(quote_id);
 
@@ -67,30 +74,10 @@ export default async function QuoteByIdPage(props: Props) {
   return (
     <>
       <div className="flex flex-col flex-grow justify-center items-center">
-        {/* {quote.image_url && (
-          <div className="relative">
-            <Circle />
-
-            <div className="absolute w-full top-0 bottom-0 flex items-center justify-center">
-              <Image
-                className={clsx(
-                  "w-48 h-48 sm:w-56 sm:h-56 md:w-96 md:h-96 rounded-full"
-                )}
-                src={quote.image_url}
-                width={256}
-                height={256}
-                alt={authorName}
-              />
-              <div className="absolute rounded-full inset-0 mix-blend-color bg-accent"></div>
-            </div>
-          </div>
-        )} */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-center">
           <Quote quote={quote.quote} author={authorName} fontSize={fontSize} />
         </div>
       </div>
-
-      {/*  */}
 
       <div className="flex flex-wrap items-center justify-center lg:mb-0 lg:text-left screenshot-hidden">
         <FooterLink href={`/random?quote_id=${quote.id}`}>Random</FooterLink>
