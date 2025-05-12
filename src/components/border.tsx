@@ -30,12 +30,12 @@ export function Border({
 }) {
   return (
     <div
-      className={`flex flex-col flex-grow p-2 border-${
+      className={`flex flex-col grow p-2 border-${
         enabled ? borderWidth : 0
       } border-primary rounded-md`}
     >
       <div
-        className={`relative flex flex-col flex-grow h-full border-${
+        className={`relative flex flex-col grow h-full border-${
           enabled ? borderWidth : 0
         } border-primary rounded-md`}
       >

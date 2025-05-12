@@ -1,6 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-crimson-text: var(--font-crimson-text);
+  --font-eb-garamond: var(--font-eb-garamond);
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer theme {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #29292B;
+      --color-foreground: #C9C7BA;
+    }
+  }
+  html.theme-dark {
+    --color-background: "#151C25",
+    --color-accent: "#BEAD9A",
+    --color-primary: "#F6F5EB",
+    --color-secondary: "#807872",
+  }
+  html.theme-light {
+    --color-background: "#F6F5EB",
+    --color-accent: "#BEAD9A",
+    --color-primary: "#151C25",
+    --color-secondary: "#807872",
+  }
+  html.theme-rustic-sunrise {
+    --color-background: "#F3F4ED",  
+    --color-accent: "#536162",
+    --color-primary: "#424642",
+    --color-secondary: "#C06014",
+  }
+  html.theme-rustic-sunset {
+    --color-background: "#1F201D",
+    --color-accent: "#A4B0B1",
+    --color-primary: "#FF9025",
+    --color-secondary: "#71776E",
+  }
+  html.theme-soft-whisper {
+    --color-background: "#F6F6F6",
+    --color-accent: "#FFE2E2",
+    --color-primary: "#CC7373",
+    --color-secondary: "#AAAAAA",
+  }
+
+  html.theme-shadowed-embrace {
+    --color-background: "#1E1E1E",
+    --color-accent: "#552525",
+    --color-primary: "#A93C3C",
+    --color-secondary: "#888888",
+  }
+  html.theme-celestial-delight {
+    --color-background: "#8294C4",
+    --color-accent: "#FFEAD2",
+    --color-primary: "#FFEAD2",
+    --color-secondary: "#DBDFEA",
+  }
+  html.theme-dusk-serenade {
+    --color-background: "#2B3749",
+    --color-accent: "#4E5478",
+    --color-primary: "#C1B890",
+    --color-secondary: "#6E728F",
+  }
+  html.theme-deep-plum {
+    --color-background: "#00005C",
+    --color-accent: "#C060A1",
+    --color-primary: "#F0CAA3",
+    --color-secondary: "#C060A1",
+  }
+  html.theme-nightfall-noir {
+    --color-background: "#050529",
+    --color-accent: "#8D366F",
+    --color-primary: "#D1A77D",
+    --color-secondary: "#8D366F",
+  }
+  html.theme-peaches-and-cream {
+    --color-background: "#FFF3E2",
+    --color-accent: "#FA9884",
+    --color-primary: "#E74646",
+    --color-secondary: "#FA9884",
+  }
+  html.theme-terra-cotta-dreams {
+    --color-background: "#EFF5F5",
+    --color-accent: "#497174",
+    --color-primary: "#EB6440",
+    --color-secondary: "#497174",
+  }
+}
+
 
 .grecaptcha-badge {
   visibility: hidden;

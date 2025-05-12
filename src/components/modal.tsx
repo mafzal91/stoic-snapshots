@@ -47,7 +47,7 @@ export function Modal({
                 <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
                   <button
                     type="button"
-                    className="rounded-md bg-background text-primary hover:text-secondary focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1"
+                    className="rounded-md bg-background text-primary hover:text-secondary focus:outline-hidden focus:ring-1 focus:ring-primary focus:ring-offset-1"
                     onClick={onClose}
                   >
                     <span className="sr-only">Close</span>

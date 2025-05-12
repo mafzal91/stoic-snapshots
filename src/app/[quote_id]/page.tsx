@@ -73,7 +73,7 @@ export default async function QuoteByIdPage(props: Props) {
 
   return (
     <>
-      <div className="flex flex-col flex-grow justify-center items-center">
+      <div className="flex flex-col grow justify-center items-center">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 text-center">
           <Quote quote={quote.quote} author={authorName} fontSize={fontSize} />
         </div>

@@ -27,7 +27,7 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
             className={clsx(
               "relative cursor-default rounded-md py-1.5 pl-3 pr-10 text-left text-primary sm:text-sm sm:leading-6",
               "ring-1 ring-inset ring-primary",
-              "focus:outline-none focus:ring-1 focus:ring-primary",
+              "focus:outline-hidden focus:ring-1 focus:ring-primary",
               "w-full"
             )}
           >
@@ -47,7 +47,7 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-sm ring-1 ring-primary focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-xs ring-1 ring-primary focus:outline-hidden sm:text-sm">
               {options.map((option) => (
                 <Listbox.Option
                   key={option.name}

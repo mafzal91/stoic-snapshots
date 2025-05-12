@@ -140,7 +140,7 @@ export default async function RootLayout({
                 }}
               />
             </div>
-            <div className="flex flex-col flex-grow items-center">
+            <div className="flex flex-col grow items-center">
               {children}
             </div>
           </Border>

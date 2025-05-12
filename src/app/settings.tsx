@@ -76,7 +76,7 @@ export function Settings({ initialSettings }: SettingsProps) {
     <>
       <button
         aria-label="settings"
-        className="p-1 rounded-md text-primary focus:outline-none focus:ring-1 focus:ring-primary"
+        className="p-1 rounded-md text-primary focus:outline-hidden focus:ring-1 focus:ring-primary"
         onClick={() => setOpen(true)}
       >
         <Cog6ToothIcon className="h-6 w-6" aria-hidden="true" />
