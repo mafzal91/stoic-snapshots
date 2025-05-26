@@ -65,10 +65,9 @@ export default async function RootLayout({
   const cookieValues = await getCookieSettings();
 
   const { border, colorScheme, imagePreset, likedThemes } = cookieValues;
-  const colorSchemeClass = colorScheme ? `theme-${colorScheme}` : null;
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme={colorScheme}>
       <head>
         <Partytown
           debug={process.env.NODE_ENV === "development"}
@@ -123,8 +122,7 @@ export default async function RootLayout({
         className={clsx(
           crimson_text.variable,
           eb_garamond.variable,
-          "bg-background",
-          clsx(colorSchemeClass ?? "hidden")
+          "bg-background"
         )}
       >
         <main className="flex min-h-screen flex-col p-4">
@@ -140,9 +138,7 @@ export default async function RootLayout({
                 }}
               />
             </div>
-            <div className="flex flex-col grow items-center">
-              {children}
-            </div>
+            <div className="flex flex-col grow items-center">{children}</div>
           </Border>
         </main>
       </body>

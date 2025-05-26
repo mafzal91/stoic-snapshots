@@ -1,14 +1,14 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
 
-@theme {
+@theme static {
   --font-crimson-text: var(--font-crimson-text);
   --font-eb-garamond: var(--font-eb-garamond);
 
-  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-  --background-image-gradient-conic: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--tw-gradient-stops)
-  );
+  --color-background: #f6f5eb;
+  --color-accent: #bead9a;
+  --color-primary: #151c25;
+  --color-secondary: #807872;
 }
 
 /*
@@ -27,90 +27,116 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+
+  [data-theme="dark"] {
+    --color-background: #151c25;
+    --color-accent: #bead9a;
+    --color-primary: #f6f5eb;
+    --color-secondary: #807872;
+  }
+  [data-theme="light"] {
+    --color-background: #f6f5eb;
+    --color-accent: #bead9a;
+    --color-primary: #151c25;
+    --color-secondary: #807872;
+  }
+  [data-theme="rustic-sunrise"] {
+    --color-background: #f3f4ed;
+    --color-accent: #536162;
+    --color-primary: #424642;
+    --color-secondary: #c06014;
+  }
+  [data-theme="rustic-sunset"] {
+    --color-background: #1f201d;
+    --color-accent: #a4b0b1;
+    --color-primary: #ff9025;
+    --color-secondary: #71776e;
+  }
+  [data-theme="soft-whisper"] {
+    --color-background: #f6f6f6;
+    --color-accent: #ffe2e2;
+    --color-primary: #cc7373;
+    --color-secondary: #aaaaaa;
+  }
+
+  [data-theme="shadowed-embrace"] {
+    --color-background: #1e1e1e;
+    --color-accent: #552525;
+    --color-primary: #a93c3c;
+    --color-secondary: #888888;
+  }
+  [data-theme="celestial-delight"] {
+    --color-background: #8294c4;
+    --color-accent: #ffead2;
+    --color-primary: #ffead2;
+    --color-secondary: #dbdfea;
+  }
+  [data-theme="dusk-serenade"] {
+    --color-background: #2b3749;
+    --color-accent: #4e5478;
+    --color-primary: #c1b890;
+    --color-secondary: #6e728f;
+  }
+  [data-theme="deep-plum"] {
+    --color-background: #00005c;
+    --color-accent: #c060a1;
+    --color-primary: #f0caa3;
+    --color-secondary: #c060a1;
+  }
+  [data-theme="nightfall-noir"] {
+    --color-background: #050529;
+    --color-accent: #8d366f;
+    --color-primary: #d1a77d;
+    --color-secondary: #8d366f;
+  }
+  [data-theme="peaches-and-cream"] {
+    --color-background: #fff3e2;
+    --color-accent: #fa9884;
+    --color-primary: #e74646;
+    --color-secondary: #fa9884;
+  }
+  [data-theme="terra-cotta-dreams"] {
+    --color-background: #eff5f5;
+    --color-accent: #497174;
+    --color-primary: #eb6440;
+    --color-secondary: #497174;
+  }
+
+  [data-theme="coastal-breeze"] {
+    --color-background: #c3dbd9;
+    --color-accent: #bb6464;
+    --color-primary: #bb6464;
+    --color-secondary: #cdb699;
+  }
+
+  [data-theme="fairy-forest"] {
+    --color-background: #235952;
+    --color-accent: #ecfbfc;
+    --color-primary: #ffc8bd;
+    --color-secondary: #ffebd9;
+  }
+
+  [data-theme="silver-tide"] {
+    --color-background: #b2bfd5;
+    --color-accent: #c0d8d5;
+    --color-primary: #f5f3f3;
+    --color-secondary: #dfdfdf;
+  }
+
+  [data-theme="golden-earth"] {
+    --color-background: #f7ad45;
+    --color-accent: #657c6a;
+    --color-primary: #bb3e00;
+    --color-secondary: #657c6a;
+  }
+
+  [data-theme="pale-serenity"] {
+    --color-background: #986d8d;
+    --color-accent: #87a8a4;
+    --color-primary: #efe3d0;
+    --color-secondary: #d9cab3;
+  }
 }
-
-@layer theme {
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-background: #29292B;
-      --color-foreground: #C9C7BA;
-    }
-  }
-  html.theme-dark {
-    --color-background: "#151C25",
-    --color-accent: "#BEAD9A",
-    --color-primary: "#F6F5EB",
-    --color-secondary: "#807872",
-  }
-  html.theme-light {
-    --color-background: "#F6F5EB",
-    --color-accent: "#BEAD9A",
-    --color-primary: "#151C25",
-    --color-secondary: "#807872",
-  }
-  html.theme-rustic-sunrise {
-    --color-background: "#F3F4ED",  
-    --color-accent: "#536162",
-    --color-primary: "#424642",
-    --color-secondary: "#C06014",
-  }
-  html.theme-rustic-sunset {
-    --color-background: "#1F201D",
-    --color-accent: "#A4B0B1",
-    --color-primary: "#FF9025",
-    --color-secondary: "#71776E",
-  }
-  html.theme-soft-whisper {
-    --color-background: "#F6F6F6",
-    --color-accent: "#FFE2E2",
-    --color-primary: "#CC7373",
-    --color-secondary: "#AAAAAA",
-  }
-
-  html.theme-shadowed-embrace {
-    --color-background: "#1E1E1E",
-    --color-accent: "#552525",
-    --color-primary: "#A93C3C",
-    --color-secondary: "#888888",
-  }
-  html.theme-celestial-delight {
-    --color-background: "#8294C4",
-    --color-accent: "#FFEAD2",
-    --color-primary: "#FFEAD2",
-    --color-secondary: "#DBDFEA",
-  }
-  html.theme-dusk-serenade {
-    --color-background: "#2B3749",
-    --color-accent: "#4E5478",
-    --color-primary: "#C1B890",
-    --color-secondary: "#6E728F",
-  }
-  html.theme-deep-plum {
-    --color-background: "#00005C",
-    --color-accent: "#C060A1",
-    --color-primary: "#F0CAA3",
-    --color-secondary: "#C060A1",
-  }
-  html.theme-nightfall-noir {
-    --color-background: "#050529",
-    --color-accent: "#8D366F",
-    --color-primary: "#D1A77D",
-    --color-secondary: "#8D366F",
-  }
-  html.theme-peaches-and-cream {
-    --color-background: "#FFF3E2",
-    --color-accent: "#FA9884",
-    --color-primary: "#E74646",
-    --color-secondary: "#FA9884",
-  }
-  html.theme-terra-cotta-dreams {
-    --color-background: "#EFF5F5",
-    --color-accent: "#497174",
-    --color-primary: "#EB6440",
-    --color-secondary: "#497174",
-  }
-}
-
 
 .grecaptcha-badge {
   visibility: hidden;

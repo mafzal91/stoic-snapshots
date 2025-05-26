@@ -12,6 +12,11 @@ export enum ColorScheme {
   NightfallNoir = "nightfall-noir",
   PeachesAndCream = "peaches-and-cream",
   TerraCottaDreams = "terra-cotta-dreams",
+  CoastalBreeze = "coastal-breeze",
+  FairyForest = "fairy-forest",
+  SilverTide = "silver-tide",
+  GoldenEarth = "golden-earth",
+  PaleSerenity = "pale-serenity",
 }
 
 export enum ImagePresets {
