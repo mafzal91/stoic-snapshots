@@ -26,7 +26,7 @@ function SubmitButton({ isPending }: { isPending: boolean }) {
   return (
     <button
       type="submit"
-      className="inline-flex w-full justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-primary hover:text-background hover:bg-primary border-[1px] border-primary sm:ml-3 sm:w-auto disabled:cursor-not-allowed disabled:text-background disabled:bg-primary"
+      className="inline-flex w-full justify-center rounded-md bg-background px-3 py-2 text-sm font-semibold text-primary hover:text-background hover:bg-primary border border-primary sm:ml-3 sm:w-auto disabled:cursor-not-allowed disabled:text-background disabled:bg-primary"
       disabled={isPending || (prevPending && !isPending)}
     >
       {buttonContent}
@@ -64,7 +64,7 @@ function FeedbackForm() {
             type="email"
             name="email"
             id="email"
-            className="mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-primary rounded-md"
+            className="mt-1 focus:ring-primary focus:border-primary block w-full shadow-xs sm:text-sm border-primary rounded-md"
             placeholder="Your Email"
           />
         </div>
@@ -82,7 +82,7 @@ function FeedbackForm() {
             name="message"
             id="message"
             rows={10}
-            className="resize-none mt-1 focus:ring-primary focus:border-primary block w-full shadow-sm sm:text-sm border-primary rounded-md"
+            className="resize-none mt-1 focus:ring-primary focus:border-primary block w-full shadow-xs sm:text-sm border-primary rounded-md"
             placeholder="Your Email"
           />
         </div>
@@ -122,7 +122,7 @@ export function Feedback() {
     <>
       <button
         aria-label="report"
-        className="p-1 rounded-md text-primary focus:outline-none focus:ring-1 focus:ring-primary"
+        className="p-1 rounded-md text-primary focus:outline-hidden focus:ring-1 focus:ring-primary"
         onClick={() => setOpen(true)}
       >
         <LightBulbIcon className="h-6 w-6" aria-hidden="true" />

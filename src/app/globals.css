@@ -1,6 +1,142 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme static {
+  --font-crimson-text: var(--font-crimson-text);
+  --font-eb-garamond: var(--font-eb-garamond);
+
+  --color-background: #f6f5eb;
+  --color-accent: #bead9a;
+  --color-primary: #151c25;
+  --color-secondary: #807872;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  [data-theme="dark"] {
+    --color-background: #151c25;
+    --color-accent: #bead9a;
+    --color-primary: #f6f5eb;
+    --color-secondary: #807872;
+  }
+  [data-theme="light"] {
+    --color-background: #f6f5eb;
+    --color-accent: #bead9a;
+    --color-primary: #151c25;
+    --color-secondary: #807872;
+  }
+  [data-theme="rustic-sunrise"] {
+    --color-background: #f3f4ed;
+    --color-accent: #536162;
+    --color-primary: #424642;
+    --color-secondary: #c06014;
+  }
+  [data-theme="rustic-sunset"] {
+    --color-background: #1f201d;
+    --color-accent: #a4b0b1;
+    --color-primary: #ff9025;
+    --color-secondary: #71776e;
+  }
+  [data-theme="soft-whisper"] {
+    --color-background: #f6f6f6;
+    --color-accent: #ffe2e2;
+    --color-primary: #cc7373;
+    --color-secondary: #aaaaaa;
+  }
+
+  [data-theme="shadowed-embrace"] {
+    --color-background: #1e1e1e;
+    --color-accent: #552525;
+    --color-primary: #a93c3c;
+    --color-secondary: #888888;
+  }
+  [data-theme="celestial-delight"] {
+    --color-background: #8294c4;
+    --color-accent: #ffead2;
+    --color-primary: #ffead2;
+    --color-secondary: #dbdfea;
+  }
+  [data-theme="dusk-serenade"] {
+    --color-background: #2b3749;
+    --color-accent: #4e5478;
+    --color-primary: #c1b890;
+    --color-secondary: #6e728f;
+  }
+  [data-theme="deep-plum"] {
+    --color-background: #00005c;
+    --color-accent: #c060a1;
+    --color-primary: #f0caa3;
+    --color-secondary: #c060a1;
+  }
+  [data-theme="nightfall-noir"] {
+    --color-background: #050529;
+    --color-accent: #8d366f;
+    --color-primary: #d1a77d;
+    --color-secondary: #8d366f;
+  }
+  [data-theme="peaches-and-cream"] {
+    --color-background: #fff3e2;
+    --color-accent: #fa9884;
+    --color-primary: #e74646;
+    --color-secondary: #fa9884;
+  }
+  [data-theme="terra-cotta-dreams"] {
+    --color-background: #eff5f5;
+    --color-accent: #497174;
+    --color-primary: #eb6440;
+    --color-secondary: #497174;
+  }
+
+  [data-theme="coastal-breeze"] {
+    --color-background: #c3dbd9;
+    --color-accent: #bb6464;
+    --color-primary: #bb6464;
+    --color-secondary: #cdb699;
+  }
+
+  [data-theme="fairy-forest"] {
+    --color-background: #235952;
+    --color-accent: #ecfbfc;
+    --color-primary: #ffc8bd;
+    --color-secondary: #ffebd9;
+  }
+
+  [data-theme="silver-tide"] {
+    --color-background: #b2bfd5;
+    --color-accent: #c0d8d5;
+    --color-primary: #f5f3f3;
+    --color-secondary: #dfdfdf;
+  }
+
+  [data-theme="golden-earth"] {
+    --color-background: #f7ad45;
+    --color-accent: #657c6a;
+    --color-primary: #bb3e00;
+    --color-secondary: #657c6a;
+  }
+
+  [data-theme="pale-serenity"] {
+    --color-background: #986d8d;
+    --color-accent: #87a8a4;
+    --color-primary: #efe3d0;
+    --color-secondary: #d9cab3;
+  }
+}
 
 .grecaptcha-badge {
   visibility: hidden;

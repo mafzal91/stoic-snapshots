@@ -24,6 +24,11 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.NightfallNoir ||
     colorScheme === ColorScheme.PeachesAndCream ||
     colorScheme === ColorScheme.TerraCottaDreams ||
+    colorScheme === ColorScheme.CoastalBreeze ||
+    colorScheme === ColorScheme.FairyForest ||
+    colorScheme === ColorScheme.SilverTide ||
+    colorScheme === ColorScheme.GoldenEarth ||
+    colorScheme === ColorScheme.PaleSerenity ||
     colorScheme === ColorScheme.System
   );
 }

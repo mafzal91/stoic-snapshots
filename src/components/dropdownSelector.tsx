@@ -1,7 +1,13 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { Listbox, Transition } from "@headlessui/react";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+  Transition,
+} from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 type DropdownOption = {
@@ -23,11 +29,11 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
     <Listbox value={selectedOption?.name} onChange={onChange}>
       {({ open }: { open: boolean }) => (
         <div className="relative">
-          <Listbox.Button
+          <ListboxButton
             className={clsx(
               "relative cursor-default rounded-md py-1.5 pl-3 pr-10 text-left text-primary sm:text-sm sm:leading-6",
               "ring-1 ring-inset ring-primary",
-              "focus:outline-none focus:ring-1 focus:ring-primary",
+              "focus:outline-hidden focus:ring-1 focus:ring-primary",
               "w-full"
             )}
           >
@@ -38,7 +44,7 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
                 aria-hidden="true"
               />
             </span>
-          </Listbox.Button>
+          </ListboxButton>
 
           <Transition
             show={open}
@@ -47,9 +53,9 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-sm ring-1 ring-primary focus:outline-none sm:text-sm">
+            <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-background text-base shadow-xs ring-1 ring-primary focus:outline-hidden sm:text-sm">
               {options.map((option) => (
-                <Listbox.Option
+                <ListboxOption
                   key={option.name}
                   className={({ active }: { active: boolean }) =>
                     clsx(
@@ -82,9 +88,9 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
                       ) : null}
                     </>
                   )}
-                </Listbox.Option>
+                </ListboxOption>
               ))}
-            </Listbox.Options>
+            </ListboxOptions>
           </Transition>
         </div>
       )}
