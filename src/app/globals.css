@@ -136,6 +136,12 @@
     --color-primary: #efe3d0;
     --color-secondary: #d9cab3;
   }
+  [data-theme="retro-hour"] {
+    --color-background: #9cb4cc;
+    --color-accent: #d3cedf;
+    --color-primary: #f2d7d9;
+    --color-secondary: #748da6;
+  }
 }
 
 .grecaptcha-badge {
