@@ -143,9 +143,9 @@
     --color-secondary: #748da6;
   }
   [data-theme="misty-meadow"] {
-    --color-background: #f4f3f3;
+    --color-background: #b1bed5;
     --color-accent: #bfd8d5;
-    --color-primary: #b1bed5;
+    --color-primary: #f4f3f3;
     --color-secondary: #dfdfdf;
   }
 }
