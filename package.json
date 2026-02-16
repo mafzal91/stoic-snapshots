@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run partytown && next dev",
-    "build": "npm run partytown && next build",
-    "start": "npm run partytown && next start",
+    "dev": "pnpm run partytown && next dev",
+    "build": "pnpm run partytown && next build",
+    "start": "pnpm run partytown && next start",
     "partytown": "partytown copylib public/~partytown",
     "lint": "next lint -c ./.eslintrc.json",
     "duplicate": "tsx ./src/scripts/duplicateCheck.ts",
