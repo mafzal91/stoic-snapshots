@@ -30,6 +30,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.GoldenEarth ||
     colorScheme === ColorScheme.PaleSerenity ||
     colorScheme === ColorScheme.RetroHour ||
+    colorScheme === ColorScheme.TealBlossom ||
     colorScheme === ColorScheme.System
   );
 }

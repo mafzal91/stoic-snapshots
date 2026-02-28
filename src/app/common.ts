@@ -18,6 +18,7 @@ export enum ColorScheme {
   GoldenEarth = "golden-earth",
   PaleSerenity = "pale-serenity",
   RetroHour = "retro-hour",
+  TealBlossom = "teal-blossom",
 }
 
 export enum ImagePresets {
