@@ -31,30 +31,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.PaleSerenity ||
     colorScheme === ColorScheme.RetroHour ||
     colorScheme === ColorScheme.TealBlossom ||
-    colorScheme === ColorScheme.MeadowGlow01 ||
-    colorScheme === ColorScheme.MeadowGlow02 ||
-    colorScheme === ColorScheme.MeadowGlow03 ||
-    colorScheme === ColorScheme.MeadowGlow04 ||
-    colorScheme === ColorScheme.MeadowGlow05 ||
-    colorScheme === ColorScheme.MeadowGlow06 ||
-    colorScheme === ColorScheme.MeadowGlow07 ||
-    colorScheme === ColorScheme.MeadowGlow08 ||
-    colorScheme === ColorScheme.MeadowGlow09 ||
-    colorScheme === ColorScheme.MeadowGlow10 ||
-    colorScheme === ColorScheme.MeadowGlow11 ||
-    colorScheme === ColorScheme.MeadowGlow12 ||
-    colorScheme === ColorScheme.MeadowGlow13 ||
-    colorScheme === ColorScheme.MeadowGlow14 ||
-    colorScheme === ColorScheme.MeadowGlow15 ||
-    colorScheme === ColorScheme.MeadowGlow16 ||
-    colorScheme === ColorScheme.MeadowGlow17 ||
-    colorScheme === ColorScheme.MeadowGlow18 ||
-    colorScheme === ColorScheme.MeadowGlow19 ||
-    colorScheme === ColorScheme.MeadowGlow20 ||
-    colorScheme === ColorScheme.MeadowGlow21 ||
-    colorScheme === ColorScheme.MeadowGlow22 ||
-    colorScheme === ColorScheme.MeadowGlow23 ||
-    colorScheme === ColorScheme.MeadowGlow24 ||
+    colorScheme === ColorScheme.MeadowGlow ||
     colorScheme === ColorScheme.System
   );
 }
