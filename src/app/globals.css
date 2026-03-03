@@ -148,6 +148,12 @@
     --color-primary: #2a6171;
     --color-secondary: #f34573;
   }
+  [data-theme="meadow-glow"] {
+    --color-background: #f3f0d7;
+    --color-accent: #cee5d0;
+    --color-primary: #7a4a20;
+    --color-secondary: #ffbf86;
+  }
 }
 
 .grecaptcha-badge {
