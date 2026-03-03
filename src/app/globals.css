@@ -148,11 +148,150 @@
     --color-primary: #2a6171;
     --color-secondary: #f34573;
   }
-  [data-theme="meadow-glow"] {
+  /* meadow-glow-XX: all 24 permutations of mint=#cee5d0 cream=#f3f0d7 peach=#fed2aa orange=#ffbf86 */
+  [data-theme="meadow-glow-01"] {
+    --color-background: #cee5d0;
+    --color-accent: #f3f0d7;
+    --color-primary: #fed2aa;
+    --color-secondary: #ffbf86;
+  }
+  [data-theme="meadow-glow-02"] {
+    --color-background: #cee5d0;
+    --color-accent: #f3f0d7;
+    --color-primary: #ffbf86;
+    --color-secondary: #fed2aa;
+  }
+  [data-theme="meadow-glow-03"] {
+    --color-background: #cee5d0;
+    --color-accent: #fed2aa;
+    --color-primary: #f3f0d7;
+    --color-secondary: #ffbf86;
+  }
+  [data-theme="meadow-glow-04"] {
+    --color-background: #cee5d0;
+    --color-accent: #fed2aa;
+    --color-primary: #ffbf86;
+    --color-secondary: #f3f0d7;
+  }
+  [data-theme="meadow-glow-05"] {
+    --color-background: #cee5d0;
+    --color-accent: #ffbf86;
+    --color-primary: #f3f0d7;
+    --color-secondary: #fed2aa;
+  }
+  [data-theme="meadow-glow-06"] {
+    --color-background: #cee5d0;
+    --color-accent: #ffbf86;
+    --color-primary: #fed2aa;
+    --color-secondary: #f3f0d7;
+  }
+  [data-theme="meadow-glow-07"] {
+    --color-background: #f3f0d7;
+    --color-accent: #cee5d0;
+    --color-primary: #fed2aa;
+    --color-secondary: #ffbf86;
+  }
+  [data-theme="meadow-glow-08"] {
     --color-background: #f3f0d7;
     --color-accent: #cee5d0;
     --color-primary: #ffbf86;
     --color-secondary: #fed2aa;
+  }
+  [data-theme="meadow-glow-09"] {
+    --color-background: #f3f0d7;
+    --color-accent: #fed2aa;
+    --color-primary: #cee5d0;
+    --color-secondary: #ffbf86;
+  }
+  [data-theme="meadow-glow-10"] {
+    --color-background: #f3f0d7;
+    --color-accent: #fed2aa;
+    --color-primary: #ffbf86;
+    --color-secondary: #cee5d0;
+  }
+  [data-theme="meadow-glow-11"] {
+    --color-background: #f3f0d7;
+    --color-accent: #ffbf86;
+    --color-primary: #cee5d0;
+    --color-secondary: #fed2aa;
+  }
+  [data-theme="meadow-glow-12"] {
+    --color-background: #f3f0d7;
+    --color-accent: #ffbf86;
+    --color-primary: #fed2aa;
+    --color-secondary: #cee5d0;
+  }
+  [data-theme="meadow-glow-13"] {
+    --color-background: #fed2aa;
+    --color-accent: #cee5d0;
+    --color-primary: #f3f0d7;
+    --color-secondary: #ffbf86;
+  }
+  [data-theme="meadow-glow-14"] {
+    --color-background: #fed2aa;
+    --color-accent: #cee5d0;
+    --color-primary: #ffbf86;
+    --color-secondary: #f3f0d7;
+  }
+  [data-theme="meadow-glow-15"] {
+    --color-background: #fed2aa;
+    --color-accent: #f3f0d7;
+    --color-primary: #cee5d0;
+    --color-secondary: #ffbf86;
+  }
+  [data-theme="meadow-glow-16"] {
+    --color-background: #fed2aa;
+    --color-accent: #f3f0d7;
+    --color-primary: #ffbf86;
+    --color-secondary: #cee5d0;
+  }
+  [data-theme="meadow-glow-17"] {
+    --color-background: #fed2aa;
+    --color-accent: #ffbf86;
+    --color-primary: #cee5d0;
+    --color-secondary: #f3f0d7;
+  }
+  [data-theme="meadow-glow-18"] {
+    --color-background: #fed2aa;
+    --color-accent: #ffbf86;
+    --color-primary: #f3f0d7;
+    --color-secondary: #cee5d0;
+  }
+  [data-theme="meadow-glow-19"] {
+    --color-background: #ffbf86;
+    --color-accent: #cee5d0;
+    --color-primary: #f3f0d7;
+    --color-secondary: #fed2aa;
+  }
+  [data-theme="meadow-glow-20"] {
+    --color-background: #ffbf86;
+    --color-accent: #cee5d0;
+    --color-primary: #fed2aa;
+    --color-secondary: #f3f0d7;
+  }
+  [data-theme="meadow-glow-21"] {
+    --color-background: #ffbf86;
+    --color-accent: #f3f0d7;
+    --color-primary: #cee5d0;
+    --color-secondary: #fed2aa;
+  }
+  [data-theme="meadow-glow-22"] {
+    --color-background: #ffbf86;
+    --color-accent: #f3f0d7;
+    --color-primary: #fed2aa;
+    --color-secondary: #cee5d0;
+  }
+  [data-theme="meadow-glow-23"] {
+    --color-background: #ffbf86;
+    --color-accent: #fed2aa;
+    --color-primary: #cee5d0;
+    --color-secondary: #f3f0d7;
+  }
+  [data-theme="meadow-glow-24"] {
+    --color-background: #ffbf86;
+    --color-accent: #fed2aa;
+    --color-primary: #f3f0d7;
+    --color-secondary: #cee5d0;
   }
 }
 
