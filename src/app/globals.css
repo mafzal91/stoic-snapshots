@@ -154,6 +154,12 @@
     --color-primary: #7a4a20;
     --color-secondary: #ffbf86;
   }
+  [data-theme="midnight-orchid"] {
+    --color-background: #470938;
+    --color-accent: #1a3e59;
+    --color-primary: #f2d6eb;
+    --color-secondary: #5c94bd;
+  }
 }
 
 .grecaptcha-badge {
