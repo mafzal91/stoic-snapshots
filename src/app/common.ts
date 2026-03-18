@@ -21,6 +21,7 @@ export enum ColorScheme {
   TealBlossom = "teal-blossom",
   MeadowGlow = "meadow-glow",
   MidnightOrchid = "midnight-orchid",
+  CitrusViolet = "citrus-violet",
 }
 
 export enum ImagePresets {
