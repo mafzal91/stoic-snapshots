@@ -166,6 +166,12 @@
     --color-primary: #7871bf;
     --color-secondary: #82a6ee;
   }
+  [data-theme="deep-sea"] {
+    --color-background: #2b4450;
+    --color-accent: #497285;
+    --color-primary: #dfebed;
+    --color-secondary: #f78536;
+  }
 }
 
 .grecaptcha-badge {
