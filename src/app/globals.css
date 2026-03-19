@@ -166,12 +166,6 @@
     --color-primary: #7871bf;
     --color-secondary: #82a6ee;
   }
-  [data-theme="ocean-mist"] {
-    --color-background: #dfebed;
-    --color-accent: #497285;
-    --color-primary: #2b4450;
-    --color-secondary: #f78536;
-  }
   [data-theme="deep-sea"] {
     --color-background: #2b4450;
     --color-accent: #497285;

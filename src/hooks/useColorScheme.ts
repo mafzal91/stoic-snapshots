@@ -33,7 +33,6 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.TealBlossom ||
     colorScheme === ColorScheme.MeadowGlow ||
     colorScheme === ColorScheme.MidnightOrchid ||
-    colorScheme === ColorScheme.OceanMist ||
     colorScheme === ColorScheme.DeepSea ||
     colorScheme === ColorScheme.System
   );
