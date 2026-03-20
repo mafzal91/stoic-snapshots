@@ -35,6 +35,29 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.MidnightOrchid ||
     colorScheme === ColorScheme.DeepSea ||
     colorScheme === ColorScheme.SteelAmber ||
+    colorScheme === ColorScheme.SilverNavy ||
+    colorScheme === ColorScheme.SlateHoney ||
+    colorScheme === ColorScheme.MistySaffron ||
+    colorScheme === ColorScheme.PaleSunset ||
+    colorScheme === ColorScheme.WarmSlate ||
+    colorScheme === ColorScheme.NavyDusk ||
+    colorScheme === ColorScheme.DeepAmber ||
+    colorScheme === ColorScheme.CobaltMist ||
+    colorScheme === ColorScheme.CobaltEmber ||
+    colorScheme === ColorScheme.MidnightGold ||
+    colorScheme === ColorScheme.DeepSaffron ||
+    colorScheme === ColorScheme.OceanPebble ||
+    colorScheme === ColorScheme.LagoonWarmth ||
+    colorScheme === ColorScheme.CeruleanMist ||
+    colorScheme === ColorScheme.TealFlame ||
+    colorScheme === ColorScheme.AquaHoney ||
+    colorScheme === ColorScheme.AzureSpice ||
+    colorScheme === ColorScheme.GoldenCoast ||
+    colorScheme === ColorScheme.AmberHaze ||
+    colorScheme === ColorScheme.HarvestNavy ||
+    colorScheme === ColorScheme.WarmIndigo ||
+    colorScheme === ColorScheme.SunlitOcean ||
+    colorScheme === ColorScheme.CitrusTide ||
     colorScheme === ColorScheme.System
   );
 }
