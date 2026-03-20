@@ -7,8 +7,16 @@ import { convertHyphenatedToTitleCase } from "@/utilities/convert-hyphenated-to-
 import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 
+// TODO: remove this filter when done testing new palette themes
+const newPaletteThemes = new Set([
+  "steel-amber", "silver-navy", "slate-honey", "misty-saffron", "pale-sunset",
+  "warm-slate", "navy-dusk", "deep-amber", "cobalt-mist", "cobalt-ember",
+  "midnight-gold", "deep-saffron", "ocean-pebble", "lagoon-warmth",
+  "cerulean-mist", "teal-flame", "aqua-honey", "azure-spice", "golden-coast",
+  "amber-haze", "harvest-navy", "warm-indigo", "sunlit-ocean", "citrus-tide",
+]);
 const schemes = Object.values(ColorScheme).filter(
-  (scheme) => scheme !== "system"
+  (scheme) => newPaletteThemes.has(scheme)
 );
 
 export function ColorSchemeSelector({
