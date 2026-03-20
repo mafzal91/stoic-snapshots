@@ -23,6 +23,7 @@ export enum ColorScheme {
   MidnightOrchid = "midnight-orchid",
   CitrusViolet = "citrus-violet",
   DeepSea = "deep-sea",
+  SteelAmber = "steel-amber",
 }
 
 export enum ImagePresets {
