@@ -6,6 +6,7 @@ import { ColorScheme } from "@/app/common";
 import { convertHyphenatedToTitleCase } from "@/utilities/convert-hyphenated-to-title";
 import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
+import { themes } from "@/app/themes";
 
 const schemes = Object.values(ColorScheme).filter(
   (scheme) => scheme !== ColorScheme.System
@@ -23,6 +24,9 @@ export function ColorSchemeSelector({
   const options = schemes.map((scheme) => ({
     name: convertHyphenatedToTitleCase(scheme),
     value: scheme,
+    colors: themes[scheme]
+      ? [themes[scheme].background, themes[scheme].accent, themes[scheme].primary, themes[scheme].secondary]
+      : undefined,
   }));
 
   const handleToggle = async () => {

@@ -6,6 +6,7 @@ import { Partytown } from "@builder.io/partytown/react";
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
 import { ColorScheme, ImagePresets } from "@/app/common";
+import { generateThemeCSS } from "@/app/themes";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
 import { Feedback } from "./feedback";
@@ -69,6 +70,7 @@ export default async function RootLayout({
   return (
     <html lang="en" data-theme={colorScheme}>
       <head>
+        <style dangerouslySetInnerHTML={{ __html: generateThemeCSS() }} />
         <Partytown
           debug={process.env.NODE_ENV === "development"}
           forward={["dataLayer.push"]}
