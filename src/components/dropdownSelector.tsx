@@ -13,7 +13,31 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 type DropdownOption = {
   name: string;
   value: any;
+  colors?: string[];
 };
+
+function ColorSwatches({ colors }: { colors: string[] }) {
+  return (
+    <span className="flex items-center shrink-0 mr-2">
+      {colors.map((color, i) => (
+        <span
+          key={i}
+          style={{
+            width: 14,
+            height: 14,
+            borderRadius: 3,
+            backgroundColor: color,
+            marginLeft: i > 0 ? -4 : 0,
+            border: "1px solid rgba(128,128,128,0.2)",
+            display: "inline-block",
+            position: "relative",
+            zIndex: colors.length - i,
+          }}
+        />
+      ))}
+    </span>
+  );
+}
 
 type DropdownProps = {
   options: DropdownOption[];
@@ -37,7 +61,12 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
               "w-full"
             )}
           >
-            <span className="block truncate">{selectedOption?.name || ""}</span>
+            <span className="flex items-center truncate">
+              {selectedOption?.colors && (
+                <ColorSwatches colors={selectedOption.colors} />
+              )}
+              {selectedOption?.name || ""}
+            </span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
                 className="h-5 w-5 text-primary"
@@ -70,9 +99,12 @@ export function DropdownSelector({ options, value, onChange }: DropdownProps) {
                       <span
                         className={clsx(
                           selected ? "font-semibold" : "font-normal",
-                          "block truncate"
+                          "flex items-center truncate"
                         )}
                       >
+                        {option.colors && (
+                          <ColorSwatches colors={option.colors} />
+                        )}
                         {option.name}
                       </span>
 
