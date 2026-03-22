@@ -59,16 +59,15 @@ export enum ColorScheme {
 }
 ```
 
-### 2. `src/app/globals.css`
-Add the CSS block inside the existing `@layer base { ... }` block, just before the closing `}` of that block (before `.grecaptcha-badge`). Insert after the last `[data-theme="..."]` block:
+### 2. `src/app/themes.ts`
+Add the new theme entry to the `themes` record, before the closing `};`. The CSS for all themes is generated from this file — do **not** edit `globals.css` for theme colors.
 
-```css
-  [data-theme="new-theme-name"] {
-    --color-background: #xxxxxx;
-    --color-accent: #xxxxxx;
-    --color-primary: #xxxxxx;
-    --color-secondary: #xxxxxx;
-  }
+```typescript
+export const themes: Record<string, ThemeColors> = {
+  // ... existing entries ...
+  "deep-sea": { background: "#2b4450", accent: "#497285", primary: "#dfebed", secondary: "#f78536" },
+  "new-theme-name": { background: "#xxxxxx", accent: "#xxxxxx", primary: "#xxxxxx", secondary: "#xxxxxx" },
+};
 ```
 
 ### 3. `src/hooks/useColorScheme.ts`
@@ -91,7 +90,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
 2. **Assign roles** — map colors to background, accent, primary, secondary based on lightness/contrast.
 3. **Name the theme** — generate a creative name, derive PascalCase and kebab-case variants.
 4. **Show the user** — briefly display the extracted colors, the role mapping, and the proposed theme name. Ask for confirmation or alternative name if unsure.
-5. **Apply changes** — update all 3 files.
+5. **Apply changes** — update all 3 files (`src/app/common.ts`, `src/app/themes.ts`, `src/hooks/useColorScheme.ts`).
 6. **Confirm** — tell the user the theme name and that it's ready to use.
 
 ## Example
