@@ -8,7 +8,7 @@ import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 
 const schemes = Object.values(ColorScheme).filter(
-  (scheme) => scheme !== "system"
+  (scheme) => scheme !== ColorScheme.System
 );
 
 export function ColorSchemeSelector({

@@ -172,6 +172,18 @@
     --color-primary: #dfebed;
     --color-secondary: #f78536;
   }
+  [data-theme="steel-amber"] {
+    --color-background: #dddddd;
+    --color-accent: #3c8dad;
+    --color-primary: #125d98;
+    --color-secondary: #f5a962;
+  }
+  [data-theme="cobalt-ember"] {
+    --color-background: #125d98;
+    --color-accent: #3c8dad;
+    --color-primary: #f5a962;
+    --color-secondary: #dddddd;
+  }
 }
 
 .grecaptcha-badge {
