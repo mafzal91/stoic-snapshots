@@ -10,10 +10,8 @@ import { themes } from "@/app/themes";
 
 const DEBUG_THEMES = new Set([ColorScheme.BlushSage, ColorScheme.RoseDusk]);
 
-const schemes = Object.values(ColorScheme).filter(
-  (scheme) =>
-    scheme !== ColorScheme.System &&
-    (process.env.NODE_ENV !== "development" || DEBUG_THEMES.has(scheme))
+const allSchemes = Object.values(ColorScheme).filter(
+  (scheme) => scheme !== ColorScheme.System
 );
 
 export function ColorSchemeSelector({
@@ -25,6 +23,15 @@ export function ColorSchemeSelector({
   onChange: (value: string) => void;
   isLiked: boolean;
 }) {
+  const [isDebug, setIsDebug] = React.useState(false);
+  React.useEffect(() => {
+    setIsDebug(new URLSearchParams(window.location.search).get("debug") === "1");
+  }, []);
+
+  const schemes = isDebug
+    ? allSchemes.filter((s) => DEBUG_THEMES.has(s))
+    : allSchemes;
+
   const options = schemes.map((scheme) => ({
     name: convertHyphenatedToTitleCase(scheme),
     value: scheme,

@@ -144,9 +144,7 @@ export default async function RootLayout({
             <div className="flex flex-col grow items-center">{children}</div>
           </Border>
         </main>
-        {process.env.NODE_ENV === "development" && (
-          <ThemeDebugPanel initialColorScheme={colorScheme} />
-        )}
+        <ThemeDebugPanel initialColorScheme={colorScheme} />
       </body>
     </html>
   );

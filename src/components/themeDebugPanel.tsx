@@ -9,14 +9,21 @@ export function ThemeDebugPanel({
 }: {
   initialColorScheme: ColorScheme | null;
 }) {
+  const [isDebug, setIsDebug] = React.useState(false);
   const [active, setActive] = React.useState<string>(
     initialColorScheme ?? "light"
   );
+
+  React.useEffect(() => {
+    setIsDebug(new URLSearchParams(window.location.search).get("debug") === "1");
+  }, []);
 
   const handleThemeChange = (theme: string) => {
     setActive(theme);
     document.documentElement.setAttribute("data-theme", theme);
   };
+
+  if (!isDebug) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm p-2 overflow-x-auto">
