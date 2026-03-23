@@ -9,10 +9,6 @@ import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 import { themes } from "@/app/themes";
 
 const DEBUG_THEMES = new Set([
-  ColorScheme.BlushSage,
-  ColorScheme.RoseDusk,
-  ColorScheme.SandyBlush,
-  ColorScheme.SageBlush,
   ColorScheme.TerraMist,
   ColorScheme.EmberDune,
   ColorScheme.TerraFrost,
