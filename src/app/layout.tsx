@@ -10,6 +10,7 @@ import { generateThemeCSS } from "@/app/themes";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
 import { Feedback } from "./feedback";
+import { ThemeDebugPanel } from "@/components/themeDebugPanel";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
@@ -143,6 +144,9 @@ export default async function RootLayout({
             <div className="flex flex-col grow items-center">{children}</div>
           </Border>
         </main>
+        {process.env.NODE_ENV === "development" && (
+          <ThemeDebugPanel initialColorScheme={colorScheme} />
+        )}
       </body>
     </html>
   );

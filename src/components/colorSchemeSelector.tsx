@@ -8,8 +8,12 @@ import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 import { themes } from "@/app/themes";
 
+const DEBUG_THEMES = new Set([ColorScheme.BlushSage, ColorScheme.RoseDusk]);
+
 const schemes = Object.values(ColorScheme).filter(
-  (scheme) => scheme !== ColorScheme.System
+  (scheme) =>
+    scheme !== ColorScheme.System &&
+    (process.env.NODE_ENV !== "development" || DEBUG_THEMES.has(scheme))
 );
 
 export function ColorSchemeSelector({

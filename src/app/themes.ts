@@ -32,6 +32,7 @@ export const themes: Record<string, ThemeColors> = {
   "steel-amber": { background: "#dddddd", accent: "#3c8dad", primary: "#125d98", secondary: "#f5a962" },
   "cobalt-ember": { background: "#125d98", accent: "#3c8dad", primary: "#f5a962", secondary: "#dddddd" },
   "blush-sage": { background: "#c8f2ef", accent: "#c3dbd9", primary: "#bb6464", secondary: "#cdb699" },
+  "rose-dusk": { background: "#bb6464", accent: "#cdb699", primary: "#c8f2ef", secondary: "#c3dbd9" },
 };
 
 export function generateThemeCSS(): string {
