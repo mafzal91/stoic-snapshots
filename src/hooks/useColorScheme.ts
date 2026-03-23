@@ -40,6 +40,26 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.RoseDusk ||
     colorScheme === ColorScheme.SandyBlush ||
     colorScheme === ColorScheme.SageBlush ||
+    colorScheme === ColorScheme.TerraMist ||
+    colorScheme === ColorScheme.EmberDune ||
+    colorScheme === ColorScheme.TerraFrost ||
+    colorScheme === ColorScheme.EmberWheat ||
+    colorScheme === ColorScheme.ClaySage ||
+    colorScheme === ColorScheme.DuneSage ||
+    colorScheme === ColorScheme.DuneFrost ||
+    colorScheme === ColorScheme.SandFrost ||
+    colorScheme === ColorScheme.DuneRose ||
+    colorScheme === ColorScheme.WheatSage ||
+    colorScheme === ColorScheme.SeaWheat ||
+    colorScheme === ColorScheme.SeaFrost ||
+    colorScheme === ColorScheme.MistRose ||
+    colorScheme === ColorScheme.TealFrost ||
+    colorScheme === ColorScheme.MistSand ||
+    colorScheme === ColorScheme.FrostWheat ||
+    colorScheme === ColorScheme.FrostSage ||
+    colorScheme === ColorScheme.IceRose ||
+    colorScheme === ColorScheme.MintTeal ||
+    colorScheme === ColorScheme.AquaSand ||
     colorScheme === ColorScheme.System
   );
 }
