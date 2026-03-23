@@ -8,7 +8,12 @@ import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 import { themes } from "@/app/themes";
 
-const DEBUG_THEMES = new Set([ColorScheme.BlushSage, ColorScheme.RoseDusk]);
+const DEBUG_THEMES = new Set([
+  ColorScheme.BlushSage,
+  ColorScheme.RoseDusk,
+  ColorScheme.SandyBlush,
+  ColorScheme.SageBlush,
+]);
 
 const allSchemes = Object.values(ColorScheme).filter(
   (scheme) => scheme !== ColorScheme.System

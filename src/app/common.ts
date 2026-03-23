@@ -27,6 +27,8 @@ export enum ColorScheme {
   CobaltEmber = "cobalt-ember",
   BlushSage = "blush-sage",
   RoseDusk = "rose-dusk",
+  SandyBlush = "sandy-blush",
+  SageBlush = "sage-blush",
 }
 
 export enum ImagePresets {
