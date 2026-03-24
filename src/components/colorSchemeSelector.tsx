@@ -8,7 +8,11 @@ import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 import { themes } from "@/app/themes";
 
-const schemes = Object.values(ColorScheme).filter(
+const DEBUG_THEMES = new Set([
+  ColorScheme.EmberDune,
+]);
+
+const allSchemes = Object.values(ColorScheme).filter(
   (scheme) => scheme !== ColorScheme.System
 );
 
@@ -21,6 +25,15 @@ export function ColorSchemeSelector({
   onChange: (value: string) => void;
   isLiked: boolean;
 }) {
+  const [isDebug, setIsDebug] = React.useState(false);
+  React.useEffect(() => {
+    setIsDebug(new URLSearchParams(window.location.search).get("debug") === "1");
+  }, []);
+
+  const schemes = isDebug
+    ? allSchemes.filter((s) => DEBUG_THEMES.has(s))
+    : allSchemes;
+
   const options = schemes.map((scheme) => ({
     name: convertHyphenatedToTitleCase(scheme),
     value: scheme,
