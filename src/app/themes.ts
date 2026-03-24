@@ -31,10 +31,6 @@ export const themes: Record<string, ThemeColors> = {
   "deep-sea": { background: "#2b4450", accent: "#497285", primary: "#dfebed", secondary: "#f78536" },
   "steel-amber": { background: "#dddddd", accent: "#3c8dad", primary: "#125d98", secondary: "#f5a962" },
   "cobalt-ember": { background: "#125d98", accent: "#3c8dad", primary: "#f5a962", secondary: "#dddddd" },
-  "blush-sage": { background: "#c8f2ef", accent: "#c3dbd9", primary: "#bb6464", secondary: "#cdb699" },
-  "rose-dusk": { background: "#bb6464", accent: "#cdb699", primary: "#c8f2ef", secondary: "#c3dbd9" },
-  "sandy-blush": { background: "#cdb699", accent: "#c3dbd9", primary: "#bb6464", secondary: "#c8f2ef" },
-  "sage-blush": { background: "#c3dbd9", accent: "#c8f2ef", primary: "#bb6464", secondary: "#cdb699" },
   "ember-dune": { background: "#bb6464", accent: "#c3dbd9", primary: "#cdb699", secondary: "#c8f2ef" },
 };
 

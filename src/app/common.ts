@@ -25,10 +25,6 @@ export enum ColorScheme {
   DeepSea = "deep-sea",
   SteelAmber = "steel-amber",
   CobaltEmber = "cobalt-ember",
-  BlushSage = "blush-sage",
-  RoseDusk = "rose-dusk",
-  SandyBlush = "sandy-blush",
-  SageBlush = "sage-blush",
   EmberDune = "ember-dune",
 }
 
