@@ -38,6 +38,29 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.CobaltEmber ||
     colorScheme === ColorScheme.EmberDune ||
     colorScheme === ColorScheme.AquaGlow ||
+    colorScheme === ColorScheme.AquaCitrus ||
+    colorScheme === ColorScheme.CrystalTeal ||
+    colorScheme === ColorScheme.CrystalLemon ||
+    colorScheme === ColorScheme.FrostSaffron ||
+    colorScheme === ColorScheme.WhiteSaffron ||
+    colorScheme === ColorScheme.FoamGlow ||
+    colorScheme === ColorScheme.FoamCitrus ||
+    colorScheme === ColorScheme.SeafoamWhite ||
+    colorScheme === ColorScheme.SeafoamGlow ||
+    colorScheme === ColorScheme.TealLemon ||
+    colorScheme === ColorScheme.TealDew ||
+    colorScheme === ColorScheme.DeepFoam ||
+    colorScheme === ColorScheme.DeepCitrus ||
+    colorScheme === ColorScheme.OceanFrost ||
+    colorScheme === ColorScheme.OceanGlow ||
+    colorScheme === ColorScheme.TealSaffron ||
+    colorScheme === ColorScheme.TealHarvest ||
+    colorScheme === ColorScheme.SunnyFrost ||
+    colorScheme === ColorScheme.GoldenFrost ||
+    colorScheme === ColorScheme.LemonFoam ||
+    colorScheme === ColorScheme.LemonTeal ||
+    colorScheme === ColorScheme.GoldenTeal ||
+    colorScheme === ColorScheme.SunnyTeal ||
     colorScheme === ColorScheme.System
   );
 }

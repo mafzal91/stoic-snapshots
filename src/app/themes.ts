@@ -33,6 +33,33 @@ export const themes: Record<string, ThemeColors> = {
   "cobalt-ember": { background: "#125d98", accent: "#3c8dad", primary: "#f5a962", secondary: "#dddddd" },
   "ember-dune": { background: "#bb6464", accent: "#c3dbd9", primary: "#cdb699", secondary: "#c8f2ef" },
   "aqua-glow": { background: "#f9fbfc", accent: "#a0dbdb", primary: "#56a7a7", secondary: "#fcea90" },
+  // White background variants
+  "aqua-citrus":   { background: "#f9fbfc", accent: "#a0dbdb", primary: "#fcea90", secondary: "#56a7a7" },
+  "crystal-teal":  { background: "#f9fbfc", accent: "#56a7a7", primary: "#a0dbdb", secondary: "#fcea90" },
+  "crystal-lemon": { background: "#f9fbfc", accent: "#56a7a7", primary: "#fcea90", secondary: "#a0dbdb" },
+  "frost-saffron": { background: "#f9fbfc", accent: "#fcea90", primary: "#a0dbdb", secondary: "#56a7a7" },
+  "white-saffron": { background: "#f9fbfc", accent: "#fcea90", primary: "#56a7a7", secondary: "#a0dbdb" },
+  // Light teal background variants
+  "foam-glow":     { background: "#a0dbdb", accent: "#f9fbfc", primary: "#56a7a7", secondary: "#fcea90" },
+  "foam-citrus":   { background: "#a0dbdb", accent: "#f9fbfc", primary: "#fcea90", secondary: "#56a7a7" },
+  "seafoam-white": { background: "#a0dbdb", accent: "#56a7a7", primary: "#f9fbfc", secondary: "#fcea90" },
+  "seafoam-glow":  { background: "#a0dbdb", accent: "#56a7a7", primary: "#fcea90", secondary: "#f9fbfc" },
+  "teal-lemon":    { background: "#a0dbdb", accent: "#fcea90", primary: "#f9fbfc", secondary: "#56a7a7" },
+  "teal-dew":      { background: "#a0dbdb", accent: "#fcea90", primary: "#56a7a7", secondary: "#f9fbfc" },
+  // Medium teal background variants
+  "deep-foam":     { background: "#56a7a7", accent: "#f9fbfc", primary: "#a0dbdb", secondary: "#fcea90" },
+  "deep-citrus":   { background: "#56a7a7", accent: "#f9fbfc", primary: "#fcea90", secondary: "#a0dbdb" },
+  "ocean-frost":   { background: "#56a7a7", accent: "#a0dbdb", primary: "#f9fbfc", secondary: "#fcea90" },
+  "ocean-glow":    { background: "#56a7a7", accent: "#a0dbdb", primary: "#fcea90", secondary: "#f9fbfc" },
+  "teal-saffron":  { background: "#56a7a7", accent: "#fcea90", primary: "#f9fbfc", secondary: "#a0dbdb" },
+  "teal-harvest":  { background: "#56a7a7", accent: "#fcea90", primary: "#a0dbdb", secondary: "#f9fbfc" },
+  // Yellow background variants
+  "sunny-frost":   { background: "#fcea90", accent: "#f9fbfc", primary: "#a0dbdb", secondary: "#56a7a7" },
+  "golden-frost":  { background: "#fcea90", accent: "#f9fbfc", primary: "#56a7a7", secondary: "#a0dbdb" },
+  "lemon-foam":    { background: "#fcea90", accent: "#a0dbdb", primary: "#f9fbfc", secondary: "#56a7a7" },
+  "lemon-teal":    { background: "#fcea90", accent: "#a0dbdb", primary: "#56a7a7", secondary: "#f9fbfc" },
+  "golden-teal":   { background: "#fcea90", accent: "#56a7a7", primary: "#f9fbfc", secondary: "#a0dbdb" },
+  "sunny-teal":    { background: "#fcea90", accent: "#56a7a7", primary: "#a0dbdb", secondary: "#f9fbfc" },
 };
 
 export function generateThemeCSS(): string {

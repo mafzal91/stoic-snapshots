@@ -27,6 +27,33 @@ export enum ColorScheme {
   CobaltEmber = "cobalt-ember",
   EmberDune = "ember-dune",
   AquaGlow = "aqua-glow",
+  // Aqua Glow palette — white background variants
+  AquaCitrus = "aqua-citrus",
+  CrystalTeal = "crystal-teal",
+  CrystalLemon = "crystal-lemon",
+  FrostSaffron = "frost-saffron",
+  WhiteSaffron = "white-saffron",
+  // Aqua Glow palette — light teal background variants
+  FoamGlow = "foam-glow",
+  FoamCitrus = "foam-citrus",
+  SeafoamWhite = "seafoam-white",
+  SeafoamGlow = "seafoam-glow",
+  TealLemon = "teal-lemon",
+  TealDew = "teal-dew",
+  // Aqua Glow palette — medium teal background variants
+  DeepFoam = "deep-foam",
+  DeepCitrus = "deep-citrus",
+  OceanFrost = "ocean-frost",
+  OceanGlow = "ocean-glow",
+  TealSaffron = "teal-saffron",
+  TealHarvest = "teal-harvest",
+  // Aqua Glow palette — yellow background variants
+  SunnyFrost = "sunny-frost",
+  GoldenFrost = "golden-frost",
+  LemonFoam = "lemon-foam",
+  LemonTeal = "lemon-teal",
+  GoldenTeal = "golden-teal",
+  SunnyTeal = "sunny-teal",
 }
 
 export enum ImagePresets {
