@@ -9,26 +9,7 @@ import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
 import { themes } from "@/app/themes";
 
 const DEBUG_THEMES = new Set([
-  ColorScheme.TerraMist,
   ColorScheme.EmberDune,
-  ColorScheme.TerraFrost,
-  ColorScheme.EmberWheat,
-  ColorScheme.ClaySage,
-  ColorScheme.DuneSage,
-  ColorScheme.DuneFrost,
-  ColorScheme.SandFrost,
-  ColorScheme.DuneRose,
-  ColorScheme.WheatSage,
-  ColorScheme.SeaWheat,
-  ColorScheme.SeaFrost,
-  ColorScheme.MistRose,
-  ColorScheme.TealFrost,
-  ColorScheme.MistSand,
-  ColorScheme.FrostWheat,
-  ColorScheme.FrostSage,
-  ColorScheme.IceRose,
-  ColorScheme.MintTeal,
-  ColorScheme.AquaSand,
 ]);
 
 const allSchemes = Object.values(ColorScheme).filter(
