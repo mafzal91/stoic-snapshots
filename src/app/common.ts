@@ -26,6 +26,7 @@ export enum ColorScheme {
   SteelAmber = "steel-amber",
   CobaltEmber = "cobalt-ember",
   EmberDune = "ember-dune",
+  OceanGlow = "ocean-glow",
 }
 
 export enum ImagePresets {
