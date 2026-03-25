@@ -26,7 +26,7 @@ export function ThemeDebugPanel({
   if (!isDebug) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm p-2 overflow-x-auto">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm p-2 overflow-x-auto">
       <div className="flex gap-2 min-w-max">
         {Object.entries(themes).map(([key, colors]) => (
           <button
