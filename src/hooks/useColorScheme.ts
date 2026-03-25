@@ -42,6 +42,26 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.DesertDawn ||
     colorScheme === ColorScheme.DesertSky ||
     colorScheme === ColorScheme.DesertEmber ||
+    colorScheme === ColorScheme.DesertNight ||
+    colorScheme === ColorScheme.DesertEarth ||
+    colorScheme === ColorScheme.DesertShadow ||
+    colorScheme === ColorScheme.DesertUmber ||
+    colorScheme === ColorScheme.DesertCave ||
+    colorScheme === ColorScheme.DesertSand ||
+    colorScheme === ColorScheme.DesertNoon ||
+    colorScheme === ColorScheme.DesertHaze ||
+    colorScheme === ColorScheme.DesertParch ||
+    colorScheme === ColorScheme.DesertBone ||
+    colorScheme === ColorScheme.DesertRain ||
+    colorScheme === ColorScheme.DesertOasis ||
+    colorScheme === ColorScheme.DesertAzure ||
+    colorScheme === ColorScheme.DesertCool ||
+    colorScheme === ColorScheme.DesertMirage ||
+    colorScheme === ColorScheme.DesertFlame ||
+    colorScheme === ColorScheme.DesertHeat ||
+    colorScheme === ColorScheme.DesertBlaze ||
+    colorScheme === ColorScheme.DesertRust ||
+    colorScheme === ColorScheme.DesertGlow ||
     colorScheme === ColorScheme.System
   );
 }
