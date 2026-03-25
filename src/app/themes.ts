@@ -34,6 +34,9 @@ export const themes: Record<string, ThemeColors> = {
   "ember-dune": { background: "#bb6464", accent: "#c3dbd9", primary: "#cdb699", secondary: "#c8f2ef" },
   "ocean-glow":  { background: "#56a7a7", accent: "#a0dbdb", primary: "#fcea90", secondary: "#f9fbfc" },
   "desert-dusk": { background: "#3e2c23", accent: "#2fa4d7", primary: "#f5e9d8", secondary: "#e76f2e" },
+  "desert-dawn": { background: "#f5e9d8", accent: "#2fa4d7", primary: "#3e2c23", secondary: "#e76f2e" },
+  "desert-sky": { background: "#2fa4d7", accent: "#f5e9d8", primary: "#3e2c23", secondary: "#e76f2e" },
+  "desert-ember": { background: "#e76f2e", accent: "#3e2c23", primary: "#f5e9d8", secondary: "#2fa4d7" },
 };
 
 export function generateThemeCSS(): string {

@@ -28,6 +28,9 @@ export enum ColorScheme {
   EmberDune = "ember-dune",
   OceanGlow = "ocean-glow",
   DesertDusk = "desert-dusk",
+  DesertDawn = "desert-dawn",
+  DesertSky = "desert-sky",
+  DesertEmber = "desert-ember",
 }
 
 export enum ImagePresets {
