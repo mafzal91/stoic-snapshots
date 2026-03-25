@@ -38,6 +38,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.CobaltEmber ||
     colorScheme === ColorScheme.EmberDune ||
     colorScheme === ColorScheme.OceanGlow ||
+    colorScheme === ColorScheme.DesertDusk ||
     colorScheme === ColorScheme.System
   );
 }
