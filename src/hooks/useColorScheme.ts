@@ -39,6 +39,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.EmberDune ||
     colorScheme === ColorScheme.OceanGlow ||
     colorScheme === ColorScheme.DesertHaze ||
+    colorScheme === ColorScheme.DesertBloom ||
     colorScheme === ColorScheme.System
   );
 }
@@ -70,11 +71,11 @@ function clearBodyClass() {
 }
 
 export function useColorScheme(
-  initialValue: ColorScheme | null
+  initialValue: ColorScheme | null,
 ): UseDarkModeOutput {
   const isDarkOS = useMediaQuery(COLOR_SCHEME_QUERY);
   const [colorScheme, setColorScheme] = React.useState<ColorScheme>(() =>
-    getIntialColorScheme({ initialValue, isDarkOS })
+    getIntialColorScheme({ initialValue, isDarkOS }),
   );
 
   // Update darkMode if os prefers changes
