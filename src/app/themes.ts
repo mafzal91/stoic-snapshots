@@ -174,6 +174,12 @@ export const themes: Record<string, ThemeColors> = {
     primary: "#e76f2e",
     secondary: "#2fa4d7",
   },
+  "apricot-bliss": {
+    background: "#f09c67",
+    accent: "#f7e0a3",
+    primary: "#fffde8",
+    secondary: "#4c8492",
+  },
 };
 
 export function generateThemeCSS(): string {
