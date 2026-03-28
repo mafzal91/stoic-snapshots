@@ -39,8 +39,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.EmberDune ||
     colorScheme === ColorScheme.OceanGlow ||
     colorScheme === ColorScheme.DesertHaze ||
-    colorScheme === ColorScheme.DesertBloom ||
-    colorScheme === ColorScheme.SunnyCove ||
+    colorScheme === ColorScheme.ApricotBliss ||
     colorScheme === ColorScheme.System
   );
 }

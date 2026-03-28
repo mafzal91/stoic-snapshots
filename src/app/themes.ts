@@ -174,17 +174,11 @@ export const themes: Record<string, ThemeColors> = {
     primary: "#e76f2e",
     secondary: "#2fa4d7",
   },
-  "desert-bloom": {
-    background: "#fffde8",
+  "apricot-bliss": {
+    background: "#f09c67",
     accent: "#f7e0a3",
-    primary: "#4c8492",
-    secondary: "#f09c67",
-  },
-  "sunny-cove": {
-    background: "#fffde8",
-    accent: "#f7e0a3",
-    primary: "#4c8492",
-    secondary: "#f09c67",
+    primary: "#fffde8",
+    secondary: "#4c8492",
   },
 };
 
