@@ -40,6 +40,7 @@ function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
     colorScheme === ColorScheme.OceanGlow ||
     colorScheme === ColorScheme.DesertHaze ||
     colorScheme === ColorScheme.DesertBloom ||
+    colorScheme === ColorScheme.SunnyCove ||
     colorScheme === ColorScheme.System
   );
 }

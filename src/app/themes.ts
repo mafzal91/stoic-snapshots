@@ -180,6 +180,12 @@ export const themes: Record<string, ThemeColors> = {
     primary: "#4c8492",
     secondary: "#f09c67",
   },
+  "sunny-cove": {
+    background: "#fffde8",
+    accent: "#f7e0a3",
+    primary: "#4c8492",
+    secondary: "#f09c67",
+  },
 };
 
 export function generateThemeCSS(): string {
