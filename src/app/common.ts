@@ -1,35 +1,8 @@
-export enum ColorScheme {
-  System = "system",
-  Dark = "dark",
-  Light = "light",
-  RusticSunrise = "rustic-sunrise",
-  RusticSunset = "rustic-sunset",
-  SoftWhisper = "soft-whisper",
-  ShadowedEmbrace = "shadowed-embrace",
-  CelestialDelight = "celestial-delight",
-  DuskSerenade = "dusk-serenade",
-  DeepPlum = "deep-plum",
-  NightfallNoir = "nightfall-noir",
-  PeachesAndCream = "peaches-and-cream",
-  TerraCottaDreams = "terra-cotta-dreams",
-  CoastalBreeze = "coastal-breeze",
-  FairyForest = "fairy-forest",
-  SilverTide = "silver-tide",
-  GoldenEarth = "golden-earth",
-  PaleSerenity = "pale-serenity",
-  RetroHour = "retro-hour",
-  TealBlossom = "teal-blossom",
-  MeadowGlow = "meadow-glow",
-  MidnightOrchid = "midnight-orchid",
-  CitrusViolet = "citrus-violet",
-  DeepSea = "deep-sea",
-  SteelAmber = "steel-amber",
-  CobaltEmber = "cobalt-ember",
-  EmberDune = "ember-dune",
-  OceanGlow = "ocean-glow",
-  DesertHaze = "desert-haze",
-  ApricotBliss = "apricot-bliss",
-}
+export type ColorScheme = string;
+
+export const SYSTEM_SCHEME = "system";
+export const DARK_SCHEME = "dark";
+export const LIGHT_SCHEME = "light";
 
 export enum ImagePresets {
   Screen = "screen",

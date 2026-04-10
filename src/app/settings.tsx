@@ -4,7 +4,8 @@ import { ColorSchemeSelector } from "@/components/colorSchemeSelector";
 import { ImagePresetSelector } from "@/components/imagePresetSelector";
 import { BorderSelector } from "@/components/borderSelector";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
-import { ColorScheme, ImagePresets } from "@/app/common";
+import { ImagePresets } from "@/app/common";
+import { ThemeColors } from "@/app/themes";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { updateSettings } from "./actions/updateSettings";
 import { DownloadButton } from "@/components/downloadButton";
@@ -12,14 +13,15 @@ import { Modal } from "@/components/modal";
 
 type SettingsProps = {
   initialSettings: {
-    colorScheme: ColorScheme | null;
+    colorScheme: string | null;
     imagePreset: ImagePresets;
     border: boolean;
     likedThemes: Record<string, boolean>;
   };
+  themes: Record<string, ThemeColors>;
 };
 
-export function Settings({ initialSettings }: SettingsProps) {
+export function Settings({ initialSettings, themes }: SettingsProps) {
   const [open, setOpen] = React.useState(false);
   const [imagePreset, setImagePreset] = React.useState<string>(
     initialSettings.imagePreset || ImagePresets.Screen
@@ -27,13 +29,18 @@ export function Settings({ initialSettings }: SettingsProps) {
   const [border, setBorder] = React.useState<boolean>(
     initialSettings.border ?? true
   );
+  const validThemeNames = React.useMemo(
+    () => new Set(Object.keys(themes)),
+    [themes]
+  );
   const { colorScheme, handleChange } = useColorScheme(
-    initialSettings.colorScheme
+    initialSettings.colorScheme,
+    validThemeNames,
   );
   const likedTheme = initialSettings?.likedThemes[colorScheme] ?? false;
 
   const setSelected = (newColorScheme: string) => {
-    handleChange(newColorScheme as ColorScheme);
+    handleChange(newColorScheme);
   };
 
   const saveSettingChange = async ({
@@ -93,6 +100,7 @@ export function Settings({ initialSettings }: SettingsProps) {
             value={colorScheme}
             onChange={setSelected}
             isLiked={likedTheme ?? false}
+            themes={themes}
           />
           <br />
           <ImagePresetSelector

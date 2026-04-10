@@ -185,6 +185,14 @@ export class Database {
     return Number(results[0].count ?? 0);
   }
 
+  async findAllThemes() {
+    return this.connection
+      .selectFrom("themes")
+      .select(["id", "name", "background", "accent", "primary", "secondary", "likes"])
+      .orderBy("name", "asc")
+      .execute();
+  }
+
   async toggleLike({
     color_scheme,
     is_liked,
