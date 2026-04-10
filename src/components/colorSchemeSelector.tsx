@@ -2,34 +2,30 @@
 import * as React from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid";
-import { ColorScheme } from "@/app/common";
 import { convertHyphenatedToTitleCase } from "@/utilities/convert-hyphenated-to-title";
 import { DropdownSelector } from "@/components/dropdownSelector";
 import { toggleThemeLike } from "@/app/actions/toggleThemeLike";
-import { themes } from "@/app/themes";
+import { ThemeColors } from "@/app/themes";
 
-const DEBUG_THEMES = new Set([
-  ColorScheme.EmberDune,
-]);
-
-const allSchemes = Object.values(ColorScheme).filter(
-  (scheme) => scheme !== ColorScheme.System
-);
+const DEBUG_THEMES = new Set(["ember-dune"]);
 
 export function ColorSchemeSelector({
   value,
   onChange,
   isLiked,
+  themes,
 }: {
-  value: ColorScheme;
+  value: string;
   onChange: (value: string) => void;
   isLiked: boolean;
+  themes: Record<string, ThemeColors>;
 }) {
   const [isDebug, setIsDebug] = React.useState(false);
   React.useEffect(() => {
     setIsDebug(new URLSearchParams(window.location.search).get("debug") === "1");
   }, []);
 
+  const allSchemes = Object.keys(themes);
   const schemes = isDebug
     ? allSchemes.filter((s) => DEBUG_THEMES.has(s))
     : allSchemes;
