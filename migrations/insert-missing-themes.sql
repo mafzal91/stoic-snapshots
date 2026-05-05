@@ -19,4 +19,4 @@ INSERT INTO themes (name, likes, background, accent, "primary", secondary) VALUE
   ('ocean-glow',       0, '#56a7a7', '#a0dbdb', '#fcea90', '#f9fbfc'),
   ('desert-haze',      0, '#f5e9d8', '#3e2c23', '#e76f2e', '#2fa4d7'),
   ('apricot-bliss',    0, '#f09c67', '#f7e0a3', '#fffde8', '#4c8492')
-ON CONFLICT (name) DO NOTHING;
+;
