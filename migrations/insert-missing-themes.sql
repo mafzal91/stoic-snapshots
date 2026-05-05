@@ -1,6 +1,9 @@
 -- Migration: Insert themes not yet in the database
 -- Run this after migration-themes-colors.sql
 
+-- Reset sequence to avoid primary key conflicts
+SELECT setval(pg_get_serial_sequence('themes', 'id'), (SELECT MAX(id) FROM themes));
+
 INSERT INTO themes (name, likes, background, accent, "primary", secondary) VALUES
   ('coastal-breeze',   0, '#c3dbd9', '#bb6464', '#bb6464', '#cdb699'),
   ('fairy-forest',     0, '#235952', '#ecfbfc', '#ffc8bd', '#ffebd9'),
