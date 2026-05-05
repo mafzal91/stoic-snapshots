@@ -30,6 +30,10 @@ export type themes = {
     id: Generated<number>;
     name: string;
     likes: number | null;
+    background: string;
+    accent: string;
+    primary: string;
+    secondary: string;
 };
 export type users = {
     id: Generated<number>;

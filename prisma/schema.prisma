@@ -42,9 +42,13 @@ model quotes {
 }
 
 model themes {
-  id    Int    @id @default(autoincrement())
-  name  String @db.VarChar(255)
-  likes Int?
+  id         Int    @id @default(autoincrement())
+  name       String @db.VarChar(255)
+  likes      Int?
+  background String @db.VarChar(7)
+  accent     String @db.VarChar(7)
+  primary    String @db.VarChar(7)
+  secondary  String @db.VarChar(7)
 }
 
 model users {

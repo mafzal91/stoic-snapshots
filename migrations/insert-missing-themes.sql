@@ -1,0 +1,40 @@
+-- Seed: All themes
+-- Safe to run on fresh or existing DBs. Skips rows where name already exists.
+
+-- Reset sequence so auto-generated IDs don't conflict with existing rows
+SELECT setval(pg_get_serial_sequence('themes', 'id'), COALESCE((SELECT MAX(id) FROM themes), 0));
+
+INSERT INTO themes (name, likes, background, accent, "primary", secondary)
+SELECT v.name, v.likes, v.background, v.accent, v."primary", v.secondary
+FROM (VALUES
+  ('dark',               0, '#151c25', '#bead9a', '#f6f5eb', '#807872'),
+  ('light',              0, '#f6f5eb', '#bead9a', '#151c25', '#807872'),
+  ('rustic-sunrise',     0, '#f3f4ed', '#536162', '#424642', '#c06014'),
+  ('rustic-sunset',      0, '#1f201d', '#a4b0b1', '#ff9025', '#71776e'),
+  ('soft-whisper',       0, '#f6f6f6', '#ffe2e2', '#cc7373', '#aaaaaa'),
+  ('shadowed-embrace',   0, '#1e1e1e', '#552525', '#a93c3c', '#888888'),
+  ('celestial-delight',  0, '#8294c4', '#ffead2', '#ffead2', '#dbdfea'),
+  ('dusk-serenade',      0, '#2b3749', '#4e5478', '#c1b890', '#6e728f'),
+  ('deep-plum',          0, '#00005c', '#c060a1', '#f0caa3', '#c060a1'),
+  ('nightfall-noir',     0, '#050529', '#8d366f', '#d1a77d', '#8d366f'),
+  ('peaches-and-cream',  0, '#fff3e2', '#fa9884', '#e74646', '#fa9884'),
+  ('terra-cotta-dreams', 0, '#eff5f5', '#497174', '#eb6440', '#497174'),
+  ('coastal-breeze',     0, '#c3dbd9', '#bb6464', '#bb6464', '#cdb699'),
+  ('fairy-forest',       0, '#235952', '#ecfbfc', '#ffc8bd', '#ffebd9'),
+  ('silver-tide',        0, '#b2bfd5', '#c0d8d5', '#f5f3f3', '#dfdfdf'),
+  ('golden-earth',       0, '#f7ad45', '#657c6a', '#bb3e00', '#657c6a'),
+  ('pale-serenity',      0, '#986d8d', '#87a8a4', '#efe3d0', '#d9cab3'),
+  ('retro-hour',         0, '#9cb4cc', '#d3cedf', '#f2d7d9', '#748da6'),
+  ('teal-blossom',       0, '#d7f7f5', '#75cac3', '#2a6171', '#f34573'),
+  ('meadow-glow',        0, '#f3f0d7', '#cee5d0', '#7a4a20', '#ffbf86'),
+  ('midnight-orchid',    0, '#470938', '#1a3e59', '#f2d6eb', '#5c94bd'),
+  ('citrus-violet',      0, '#ecffc9', '#64fed6', '#7871bf', '#82a6ee'),
+  ('deep-sea',           0, '#2b4450', '#497285', '#dfebed', '#f78536'),
+  ('steel-amber',        0, '#dddddd', '#3c8dad', '#125d98', '#f5a962'),
+  ('cobalt-ember',       0, '#125d98', '#3c8dad', '#f5a962', '#dddddd'),
+  ('ember-dune',         0, '#bb6464', '#c3dbd9', '#cdb699', '#c8f2ef'),
+  ('ocean-glow',         0, '#56a7a7', '#a0dbdb', '#fcea90', '#f9fbfc'),
+  ('desert-haze',        0, '#f5e9d8', '#3e2c23', '#e76f2e', '#2fa4d7'),
+  ('apricot-bliss',      0, '#f09c67', '#f7e0a3', '#fffde8', '#4c8492')
+) AS v(name, likes, background, accent, "primary", secondary)
+WHERE NOT EXISTS (SELECT 1 FROM themes WHERE themes.name = v.name);

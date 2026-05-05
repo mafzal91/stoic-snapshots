@@ -1,13 +1,11 @@
 "use server";
 import { cookies } from "next/headers";
-import { ColorScheme } from "@/app/common";
 import { Database } from "@/utilities/database";
 import { updateSettings } from "@/app/actions/updateSettings";
 
 export async function toggleThemeLike() {
   const cookieStore = await cookies();
-  const colorScheme = (cookieStore.get("colorScheme")?.value ??
-    null) as ColorScheme | null;
+  const colorScheme = cookieStore.get("colorScheme")?.value ?? null;
   const likedThemes: Record<string, boolean> = JSON.parse(
     cookieStore.get("likedThemes")?.value ?? "{}"
   );

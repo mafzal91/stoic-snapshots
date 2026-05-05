@@ -1,61 +1,36 @@
 import * as React from "react";
 import { updateSettings } from "@/app/actions/updateSettings";
 import { useMediaQuery } from "usehooks-ts";
-import { ColorScheme } from "@/app/common";
+import { SYSTEM_SCHEME, DARK_SCHEME, LIGHT_SCHEME } from "@/app/common";
 
 const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)";
 
 interface UseDarkModeOutput {
-  colorScheme: ColorScheme;
-  handleChange: (name: ColorScheme) => void;
+  colorScheme: string;
+  handleChange: (name: string) => void;
 }
 
-function validateColorScheme(colorScheme: string): colorScheme is ColorScheme {
-  return (
-    colorScheme === ColorScheme.Light ||
-    colorScheme === ColorScheme.Dark ||
-    colorScheme === ColorScheme.RusticSunrise ||
-    colorScheme === ColorScheme.RusticSunset ||
-    colorScheme === ColorScheme.SoftWhisper ||
-    colorScheme === ColorScheme.ShadowedEmbrace ||
-    colorScheme === ColorScheme.CelestialDelight ||
-    colorScheme === ColorScheme.DuskSerenade ||
-    colorScheme === ColorScheme.DeepPlum ||
-    colorScheme === ColorScheme.NightfallNoir ||
-    colorScheme === ColorScheme.PeachesAndCream ||
-    colorScheme === ColorScheme.TerraCottaDreams ||
-    colorScheme === ColorScheme.CoastalBreeze ||
-    colorScheme === ColorScheme.FairyForest ||
-    colorScheme === ColorScheme.SilverTide ||
-    colorScheme === ColorScheme.GoldenEarth ||
-    colorScheme === ColorScheme.PaleSerenity ||
-    colorScheme === ColorScheme.RetroHour ||
-    colorScheme === ColorScheme.TealBlossom ||
-    colorScheme === ColorScheme.MeadowGlow ||
-    colorScheme === ColorScheme.MidnightOrchid ||
-    colorScheme === ColorScheme.DeepSea ||
-    colorScheme === ColorScheme.SteelAmber ||
-    colorScheme === ColorScheme.CobaltEmber ||
-    colorScheme === ColorScheme.EmberDune ||
-    colorScheme === ColorScheme.OceanGlow ||
-    colorScheme === ColorScheme.DesertHaze ||
-    colorScheme === ColorScheme.ApricotBliss ||
-    colorScheme === ColorScheme.System
-  );
+function validateColorScheme(
+  colorScheme: string,
+  validNames: Set<string>
+): boolean {
+  return validNames.has(colorScheme) || colorScheme === SYSTEM_SCHEME;
 }
 
-function getIntialColorScheme({
+function getInitialColorScheme({
   initialValue,
   isDarkOS,
+  validNames,
 }: {
-  initialValue: string | ColorScheme | null;
+  initialValue: string | null;
   isDarkOS: boolean;
-}): ColorScheme {
-  if (initialValue && validateColorScheme(initialValue)) {
+  validNames: Set<string>;
+}): string {
+  if (initialValue && validateColorScheme(initialValue, validNames)) {
     return initialValue;
   }
 
-  return isDarkOS ? ColorScheme.Dark : ColorScheme.Light;
+  return isDarkOS ? DARK_SCHEME : LIGHT_SCHEME;
 }
 
 function clearBodyClass() {
@@ -71,16 +46,17 @@ function clearBodyClass() {
 }
 
 export function useColorScheme(
-  initialValue: ColorScheme | null,
+  initialValue: string | null,
+  validThemeNames: Set<string>,
 ): UseDarkModeOutput {
   const isDarkOS = useMediaQuery(COLOR_SCHEME_QUERY);
-  const [colorScheme, setColorScheme] = React.useState<ColorScheme>(() =>
-    getIntialColorScheme({ initialValue, isDarkOS }),
+  const [colorScheme, setColorScheme] = React.useState<string>(() =>
+    getInitialColorScheme({ initialValue, isDarkOS, validNames: validThemeNames }),
   );
 
   // Update darkMode if os prefers changes
   React.useEffect(() => {
-    if (colorScheme === ColorScheme.System) {
+    if (colorScheme === SYSTEM_SCHEME) {
       setColorScheme(colorScheme);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,7 +77,7 @@ export function useColorScheme(
       setColorScheme((prev) => {
         if (name) return name;
 
-        return prev === ColorScheme.Dark ? ColorScheme.Light : ColorScheme.Dark;
+        return prev === DARK_SCHEME ? LIGHT_SCHEME : DARK_SCHEME;
       }),
   };
 }

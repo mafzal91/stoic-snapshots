@@ -1,13 +1,14 @@
 "use client";
 import * as React from "react";
-import { ColorScheme } from "@/app/common";
-import { themes } from "@/app/themes";
+import { ThemeColors } from "@/app/themes";
 import { convertHyphenatedToTitleCase } from "@/utilities/convert-hyphenated-to-title";
 
 export function ThemeDebugPanel({
   initialColorScheme,
+  themes,
 }: {
-  initialColorScheme: ColorScheme | null;
+  initialColorScheme: string | null;
+  themes: Record<string, ThemeColors>;
 }) {
   const [isDebug, setIsDebug] = React.useState(false);
   const [active, setActive] = React.useState<string>(
