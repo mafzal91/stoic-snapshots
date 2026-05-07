@@ -193,6 +193,28 @@ export class Database {
       .execute();
   }
 
+  async insertTheme({
+    name,
+    background,
+    accent,
+    primary,
+    secondary,
+    likes = 0,
+  }: {
+    name: string;
+    background: string;
+    accent: string;
+    primary: string;
+    secondary: string;
+    likes?: number;
+  }) {
+    return this.connection
+      .insertInto("themes")
+      .values({ name, background, accent, primary, secondary, likes })
+      .returning(["id", "name", "background", "accent", "primary", "secondary", "likes"])
+      .executeTakeFirstOrThrow();
+  }
+
   async toggleLike({
     color_scheme,
     is_liked,
