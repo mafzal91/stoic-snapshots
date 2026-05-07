@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, background, accent, primary, secondary, likes } = body as Record<string, unknown>;
+  const { name, background, accent, primary, secondary } = body as Record<string, unknown>;
 
   const errors: string[] = [];
   if (!name || typeof name !== "string") errors.push("name is required");
@@ -29,7 +29,6 @@ export async function POST(request: NextRequest) {
   if (!validHex(accent)) errors.push("accent must be a 6-digit hex color (no #)");
   if (!validHex(primary)) errors.push("primary must be a 6-digit hex color (no #)");
   if (!validHex(secondary)) errors.push("secondary must be a 6-digit hex color (no #)");
-  if (likes !== undefined && typeof likes !== "number") errors.push("likes must be a number");
 
   if (errors.length > 0) return NextResponse.json({ errors }, { status: 400 });
 
@@ -40,7 +39,7 @@ export async function POST(request: NextRequest) {
     accent: accent as string,
     primary: primary as string,
     secondary: secondary as string,
-    likes: typeof likes === "number" ? likes : 0,
+    likes: 0,
   });
 
   return NextResponse.json(theme, { status: 201 });
