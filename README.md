@@ -134,6 +134,40 @@ This API provides access to a collection of quotes and authors.
 | `last_name`  | String | The last name of the author          |
 | `image_url`  | String | The URL of the author's image        |
 
+### 6. Create Theme
+
+**Endpoint:** `/api/themes`
+
+**Method:** `POST`
+
+**Body** (JSON)
+
+| Field        | Required | Description                                  |
+| ------------ | -------- | -------------------------------------------- |
+| `name`       | Yes      | Unique theme name (e.g. `sandy-shore`)       |
+| `background` | Yes      | 6-digit hex color, no `#` prefix             |
+| `accent`     | Yes      | 6-digit hex color, no `#` prefix             |
+| `primary`    | Yes      | 6-digit hex color, no `#` prefix             |
+| `secondary`  | Yes      | 6-digit hex color, no `#` prefix             |
+
+`likes` is always initialized to `0` for new themes and cannot be set via the API.
+
+**Example**
+
+```bash
+curl -X POST http://localhost:3000/api/themes \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "sandy-shore",
+    "background": "87aaaa",
+    "accent": "f6d7a7",
+    "primary": "f6eabe",
+    "secondary": "c8e3d4"
+  }'
+```
+
+**Response:** `201 Created` with the inserted theme. Validation failures return `400` with an `errors` array.
+
 ## Rate Limiting
 
 The API employs a sliding window rate limiting strategy, allowing 100 requests per minute per client.

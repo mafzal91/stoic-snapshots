@@ -11,6 +11,7 @@ import { Border } from "@/components/border";
 import { Settings } from "./settings";
 import { Feedback } from "./feedback";
 import { ThemeDebugPanel } from "@/components/themeDebugPanel";
+import { ThemePreview } from "@/components/themePreview";
 
 const crimson_text = Crimson_Text({
   subsets: ["latin"],
@@ -150,6 +151,7 @@ export default async function RootLayout({
           </Border>
         </main>
         <ThemeDebugPanel initialColorScheme={colorScheme} themes={themeRecord} />
+        <ThemePreview />
       </body>
     </html>
   );
