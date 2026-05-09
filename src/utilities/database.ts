@@ -189,7 +189,7 @@ export class Database {
     return this.connection
       .selectFrom("themes")
       .select(["id", "name", "background", "accent", "primary", "secondary", "likes"])
-      .orderBy("name", "asc")
+      .orderBy("id", "asc")
       .execute();
   }
 
