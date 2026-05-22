@@ -106,7 +106,7 @@ async function imagePathHandler(request: NextRequest) {
   return response;
 }
 
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   if (request.nextUrl.pathname.match(/^\/image\/\d+$/)) {
     return imagePathHandler(request);
   }
