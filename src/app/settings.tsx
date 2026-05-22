@@ -4,7 +4,7 @@ import { ColorSchemeSelector } from "@/components/colorSchemeSelector";
 import { ImagePresetSelector } from "@/components/imagePresetSelector";
 import { BorderSelector } from "@/components/borderSelector";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
-import { ImagePresets } from "@/app/common";
+import { BorderStyle, ImagePresets } from "@/app/common";
 import { ThemeColors } from "@/app/themes";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { updateSettings } from "./actions/updateSettings";
@@ -15,7 +15,7 @@ type SettingsProps = {
   initialSettings: {
     colorScheme: string | null;
     imagePreset: ImagePresets;
-    border: boolean;
+    borderStyle: BorderStyle;
     likedThemes: Record<string, boolean>;
   };
   themes: Record<string, ThemeColors>;
@@ -26,8 +26,8 @@ export function Settings({ initialSettings, themes }: SettingsProps) {
   const [imagePreset, setImagePreset] = React.useState<string>(
     initialSettings.imagePreset || ImagePresets.Screen
   );
-  const [border, setBorder] = React.useState<boolean>(
-    initialSettings.border ?? true
+  const [borderStyle, setBorderStyle] = React.useState<BorderStyle>(
+    initialSettings.borderStyle ?? BorderStyle.Corners
   );
   const validThemeNames = React.useMemo(
     () => new Set(Object.keys(themes)),
@@ -61,9 +61,9 @@ export function Settings({ initialSettings, themes }: SettingsProps) {
     }
     setImagePreset(value);
   };
-  const handleBorderChange = async (value: boolean) => {
-    await saveSettingChange({ field: "border", value });
-    setBorder(value);
+  const handleBorderStyleChange = async (value: BorderStyle) => {
+    await saveSettingChange({ field: "borderStyle", value });
+    setBorderStyle(value);
   };
 
   React.useEffect(() => {
@@ -108,7 +108,10 @@ export function Settings({ initialSettings, themes }: SettingsProps) {
             onChange={handleImagePresetChange}
           />
           <br />
-          <BorderSelector value={border} onChange={handleBorderChange} />
+          <BorderSelector
+            value={borderStyle}
+            onChange={handleBorderStyleChange}
+          />
         </div>
         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
           <DownloadButton>Get Image</DownloadButton>
