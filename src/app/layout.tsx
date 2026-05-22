@@ -5,7 +5,7 @@ import { Partytown } from "@builder.io/partytown/react";
 
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
-import { ColorScheme, ImagePresets } from "@/app/common";
+import { BorderStyle, ColorScheme, ImagePresets } from "@/app/common";
 import { getThemes, generateThemeCSS, themesToRecord } from "@/app/themes";
 import { Border } from "@/components/border";
 import { Settings } from "./settings";
@@ -36,11 +36,10 @@ export const metadata = {
   },
 };
 const getCookieSettings = async () => {
-  let border = true;
-
   const cookieStore = await cookies();
-  const cookieBorder = cookieStore.get("border")?.value;
-  border = JSON.parse(cookieBorder ?? "true");
+
+  const borderStyle = (cookieStore.get("borderStyle")?.value ??
+    BorderStyle.Corners) as BorderStyle;
 
   const colorScheme = (cookieStore.get("colorScheme")?.value ??
     null) as ColorScheme | null;
@@ -57,7 +56,7 @@ const getCookieSettings = async () => {
     cookieStore.get("likedThemes")?.value ?? "{}"
   );
 
-  return { colorScheme, border, imagePreset, dimensions, likedThemes };
+  return { colorScheme, borderStyle, imagePreset, dimensions, likedThemes };
 };
 
 export default async function RootLayout({
@@ -70,7 +69,7 @@ export default async function RootLayout({
     getThemes(),
   ]);
 
-  const { border, colorScheme, imagePreset, likedThemes } = cookieValues;
+  const { borderStyle, colorScheme, imagePreset, likedThemes } = cookieValues;
   const themeRecord = themesToRecord(allThemes);
 
   return (
@@ -134,13 +133,13 @@ export default async function RootLayout({
         )}
       >
         <main className="flex min-h-screen flex-col p-4">
-          <Border enabled={border}>
+          <Border borderStyle={borderStyle}>
             <div className="flex w-full p-4 justify-between screenshot-hidden">
               <Feedback />
               <Settings
                 initialSettings={{
                   colorScheme,
-                  border,
+                  borderStyle,
                   imagePreset,
                   likedThemes,
                 }}

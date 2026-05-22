@@ -1,10 +1,17 @@
 import React from "react";
 import { DropdownSelector } from "@/components/dropdownSelector";
+import { BorderStyle } from "@/app/common";
 
 type BorderSelectorProps = {
-  value: boolean;
-  onChange: (value: boolean) => void;
+  value: BorderStyle;
+  onChange: (value: BorderStyle) => void;
 };
+
+const BORDER_STYLE_OPTIONS = [
+  { name: "Corners", value: BorderStyle.Corners },
+  { name: "Brackets", value: BorderStyle.Brackets },
+  { name: "None", value: BorderStyle.None },
+];
 
 export const BorderSelector: React.FC<BorderSelectorProps> = ({
   value,
@@ -12,16 +19,13 @@ export const BorderSelector: React.FC<BorderSelectorProps> = ({
 }) => {
   return (
     <>
-      <label htmlFor="border" className="text-primary">
-        Enable Border
+      <label htmlFor="borderStyle" className="text-primary">
+        Border Style
       </label>
       <DropdownSelector
-        options={[
-          { name: "Enabled", value: "true" },
-          { name: "Disabled", value: "false" },
-        ]}
-        value={value ? "true" : "false"}
-        onChange={(value: string) => onChange(value === "true")}
+        options={BORDER_STYLE_OPTIONS}
+        value={value}
+        onChange={(value: string) => onChange(value as BorderStyle)}
       />
     </>
   );

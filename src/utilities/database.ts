@@ -235,14 +235,14 @@ export class Database {
   async saveDownloadSettings({
     quote_id,
     color_scheme,
-    border,
+    border_style,
     image_preset,
     width,
     height,
   }: {
     quote_id: number;
     color_scheme?: string;
-    border?: string;
+    border_style?: string;
     image_preset?: string;
     width?: number;
     height?: number;
@@ -251,7 +251,7 @@ export class Database {
 
     const settingsMap = {
       color_scheme,
-      border,
+      border_style,
       image_preset,
       width,
       height,

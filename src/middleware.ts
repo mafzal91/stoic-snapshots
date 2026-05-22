@@ -4,7 +4,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { kv } from "@vercel/kv";
 import { Database } from "@/utilities/database";
 import type { NextFetchEvent, NextRequest } from "next/server";
-import { ImagePresets } from "@/app/common";
+import { BorderStyle, ImagePresets } from "@/app/common";
 import { imageDimensions } from "@/utilities/constants";
 
 const imageDimensionsMap = new Map(
@@ -53,7 +53,7 @@ async function imagePathHandler(request: NextRequest) {
   const quote_id = Number(request.nextUrl.pathname.split("/")[2]);
   const cookiesMap = new Map(cookies.map(({ name, value }) => [name, value]));
   const colorScheme = cookiesMap.get("colorScheme");
-  const border = cookiesMap.get("border") ?? "true";
+  const borderStyle = cookiesMap.get("borderStyle") ?? BorderStyle.Corners;
   const imagePreset = cookiesMap.get("imagePreset") ?? ImagePresets.Screen;
   let height = 1000;
   let width = 1000;
@@ -62,7 +62,7 @@ async function imagePathHandler(request: NextRequest) {
     quote_id,
     cookiesMap,
     colorScheme,
-    border,
+    borderStyle,
     imagePreset,
   });
   if (imageDimensionsMap.has(imagePreset)) {
@@ -97,7 +97,7 @@ async function imagePathHandler(request: NextRequest) {
   await new Database().saveDownloadSettings({
     quote_id,
     color_scheme: colorScheme,
-    border,
+    border_style: borderStyle,
     image_preset: imagePreset,
     width,
     height,
