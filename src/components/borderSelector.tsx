@@ -10,6 +10,8 @@ type BorderSelectorProps = {
 const BORDER_STYLE_OPTIONS = [
   { name: "Corners", value: BorderStyle.Corners },
   { name: "Brackets", value: BorderStyle.Brackets },
+  { name: "Diamonds", value: BorderStyle.Diamonds },
+  { name: "Sparkles", value: BorderStyle.Sparkles },
   { name: "None", value: BorderStyle.None },
 ];
 
