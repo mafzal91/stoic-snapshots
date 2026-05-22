@@ -7,6 +7,8 @@ export const LIGHT_SCHEME = "light";
 export enum BorderStyle {
   Corners = "corners",
   Brackets = "brackets",
+  Diamonds = "diamonds",
+  Sparkles = "sparkles",
   None = "none",
 }
 
