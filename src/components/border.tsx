@@ -3,6 +3,7 @@ import { CornersBorder } from "@/components/borders/Corners";
 import { BracketsBorder } from "@/components/borders/Brackets";
 import { DiamondsBorder } from "@/components/borders/Diamonds";
 import { SparklesBorder } from "@/components/borders/Sparkles";
+import { ArtDecoBorder } from "@/components/borders/ArtDeco";
 import { NoBorder } from "@/components/borders/None";
 
 export function Border({
@@ -21,6 +22,8 @@ export function Border({
       return <DiamondsBorder>{children}</DiamondsBorder>;
     case BorderStyle.Sparkles:
       return <SparklesBorder>{children}</SparklesBorder>;
+    case BorderStyle.ArtDeco:
+      return <ArtDecoBorder>{children}</ArtDecoBorder>;
     case BorderStyle.None:
     default:
       return <NoBorder>{children}</NoBorder>;
