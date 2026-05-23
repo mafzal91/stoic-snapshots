@@ -9,6 +9,7 @@ export enum BorderStyle {
   Brackets = "brackets",
   Diamonds = "diamonds",
   Sparkles = "sparkles",
+  ArtDeco = "art-deco",
   None = "none",
 }
 
