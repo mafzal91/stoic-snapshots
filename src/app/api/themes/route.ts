@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { Database } from "@/utilities/database";
 
-const HEX_RE = /^[0-9a-fA-F]{6}$/;
+const HEX_RE = /^#?[0-9a-fA-F]{6}$/;
 
 function validHex(value: unknown): value is string {
   return typeof value === "string" && HEX_RE.test(value);
+}
+
+function normalizeHex(value: string): string {
+  return value.startsWith("#") ? value : `#${value}`;
 }
 
 export async function GET() {
@@ -35,12 +40,14 @@ export async function POST(request: NextRequest) {
   const db = new Database();
   const theme = await db.insertTheme({
     name: name as string,
-    background: background as string,
-    accent: accent as string,
-    primary: primary as string,
-    secondary: secondary as string,
+    background: normalizeHex(background as string),
+    accent: normalizeHex(accent as string),
+    primary: normalizeHex(primary as string),
+    secondary: normalizeHex(secondary as string),
     likes: 0,
   });
+
+  revalidateTag("all-themes", "max");
 
   return NextResponse.json(theme, { status: 201 });
 }
