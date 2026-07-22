@@ -21,6 +21,14 @@ export default function NotFound() {
         <Divider />
         <FooterLink href={`/random`}>Random</FooterLink>
         <Divider />
+        <FooterLink
+          href={"https://www.buymeacoffee.com/mafzal91"}
+          target="_blank"
+          rel="noopener"
+        >
+          Buy me a coffee
+        </FooterLink>
+        <Divider />
       </div>
     </>
   );

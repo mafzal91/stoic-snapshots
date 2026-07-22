@@ -94,6 +94,14 @@ export default async function QuoteByIdPage(props: Props) {
         <Divider />
         <CopyButton quote_id={quote.id}>Share this quote</CopyButton>
         <Divider />
+        <FooterLink
+          href={"https://www.buymeacoffee.com/mafzal91"}
+          target="_blank"
+          rel="noopener"
+        >
+          Buy me a coffee
+        </FooterLink>
+        <Divider />
         <FooterLink href={"https://mafz.al"} target="_blank" rel="noopener">
           By Mo with{" "}
           <HeartIcon className="inline align-sub h-4 w-4 text-primary" />
