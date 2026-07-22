@@ -6,6 +6,7 @@ import { Database } from "@/utilities/database";
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { BorderStyle, ImagePresets } from "@/app/common";
 import { imageDimensions } from "@/utilities/constants";
+import { ADMIN_COOKIE, verifyToken } from "@/utilities/admin-auth";
 
 const imageDimensionsMap = new Map(
   imageDimensions.map(({ name, height, width }) => [name, { width, height }])
@@ -106,16 +107,48 @@ async function imagePathHandler(request: NextRequest) {
   return response;
 }
 
+// Only writes to the themes API are protected; reads (GET) stay public so
+// the app can render the theme list.
+async function adminAuthHandler(request: NextRequest) {
+  const isApi = request.nextUrl.pathname.startsWith("/api/themes");
+
+  const token = request.cookies.get(ADMIN_COOKIE)?.value;
+  if (await verifyToken(token)) {
+    return null;
+  }
+
+  if (isApi) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const url = request.nextUrl.clone();
+  url.pathname = "/themes/login";
+  url.search = `?from=${encodeURIComponent(request.nextUrl.pathname)}`;
+  return NextResponse.redirect(url);
+}
+
 export async function proxy(request: NextRequest, event: NextFetchEvent) {
-  if (request.nextUrl.pathname.match(/^\/image\/\d+$/)) {
+  const { pathname } = request.nextUrl;
+
+  if (
+    pathname.startsWith("/themes/new") ||
+    (pathname.startsWith("/api/themes") && request.method === "POST")
+  ) {
+    const denied = await adminAuthHandler(request);
+    if (denied) {
+      return denied;
+    }
+  }
+
+  if (pathname.match(/^\/image\/\d+$/)) {
     return imagePathHandler(request);
   }
 
-  if (request.nextUrl.pathname.startsWith("/api")) {
+  if (pathname.startsWith("/api")) {
     return apiHandler(request, event);
   }
 }
 
 export const config = {
-  matcher: ["/image/:path*", "/api/:path*"],
+  matcher: ["/image/:path*", "/api/:path*", "/themes/new", "/themes/new/:path*"],
 };
