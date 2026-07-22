@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     likes: 0,
   });
 
-  revalidateTag("all-themes");
+  await revalidateTag("all-themes");
 
   return NextResponse.json(theme, { status: 201 });
 }
