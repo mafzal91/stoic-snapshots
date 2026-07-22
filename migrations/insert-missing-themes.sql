@@ -37,6 +37,8 @@ FROM (VALUES
   ('desert-haze',        0, '#f5e9d8', '#3e2c23', '#e76f2e', '#2fa4d7'),
   ('apricot-bliss',      0, '#f09c67', '#f7e0a3', '#fffde8', '#4c8492'),
   ('sandy-shore',        0, '#87aaaa', '#f6d7a7', '#f6eabe', '#c8e3d4'),
-  ('iris-cream',         0, '#fff5de', '#c6b4ce', '#3c5186', '#9b72aa')
+  ('iris-cream',         0, '#fff5de', '#c6b4ce', '#3c5186', '#9b72aa'),
+  ('twilight-peach',     0, '#f4f4f4', '#ff9d72', '#654062', '#ffd66b'),
+  ('rosewater-sky',      0, '#fef6fb', '#e6b2c6', '#d77fa1', '#d6e5fa')
 ) AS v(name, likes, background, accent, "primary", secondary)
 WHERE NOT EXISTS (SELECT 1 FROM themes WHERE themes.name = v.name);
