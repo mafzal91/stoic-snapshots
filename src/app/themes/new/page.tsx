@@ -70,10 +70,10 @@ function AddThemeForm() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: name.trim().toLowerCase().replace(/\s+/g, "-"),
-            background: colors.background.replace("#", ""),
-            accent: colors.accent.replace("#", ""),
-            primary: colors.primary.replace("#", ""),
-            secondary: colors.secondary.replace("#", ""),
+            background: colors.background,
+            accent: colors.accent,
+            primary: colors.primary,
+            secondary: colors.secondary,
           }),
         });
 
