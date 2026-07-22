@@ -25,7 +25,7 @@ export const getThemes = unstable_cache(
     }));
   },
   ["all-themes"],
-  { revalidate: 3600 }
+  { revalidate: 3600, tags: ["all-themes"] }
 );
 
 export function themesToRecord(

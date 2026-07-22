@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { Database } from "@/utilities/database";
 
 const HEX_RE = /^#?[0-9a-fA-F]{6}$/;
@@ -45,6 +46,8 @@ export async function POST(request: NextRequest) {
     secondary: normalizeHex(secondary as string),
     likes: 0,
   });
+
+  revalidateTag("all-themes", "max");
 
   return NextResponse.json(theme, { status: 201 });
 }
