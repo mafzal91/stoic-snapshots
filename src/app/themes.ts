@@ -12,17 +12,21 @@ export type ThemeData = ThemeColors & {
   name: string;
 };
 
+const builtInThemes: ThemeData[] = [];
+
 export const getThemes = unstable_cache(
   async (): Promise<ThemeData[]> => {
     const db = new Database();
     const rows = await db.findAllThemes();
-    return rows.map((r) => ({
+    const dbThemes = rows.map((r) => ({
       name: r.name,
       background: r.background,
       accent: r.accent,
       primary: r.primary,
       secondary: r.secondary,
     }));
+    const dbNames = new Set(dbThemes.map((t) => t.name));
+    return [...builtInThemes.filter((t) => !dbNames.has(t.name)), ...dbThemes];
   },
   ["all-themes"],
   { revalidate: 3600, tags: ["all-themes"] }
