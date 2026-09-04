@@ -49,5 +49,6 @@
     "prisma": "^5.11.0",
     "tsx": "^3.12.7",
     "tw-colors": "^1.2.6"
-  }
+  },
+  "packageManager": "pnpm@11.9.0"
 }
