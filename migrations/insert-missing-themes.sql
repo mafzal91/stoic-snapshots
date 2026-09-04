@@ -39,6 +39,7 @@ FROM (VALUES
   ('sandy-shore',        0, '#87aaaa', '#f6d7a7', '#f6eabe', '#c8e3d4'),
   ('iris-cream',         0, '#fff5de', '#c6b4ce', '#3c5186', '#9b72aa'),
   ('twilight-peach',     0, '#f4f4f4', '#ff9d72', '#654062', '#ffd66b'),
-  ('rosewater-sky',      0, '#fef6fb', '#e6b2c6', '#d77fa1', '#d6e5fa')
+  ('rosewater-sky',      0, '#fef6fb', '#e6b2c6', '#d77fa1', '#d6e5fa'),
+  ('maroon-vellum',      0, '#eee0cc', '#7b2525', '#607456', '#ba6a4c')
 ) AS v(name, likes, background, accent, "primary", secondary)
 WHERE NOT EXISTS (SELECT 1 FROM themes WHERE themes.name = v.name);
