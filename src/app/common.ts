@@ -10,6 +10,15 @@ export enum BorderStyle {
   Diamonds = "diamonds",
   Sparkles = "sparkles",
   ArtDeco = "art-deco",
+  NYCSubway = "nyc-subway",
+  NYCSubwayThin = "nyc-subway-thin",
+  NYCSubwayThreeRows = "nyc-subway-three-rows",
+  GreekKey = "greek-key",
+  Bookplate = "bookplate",
+  Architectural = "architectural",
+  PostageStamp = "postage-stamp",
+  RomanMosaic = "roman-mosaic",
+  Letterpress = "letterpress",
   None = "none",
 }
 
