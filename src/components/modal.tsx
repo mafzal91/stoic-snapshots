@@ -1,4 +1,5 @@
 import * as React from "react";
+import clsx from "clsx";
 import {
   Dialog,
   DialogPanel,
@@ -14,6 +15,8 @@ interface ModalProps {
   title: string;
   description: string;
   children: React.ReactNode;
+  size?: "default" | "wide";
+  returnFocusRef?: React.RefObject<HTMLElement | null>;
 }
 
 export function Modal({
@@ -22,9 +25,15 @@ export function Modal({
   title,
   description,
   children,
+  size = "default",
+  returnFocusRef,
 }: ModalProps) {
   return (
-    <Transition show={isOpen} as={React.Fragment}>
+    <Transition
+      show={isOpen}
+      as={React.Fragment}
+      afterLeave={() => returnFocusRef?.current?.focus()}
+    >
       <Dialog as="div" className="relative z-10" onClose={onClose}>
         <TransitionChild
           as={React.Fragment}
@@ -49,18 +58,25 @@ export function Modal({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <DialogPanel className="relative transform w-full rounded-lg bg-background px-4 pb-4 pt-5 text-left shadow-lg transition-all sm:my-8 sm:max-w-sm sm:p-6">
-                <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+              <DialogPanel
+                className={clsx(
+                  "relative transform w-full rounded-lg bg-background px-4 pb-4 pt-5 text-left shadow-lg transition-all sm:my-8 sm:p-6",
+                  size === "wide"
+                    ? "flex max-h-[calc(100dvh-2rem)] flex-col sm:max-w-2xl"
+                    : "sm:max-w-sm",
+                )}
+              >
+                <div className="absolute right-0 top-0 pr-4 pt-4">
                   <button
                     type="button"
-                    className="rounded-md bg-background text-primary hover:text-secondary focus:outline-hidden focus:ring-1 focus:ring-primary focus:ring-offset-1"
+                    className="rounded-md bg-background p-2 text-primary hover:text-secondary focus:outline-hidden focus:ring-1 focus:ring-primary focus:ring-offset-1"
                     onClick={onClose}
                   >
                     <span className="sr-only">Close</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="mt-3 text-center sm:text-left">
+                <div className="mt-3 shrink-0 pr-10 text-left">
                   <DialogTitle
                     as="h3"
                     className="text-base font-semibold leading-6 text-primary"

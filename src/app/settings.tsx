@@ -12,6 +12,7 @@ import { DownloadButton } from "@/components/downloadButton";
 import { Modal } from "@/components/modal";
 
 type SettingsProps = {
+  children: React.ReactNode;
   initialSettings: {
     colorScheme: string | null;
     imagePreset: ImagePresets;
@@ -21,8 +22,38 @@ type SettingsProps = {
   themes: Record<string, ThemeColors>;
 };
 
-export function Settings({ initialSettings, themes }: SettingsProps) {
+const OpenSettingsContext = React.createContext<{
+  openSettings: () => void;
+  registerTrigger: (node: HTMLButtonElement | null) => void;
+} | null>(null);
+
+export function SettingsButton() {
+  const settings = React.useContext(OpenSettingsContext);
+
+  if (!settings) {
+    throw new Error("SettingsButton must be rendered inside Settings");
+  }
+  const { openSettings, registerTrigger } = settings;
+
+  return (
+    <button
+      ref={registerTrigger}
+      aria-label="settings"
+      className="p-1 rounded-md text-primary focus:outline-hidden focus:ring-1 focus:ring-primary"
+      onClick={openSettings}
+    >
+      <Cog6ToothIcon className="h-6 w-6" aria-hidden="true" />
+    </button>
+  );
+}
+
+export function Settings({ children, initialSettings, themes }: SettingsProps) {
   const [open, setOpen] = React.useState(false);
+  const openSettings = React.useCallback(() => setOpen(true), []);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+  const registerTrigger = React.useCallback((node: HTMLButtonElement | null) => {
+    triggerRef.current = node;
+  }, []);
   const [imagePreset, setImagePreset] = React.useState<string>(
     initialSettings.imagePreset || ImagePresets.Screen
   );
@@ -80,43 +111,42 @@ export function Settings({ initialSettings, themes }: SettingsProps) {
   }, [imagePreset]);
 
   return (
-    <>
-      <button
-        aria-label="settings"
-        className="p-1 rounded-md text-primary focus:outline-hidden focus:ring-1 focus:ring-primary"
-        onClick={() => setOpen(true)}
-      >
-        <Cog6ToothIcon className="h-6 w-6" aria-hidden="true" />
-      </button>
-
+    <OpenSettingsContext.Provider value={{ openSettings, registerTrigger }}>
+      {children}
       <Modal
         isOpen={open}
         onClose={() => setOpen(false)}
         title="Settings"
         description="Customize page & export settings"
+        size="wide"
+        returnFocusRef={triggerRef}
       >
-        <div className="mt-2">
-          <ColorSchemeSelector
-            value={colorScheme}
-            onChange={setSelected}
-            isLiked={likedTheme ?? false}
-            themes={themes}
-          />
-          <br />
-          <ImagePresetSelector
-            value={imagePreset}
-            onChange={handleImagePresetChange}
-          />
-          <br />
+        <div className="mt-5 flex min-h-0 flex-col gap-5 overflow-y-auto">
+          <div className="grid shrink-0 gap-5 sm:grid-cols-2">
+            <div className="min-w-0">
+              <ColorSchemeSelector
+                value={colorScheme}
+                onChange={setSelected}
+                isLiked={likedTheme ?? false}
+                themes={themes}
+              />
+            </div>
+            <div className="min-w-0">
+              <ImagePresetSelector
+                value={imagePreset}
+                onChange={handleImagePresetChange}
+              />
+            </div>
+          </div>
           <BorderSelector
             value={borderStyle}
             onChange={handleBorderStyleChange}
           />
         </div>
-        <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+        <div className="mt-5 shrink-0 sm:mt-4 sm:flex sm:flex-row-reverse">
           <DownloadButton>Get Image</DownloadButton>
         </div>
       </Modal>
-    </>
+    </OpenSettingsContext.Provider>
   );
 }
