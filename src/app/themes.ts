@@ -12,15 +12,7 @@ export type ThemeData = ThemeColors & {
   name: string;
 };
 
-const builtInThemes: ThemeData[] = [
-  {
-    name: "claret-dusk",
-    background: "#eeeded",
-    accent: "#5c6e91",
-    primary: "#8f384d",
-    secondary: "#dd9866",
-  },
-];
+const builtInThemes: ThemeData[] = [];
 
 export const getThemes = unstable_cache(
   async (): Promise<ThemeData[]> => {
