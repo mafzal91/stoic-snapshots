@@ -12,7 +12,15 @@ export type ThemeData = ThemeColors & {
   name: string;
 };
 
-const builtInThemes: ThemeData[] = [];
+const builtInThemes: ThemeData[] = [
+  {
+    name: "sherbet-sky",
+    background: "#faf0d7",
+    accent: "#ffd9c0",
+    primary: "#8cc0de",
+    secondary: "#f4bfbf",
+  },
+];
 
 export const getThemes = unstable_cache(
   async (): Promise<ThemeData[]> => {
