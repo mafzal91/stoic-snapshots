@@ -12,22 +12,7 @@ export type ThemeData = ThemeColors & {
   name: string;
 };
 
-const builtInThemes: ThemeData[] = [
-  {
-    name: "sherbet-sky",
-    background: "#faf0d7",
-    accent: "#ffd9c0",
-    primary: "#35698c",
-    secondary: "#f4bfbf",
-  },
-  {
-    name: "orchid-blush",
-    background: "#f6d5d5",
-    accent: "#b08fbb",
-    primary: "#8b2f8a",
-    secondary: "#ca498c",
-  },
-];
+const builtInThemes: ThemeData[] = [];
 
 // Only the DB query is cached; built-in themes are merged afterwards so edits
 // to them show up on the next deploy instead of waiting for the cache to expire.
