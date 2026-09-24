@@ -14,23 +14,29 @@ export type ThemeData = ThemeColors & {
 
 const builtInThemes: ThemeData[] = [];
 
-export const getThemes = unstable_cache(
+// Only the DB query is cached; built-in themes are merged afterwards so edits
+// to them show up on the next deploy instead of waiting for the cache to expire.
+const getDbThemes = unstable_cache(
   async (): Promise<ThemeData[]> => {
     const db = new Database();
     const rows = await db.findAllThemes();
-    const dbThemes = rows.map((r) => ({
+    return rows.map((r) => ({
       name: r.name,
       background: r.background,
       accent: r.accent,
       primary: r.primary,
       secondary: r.secondary,
     }));
-    const dbNames = new Set(dbThemes.map((t) => t.name));
-    return [...builtInThemes.filter((t) => !dbNames.has(t.name)), ...dbThemes];
   },
-  ["all-themes"],
+  ["db-themes"],
   { revalidate: 3600, tags: ["all-themes"] }
 );
+
+export async function getThemes(): Promise<ThemeData[]> {
+  const dbThemes = await getDbThemes();
+  const dbNames = new Set(dbThemes.map((t) => t.name));
+  return [...builtInThemes.filter((t) => !dbNames.has(t.name)), ...dbThemes];
+}
 
 export function themesToRecord(
   themes: ThemeData[]
