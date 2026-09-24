@@ -15,9 +15,9 @@ export type ThemeData = ThemeColors & {
 const builtInThemes: ThemeData[] = [
   {
     name: "sherbet-sky",
-    background: "#faf0d7",
+    background: "#8cc0de",
     accent: "#ffd9c0",
-    primary: "#8cc0de",
+    primary: "#faf0d7",
     secondary: "#f4bfbf",
   },
   {
