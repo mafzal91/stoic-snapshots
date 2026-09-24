@@ -20,6 +20,13 @@ const builtInThemes: ThemeData[] = [
     primary: "#8cc0de",
     secondary: "#f4bfbf",
   },
+  {
+    name: "orchid-blush",
+    background: "#f6d5d5",
+    accent: "#b08fbb",
+    primary: "#8b2f8a",
+    secondary: "#ca498c",
+  },
 ];
 
 export const getThemes = unstable_cache(
