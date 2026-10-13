@@ -14,11 +14,11 @@ export type ThemeData = ThemeColors & {
 
 const builtInThemes: ThemeData[] = [
   {
-    name: "pomegranate-cream",
-    background: "#fff4e4",
-    accent: "#f88020",
-    primary: "#3d0e1e",
-    secondary: "#d1274b",
+    name: "pomegranate-night",
+    background: "#3d0e1e",
+    accent: "#d1274b",
+    primary: "#fff4e4",
+    secondary: "#f88020",
   },
 ];
 
