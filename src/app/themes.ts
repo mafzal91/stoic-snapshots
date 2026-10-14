@@ -12,15 +12,7 @@ export type ThemeData = ThemeColors & {
   name: string;
 };
 
-const builtInThemes: ThemeData[] = [
-  {
-    name: "pomegranate-night",
-    background: "#3d0e1e",
-    accent: "#d1274b",
-    primary: "#fff4e4",
-    secondary: "#f88020",
-  },
-];
+const builtInThemes: ThemeData[] = [];
 
 // Only the DB query is cached; built-in themes are merged afterwards so edits
 // to them show up on the next deploy instead of waiting for the cache to expire.
