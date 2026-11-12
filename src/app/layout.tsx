@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Script from "next/script";
 import { cookies } from "next/headers";
 import { Partytown } from "@builder.io/partytown/react";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 import { Crimson_Text, EB_Garamond } from "next/font/google";
@@ -153,6 +154,7 @@ export default async function RootLayout({
         </main>
         <ThemeDebugPanel initialColorScheme={colorScheme} themes={themeRecord} />
         <ThemePreview />
+        <Analytics />
       </body>
     </html>
   );
